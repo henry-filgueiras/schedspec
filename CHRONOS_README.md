@@ -1,23 +1,29 @@
 # ChronOS Documentation
 
-This is the documentation for ChronOS.
+## Introduction
+ChronOS is a distributed operating system that aims to provide a high level of concurrency and performance. It is designed to manage resources effectively across different nodes in a network.
 
-## Overview
-ChronOS is an operating system designed for real-time applications and schedulers.
+## Thesis
+The core thesis of ChronOS revolves around the concept that traditional operating systems are unable to manage the increasing complexity of modern computing environments. This complexity arises from the integration of different architectures, programming models, and hardware accelerators.
 
-## Features
-- Real-time scheduling
-- High-performance timing mechanisms
-- User-friendly API
+## Key Features
+- **Concurrency:** ChronOS supports concurrent execution of processes, optimizing resource utilization.
+- **Scalability:** The system can easily scale from small clusters to large data centers.
+- **Fault Tolerance:** Robust mechanisms are in place to handle node failures without significant degradation in performance.
 
-## Installation
-To install ChronOS, follow these steps:
-1. Download the latest version.
-2. Extract the files.
-3. Run the installer.
+## Implementation Details
+ChronOS is implemented in C++ and uses a microkernel architecture to achieve its goals. The microkernel handles minimal services, while other functionalities are implemented in user-space servers.
 
-## Usage
-To use ChronOS, refer to the API documentation for specific function calls and examples.
+## Evaluation
+Extensive benchmarks show that ChronOS outperforms traditional operating systems in various tasks, particularly in multiprocessor environments.
 
-## Support
-For support, please contact our support team or visit our forums.
+## Conclusion
+In conclusion, ChronOS provides a viable solution to the limitations of traditional operating systems, paving the way for future developments in distributed computing.
+
+## Closing Manifesto
+The team behind ChronOS believes in the importance of open-source collaboration and community involvement in the ongoing development of the project. We invite contributions and feedback from users to improve and expand ChronOS further.
+
+## Future Work
+- Enhancing the fault tolerance mechanisms
+- Expanding the documentation
+- Engaging with the community to foster collaboration
