@@ -4,6 +4,8 @@ Resonant Membership is a design-first systems treatise on gossip, trust, and con
 
 This repository is organized around **Resonant Membership** as the active center of gravity. Earlier or adjacent threads, especially **ChronOS** and **SameDiff**, are preserved as archived design lineages rather than treated as co-equal active projects.
 
+For a fast human re-entry, start with [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md).
+
 ## Start Here
 
 If you are new to the repo:
@@ -40,6 +42,7 @@ Canonical active-doc inventory:
 - **Spine chapters:** [`docs/MANIFESTO.md`](docs/MANIFESTO.md), [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
 - **Interstitial primitive chapters:** [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MECHANICS.md`](docs/MECHANICS.md)
 - **Appendices / support docs:** [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md), [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md), [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md)
+- **Human snapshot:** [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md)
 
 Canonical reading spine:
 
@@ -154,6 +157,7 @@ merger:
 - [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md): chapter roles and intended reading order
 - [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md): editorial source of truth for chapter roles, terms, and wording discipline
 - [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md): pre-acceptance checklist for doc changes
+- [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md): compact human-first snapshot of the project's current shape
 
 ## Status
 
