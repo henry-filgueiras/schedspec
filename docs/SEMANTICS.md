@@ -266,11 +266,11 @@ Semantically required:
 
 - scopes must be explicit enough to explain why a claim mattered where it did
 
-### Epoch And Freshness
+### Freshness And Epoch
+
+**Freshness** is the temporal relevance of a claim, observation, or witness contribution.
 
 An **epoch** is bounded time or generation context used for ordering, freshness, and repair reasoning.
-
-Freshness is the temporal relevance of a claim, observation, or witness contribution.
 
 Dimensions that matter:
 
@@ -299,6 +299,7 @@ Intentionally open:
 Semantically required:
 
 - the system must be able to distinguish fresh, stale, and superseded evidence
+- epoch or equivalent generation context must be visible enough to support explanation of ordering and repair
 
 ### Residue
 
@@ -332,7 +333,7 @@ Semantically required:
 
 - unresolved disagreement must remain inspectable when the protocol cannot yet justify convergence
 
-### Quarantine And Revocation State
+### Quarantine State And Revocation
 
 **Quarantine** is bounded suspension of propagation, acceptance, or both.
 
@@ -365,6 +366,7 @@ Intentionally open:
 Semantically required:
 
 - quarantine and revocation must be explainable protocol states, not informal implementation behavior
+- quarantine must be able to suspend propagation, acceptance, or both in a scoped way
 
 ## Decision Surfaces
 
@@ -524,7 +526,20 @@ A compact claim lifecycle looks like:
 
 The important point is that a claim does not become a fact merely because it exists. It becomes meaningful through witness, trust, scope, and repair behavior.
 
-## Merge Decision Skeleton
+## Witness-Selection Skeleton
+
+A compact witness-selection skeleton looks like:
+
+1. identify the subject, scope, and current epoch or repair context
+2. form a candidate set using deployment policy, topology constraints, trust floors, and scope boundaries
+3. compute permutation rank over that candidate set from a visible seed
+4. prune or accept the ranked order according to diversity, locality, and trust policy
+5. record which witnesses were selected, which were eligible but excluded, and why
+6. expose enough of the process for operator reconstruction
+
+The key semantic distinction is that candidate-set formation is policy-shaped, while the ordering over that candidate set should remain deterministic enough to audit.
+
+## Merge-Decision Skeleton
 
 A compact merge skeleton looks like:
 
@@ -537,7 +552,7 @@ A compact merge skeleton looks like:
 
 This is not a full algorithm. It is the minimum semantic skeleton the rest of the repo assumes.
 
-## Healing Round Skeleton
+## Healing-Round Skeleton
 
 A compact healing round looks like:
 
@@ -550,15 +565,20 @@ A compact healing round looks like:
 
 The key semantic commitment is that healing is an explicit round of reconciliation, not a magical return to pre-partition innocence.
 
-## Deterministic vs Policy-Shaped
+## What Must Remain Deterministic
 
 Some parts of the model should remain deterministic enough to be reconstructable:
 
 - permutation-rank output from a visible seed and candidate set
+- the relationship between a specific seed, candidate set, and selected witness or rendezvous slice
 - deterministic tie-breaking once higher-order semantic distinctions are exhausted
 - visibility of which evidence entered a merge
 
-Some parts are intentionally policy-shaped:
+Determinism here does not mean every deployment must choose the same policy. It means that once a policy is in force, the decisions that claim to be accountable should be reconstructable from visible inputs rather than from runtime accident.
+
+## What May Vary By Deployment Policy
+
+Some parts of the model are intentionally policy-shaped:
 
 - trust-weight calculation
 - candidate-set eligibility rules
