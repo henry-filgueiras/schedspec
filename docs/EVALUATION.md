@@ -34,9 +34,9 @@ Success is not perfect certainty. Success is a system that remains locally usefu
 
 Failure is not merely slow propagation. Failure is a design that carries extra semantic machinery but still cannot control blast radius, cannot explain why a view converged, cannot heal partitions cleanly, or cannot preserve residue in a way operators can reason about.
 
-## Protocol-Level Metrics
+## Convergence And Healing Metrics
 
-At the protocol level, a conforming evaluation would care about metrics such as:
+A conforming evaluation would care about metrics such as:
 
 - **convergence lag:** how long scopes take to reach stable useful belief after introductions, suspicions, revocations, or healed partitions
 - **belief stability:** how often subjects oscillate between provisional, accepted, disputed, and quarantined states
@@ -46,6 +46,20 @@ At the protocol level, a conforming evaluation would care about metrics such as:
 - **global overreach:** how often weak local evidence is allowed to spread farther than its confidence should justify
 
 These metrics matter because the protocol is explicitly paying for more structure than a flat membership list. If that structure does not improve scoped usefulness, explainability, or convergence discipline, it is not earning its keep.
+
+## Blast-Radius And Scoping Metrics
+
+Resonant Membership claims that scope should shape not only meaning, but also dissemination and trust impact. That claim deserves its own evaluation surface.
+
+Useful metrics include:
+
+- **blast radius control:** whether low-quality or weakly trusted claims remain bounded to the scopes that can justify them
+- **scope-local usefulness:** whether local scopes are still able to act before global certainty arrives
+- **global overreach:** how often claims escape their intended scope too early
+- **scope transition clarity:** whether widening from local to regional or global significance remains explainable
+- **scope asymmetry persistence:** how long adjacent scopes hold materially different but still operationally useful views
+
+The design is paying for scoped semantics precisely so the system does not have to choose only between local silence and global rumor.
 
 ## Topology-Sensitive Metrics
 
@@ -71,26 +85,10 @@ Important metrics include:
 - **witness diversity quality:** whether corroboration comes from genuinely different failure domains, operators, or observation positions
 - **trust concentration:** how much the system depends on a narrow set of high-weight witnesses
 - **confidence calibration:** whether accepted claims tend to have witness histories that match their published confidence
-- **blast radius control:** whether low-quality or weakly trusted claims remain scoped rather than being amplified globally
 - **quarantine accuracy:** whether quarantine captures genuinely suspect claims without swallowing too many legitimate introductions
 - **quarantine overreach:** whether cautious trust policy unnecessarily delays useful local convergence
 
 The interesting question is not whether a witness has a number attached to it. The question is whether trust actually shapes dissemination and acceptance in ways that improve protocol honesty.
-
-## Merge And Healing Metrics
-
-Partition healing is one of the sharpest claims in the repo, so it deserves its own evaluation posture.
-
-Metrics and dimensions here include:
-
-- **deterministic reunion quality:** whether independently participating peers choose compatible rendezvous sets often enough for reunion to remain bounded and legible
-- **merge reproducibility:** whether the same merge inputs produce the same merge outcome under equivalent policy
-- **repair completion lag:** how long it takes for repaired scopes to move from competing local views to a stable post-healing state
-- **residue after healing:** how much unresolved disagreement remains after reunion, and whether that residue is informative rather than noisy
-- **repair traffic cost:** how much bandwidth and coordination load healing rounds impose
-- **healing oscillation risk:** whether repeated reunion and re-repair create cycles instead of stability
-
-This section should be read with one blunt question in mind: does the merge-and-healing machinery actually outperform naive rumor resumption in situations where partitions matter?
 
 ## Operator-Observability Metrics
 

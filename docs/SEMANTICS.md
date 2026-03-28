@@ -10,6 +10,7 @@ See also:
 - [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), and [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for the chapter-scale semantics
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
 - [`DIAGRAMS.md`](DIAGRAMS.md) and [`EXAMPLES.md`](EXAMPLES.md) for visual and worked semantic companions
+- [`EVALUATION.md`](EVALUATION.md) for how these objects and decisions should be judged under stress
 
 ## What Problem This Section Solves
 
