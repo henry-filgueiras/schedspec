@@ -10,6 +10,7 @@ See also:
 - [`TRUST.md`](TRUST.md) for trust-sensitive behavior
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for disagreement and repair behavior
 - [`EVALUATION.md`](EVALUATION.md) for how these threats should inform judgment of the design
+- [`CRITIQUE.md`](CRITIQUE.md) for the strongest internal objections and project-level risks
 
 ## What Problem This Section Solves
 

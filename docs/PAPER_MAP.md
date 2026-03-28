@@ -30,9 +30,11 @@ The intended paper spine is:
    [`THREAT_MODEL.md`](THREAT_MODEL.md)
 11. **Evaluation**  
    [`EVALUATION.md`](EVALUATION.md)
-12. **Examples**  
+12. **Critique**  
+   [`CRITIQUE.md`](CRITIQUE.md)
+13. **Examples**  
    [`EXAMPLES.md`](EXAMPLES.md)
-13. **Diagrams**  
+14. **Diagrams**  
    [`DIAGRAMS.md`](DIAGRAMS.md)
 
 ## Chapter Roles
@@ -102,6 +104,12 @@ Its job is to say what hostile timing, stale witnesses, scope abuse, and adversa
 [`EVALUATION.md`](EVALUATION.md) is the judgment chapter.
 
 Its job is to say how the design should be compared, stressed, costed, and potentially falsified.
+
+### Critique
+
+[`CRITIQUE.md`](CRITIQUE.md) is the internal reviewer chapter.
+
+Its job is to state the strongest fair objections to the project, distinguish superficial complaints from genuinely dangerous ones, and say where the whole proposal could still fail.
 
 ### Examples
 

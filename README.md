@@ -13,6 +13,7 @@ If you are new to the repo:
 3. Read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure.
 4. Read [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md) for the core protocol argument.
 5. Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.
+6. Read [`docs/CRITIQUE.md`](docs/CRITIQUE.md) if you want the strongest internal objections on the table as well.
 
 ## Repository Architecture
 
@@ -115,6 +116,7 @@ merger:
 - [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md): hierarchy, permutation rank, and arborition overlays
 - [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md): failures, adversaries, and abuse cases
 - [`docs/EVALUATION.md`](docs/EVALUATION.md): how to judge, compare, stress, and potentially falsify the design
+- [`docs/CRITIQUE.md`](docs/CRITIQUE.md): strongest internal objections and project-level failure modes
 - [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
 - [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams
 

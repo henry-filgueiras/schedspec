@@ -9,6 +9,7 @@ See also:
 - [`ABSTRACT.md`](ABSTRACT.md) for the framing argument
 - [`SEMANTICS.md`](SEMANTICS.md) for the protocol objects and decision surfaces being evaluated
 - [`THREAT_MODEL.md`](THREAT_MODEL.md) for the pressure the design is expected to survive
+- [`CRITIQUE.md`](CRITIQUE.md) for the strongest internal objections to the proposal
 - [`EXAMPLES.md`](EXAMPLES.md) and [`DIAGRAMS.md`](DIAGRAMS.md) for concrete protocol situations
 
 ## What Problem This Section Solves
