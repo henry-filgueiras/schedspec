@@ -10,6 +10,7 @@ See also:
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for reunion and repair structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
 - [`DIAGRAMS.md`](DIAGRAMS.md) for the canonical editable diagrams that correspond to these scenarios
+- [`EVALUATION.md`](EVALUATION.md) for the metrics and falsifiability questions these scenarios should stress
 
 ## What Problem This Section Solves
 

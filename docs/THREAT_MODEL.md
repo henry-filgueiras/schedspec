@@ -9,6 +9,7 @@ See also:
 - [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for vocabulary
 - [`TRUST.md`](TRUST.md) for trust-sensitive behavior
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for disagreement and repair behavior
+- [`EVALUATION.md`](EVALUATION.md) for how these threats should inform judgment of the design
 
 ## What Problem This Section Solves
 

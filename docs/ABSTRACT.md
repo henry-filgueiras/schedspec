@@ -9,6 +9,7 @@ See also:
 - [`MANIFESTO.md`](MANIFESTO.md) for the sharper preface energy
 - [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared vocabulary
 - [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md) for protocol behavior
+- [`EVALUATION.md`](EVALUATION.md) for the criteria that would justify or weaken the design
 
 ## What Problem This Section Solves
 

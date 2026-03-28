@@ -9,6 +9,7 @@ See also:
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for repair and structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
 - [`EXAMPLES.md`](EXAMPLES.md) for worked scenarios that exercise these diagrams under pressure
+- [`EVALUATION.md`](EVALUATION.md) for the metrics and stress cases these diagrams should help make measurable
 
 ## What Problem This Section Solves
 
