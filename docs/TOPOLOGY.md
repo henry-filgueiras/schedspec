@@ -8,6 +8,7 @@ See also:
 - [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for merge and repair semantics
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for dedicated treatments of the two distinctive primitives
+- [`EXAMPLES.md`](EXAMPLES.md) for topology-shaped worked scenarios
 
 ## What Problem This Section Solves
 

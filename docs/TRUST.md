@@ -7,6 +7,7 @@ See also:
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) for lifecycle behavior
 - [`THREAT_MODEL.md`](THREAT_MODEL.md) for threat cases
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for witness-set selection discipline
+- [`EXAMPLES.md`](EXAMPLES.md) for trust-sensitive propagation, quarantine, and residue scenarios
 
 ## What Problem This Section Solves
 

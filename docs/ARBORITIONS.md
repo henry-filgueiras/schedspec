@@ -17,6 +17,7 @@ See also:
 - [`DISSEMINATION.md`](DISSEMINATION.md) for propagation behavior
 - [`TOPOLOGY.md`](TOPOLOGY.md) for hierarchy and locality
 - [`DIAGRAMS.md`](DIAGRAMS.md) for overlay-forest and repair-path diagrams
+- [`EXAMPLES.md`](EXAMPLES.md) for worked dissemination, witness, and repair overlays
 
 ## What Problem They Solve
 

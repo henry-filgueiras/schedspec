@@ -7,6 +7,7 @@ See also:
 - [`TRUST.md`](TRUST.md) for trust behavior
 - [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for topology-aware structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for accountable ordering of relay and witness choices
+- [`EXAMPLES.md`](EXAMPLES.md) for scoped propagation and parent-proxy scenarios
 
 ## What Problem This Section Solves
 
