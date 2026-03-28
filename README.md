@@ -14,7 +14,7 @@ If you are new to the repo:
 2. Use [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md) if you want the chapter roles and intended reading order.
 3. Use the interstitial primitives [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), and [`docs/MECHANICS.md`](docs/MECHANICS.md) to keep vocabulary, primitives, and mechanics aligned while you read the spine.
 4. Read the spine chapters in order: [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
-5. Use the appendices and support docs [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), and [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) for pressure, judgment, objections, scenarios, and visuals.
+5. Use the appendices and support docs [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md) for pressure, judgment, objections, scenarios, visuals, and unresolved tensions.
 
 ## Repository Architecture
 
@@ -41,7 +41,7 @@ Canonical active-doc inventory:
 - **Front door:** [`README.md`](README.md)
 - **Spine chapters:** [`docs/MANIFESTO.md`](docs/MANIFESTO.md), [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
 - **Interstitial primitive chapters:** [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MECHANICS.md`](docs/MECHANICS.md)
-- **Appendices / support docs:** [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md), [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md), [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md)
+- **Appendices / support docs:** [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md), [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md), [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md), [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 - **Human snapshot:** [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md)
 
 Canonical reading spine:
@@ -158,6 +158,7 @@ merger:
 - [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md): editorial source of truth for chapter roles, terms, and wording discipline
 - [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md): pre-acceptance checklist for doc changes
 - [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md): compact human-first snapshot of the project's current shape
+- [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md): maintained ledger of unresolved design questions and current leanings
 
 ## Status
 

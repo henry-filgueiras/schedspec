@@ -11,7 +11,7 @@ Canonical active-doc inventory:
 - **Front door:** [`../README.md`](../README.md)
 - **Spine chapters:** [`MANIFESTO.md`](MANIFESTO.md), [`ABSTRACT.md`](ABSTRACT.md), [`PRIMITIVES.md`](PRIMITIVES.md), [`SEMANTICS.md`](SEMANTICS.md), [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md)
 - **Interstitial primitive chapters:** [`GLOSSARY.md`](GLOSSARY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), [`MECHANICS.md`](MECHANICS.md)
-- **Appendices / support docs:** [`THREAT_MODEL.md`](THREAT_MODEL.md), [`EVALUATION.md`](EVALUATION.md), [`CRITIQUE.md`](CRITIQUE.md), [`EXAMPLES.md`](EXAMPLES.md), [`DIAGRAMS.md`](DIAGRAMS.md), [`PAPER_MAP.md`](PAPER_MAP.md), [`EDITORIAL_GUIDE.md`](EDITORIAL_GUIDE.md), [`MAINTENANCE_CHECKLIST.md`](MAINTENANCE_CHECKLIST.md)
+- **Appendices / support docs:** [`THREAT_MODEL.md`](THREAT_MODEL.md), [`EVALUATION.md`](EVALUATION.md), [`CRITIQUE.md`](CRITIQUE.md), [`EXAMPLES.md`](EXAMPLES.md), [`DIAGRAMS.md`](DIAGRAMS.md), [`PAPER_MAP.md`](PAPER_MAP.md), [`EDITORIAL_GUIDE.md`](EDITORIAL_GUIDE.md), [`MAINTENANCE_CHECKLIST.md`](MAINTENANCE_CHECKLIST.md), [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md)
 
 ## Reading Order
 

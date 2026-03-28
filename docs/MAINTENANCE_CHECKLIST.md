@@ -7,6 +7,7 @@ Use this checklist before accepting a docs change in the active Resonant Members
 - Does the edit fit an existing chapter role?
 - If it changes reading order or active-doc inventory, were `README.md` and `PAPER_MAP.md` updated together?
 - If it changes doc classification, do `README.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, and `AGENTS.md` all agree on `spine chapter`, `interstitial primitive chapter`, or `appendix / support doc`?
+- If it changes human re-entry surfaces, do `CURRENT_STATE.md`, `OPEN_QUESTIONS.md`, and `README.md` still point to one another cleanly?
 - If it adds a new major concept, was the existing docs set checked first for a better home?
 
 ## Terminology Checks

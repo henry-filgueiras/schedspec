@@ -49,7 +49,7 @@ If a doc changes that order or active-doc inventory, update `README.md` and `PAP
 - **Front door:** `README.md`
 - **Spine chapters:** `MANIFESTO.md`, `ABSTRACT.md`, `PRIMITIVES.md`, `SEMANTICS.md`, `MEMBERSHIP.md`, `DISSEMINATION.md`, `TRUST.md`, `MERGE_AND_HEALING.md`, `TOPOLOGY.md`
 - **Interstitial primitive chapters:** `GLOSSARY.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, `MECHANICS.md`
-- **Appendices / support docs:** `THREAT_MODEL.md`, `EVALUATION.md`, `CRITIQUE.md`, `EXAMPLES.md`, `DIAGRAMS.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, `MAINTENANCE_CHECKLIST.md`
+- **Appendices / support docs:** `THREAT_MODEL.md`, `EVALUATION.md`, `CRITIQUE.md`, `EXAMPLES.md`, `DIAGRAMS.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, `MAINTENANCE_CHECKLIST.md`, `OPEN_QUESTIONS.md`
 
 Use those labels exactly in navigation and maintenance docs.
 
@@ -58,31 +58,24 @@ Use those labels exactly in navigation and maintenance docs.
 - `README.md`: front door, project identity, active-doc map, status.
 - `MANIFESTO.md`: dangerous preface and anti-simplification layer.
 - `ABSTRACT.md`: paper-style framing and project summary.
-- `GLOSSARY.md`: fast lookup index only.
-- `GLOSSARY.md` classification: interstitial primitive chapter.
+- `GLOSSARY.md`: fast lookup index only. Classification: interstitial primitive chapter.
 - `PRIMITIVES.md`: compact vocabulary and fast distinctions.
 - `SEMANTICS.md`: canonical object, state, and decision-surface contract.
-- `PERMUTATION_RANK.md`: accountable deterministic ordering primitive.
-- `ARBORITIONS.md`: adaptive overlay-forest primitive.
-- `MECHANICS.md`: algorithm-shaped bridge from semantics to plausible implementation discipline.
-- `PERMUTATION_RANK.md` classification: interstitial primitive chapter.
-- `ARBORITIONS.md` classification: interstitial primitive chapter.
-- `MECHANICS.md` classification: interstitial primitive chapter.
+- `PERMUTATION_RANK.md`: accountable deterministic ordering primitive. Classification: interstitial primitive chapter.
+- `ARBORITIONS.md`: adaptive overlay-forest primitive. Classification: interstitial primitive chapter.
+- `MECHANICS.md`: algorithm-shaped bridge from semantics to plausible implementation discipline. Classification: interstitial primitive chapter.
 - `MEMBERSHIP.md`: behavioral membership lifecycle and scoped belief.
 - `DISSEMINATION.md`: propagation, blast radius, digests, parent-proxy use.
 - `TRUST.md`: trust-root, witness-quality, confidence, and hysteresis behavior.
 - `MERGE_AND_HEALING.md`: merge precedence, residue, reunion, repair.
 - `TOPOLOGY.md`: locality, hierarchy, overlay roles, and scope-vs-topology interaction.
-- `THREAT_MODEL.md`: hostile timing, abuse, and failure pressure.
-- `EVALUATION.md`: metrics, falsifiability, and tradeoff judgment.
-- `CRITIQUE.md`: strongest internal objections.
-- `EXAMPLES.md`: worked scenarios that exercise the model under pressure.
-- `DIAGRAMS.md`: canonical editable Mermaid diagrams.
-- `THREAT_MODEL.md` classification: appendix / support doc.
-- `EVALUATION.md` classification: appendix / support doc.
-- `CRITIQUE.md` classification: appendix / support doc.
-- `EXAMPLES.md` classification: appendix / support doc.
-- `DIAGRAMS.md` classification: appendix / support doc.
+- `THREAT_MODEL.md`: hostile timing, abuse, and failure pressure. Classification: appendix / support doc.
+- `EVALUATION.md`: metrics, falsifiability, and tradeoff judgment. Classification: appendix / support doc.
+- `CRITIQUE.md`: strongest internal objections. Classification: appendix / support doc.
+- `EXAMPLES.md`: worked scenarios that exercise the model under pressure. Classification: appendix / support doc.
+- `DIAGRAMS.md`: canonical editable Mermaid diagrams. Classification: appendix / support doc.
+- `CURRENT_STATE.md`: compact human-first re-entry snapshot. Classification: support doc.
+- `OPEN_QUESTIONS.md`: maintained ledger of unresolved design questions. Classification: appendix / support doc.
 
 If a chapter starts doing another chapter's job, move the boundary, not just the prose.
 

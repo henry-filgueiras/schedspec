@@ -149,7 +149,8 @@ Prefer a docs stack like:
 - front door: `README.md`
 - spine chapters: `docs/MANIFESTO.md`, `docs/ABSTRACT.md`, `docs/PRIMITIVES.md`, `docs/SEMANTICS.md`, `docs/MEMBERSHIP.md`, `docs/DISSEMINATION.md`, `docs/TRUST.md`, `docs/MERGE_AND_HEALING.md`, `docs/TOPOLOGY.md`
 - interstitial primitive chapters: `docs/GLOSSARY.md`, `docs/PERMUTATION_RANK.md`, `docs/ARBORITIONS.md`, `docs/MECHANICS.md`
-- appendices / support docs: `docs/THREAT_MODEL.md`, `docs/EVALUATION.md`, `docs/CRITIQUE.md`, `docs/EXAMPLES.md`, `docs/DIAGRAMS.md`, `docs/PAPER_MAP.md`, `docs/EDITORIAL_GUIDE.md`, `docs/MAINTENANCE_CHECKLIST.md`
+- appendices / support docs: `docs/THREAT_MODEL.md`, `docs/EVALUATION.md`, `docs/CRITIQUE.md`, `docs/EXAMPLES.md`, `docs/DIAGRAMS.md`, `docs/PAPER_MAP.md`, `docs/EDITORIAL_GUIDE.md`, `docs/MAINTENANCE_CHECKLIST.md`, `docs/OPEN_QUESTIONS.md`
+- human snapshot: `docs/CURRENT_STATE.md`
 
 If the repo already has overlapping files, preserve good material and normalize rather than exploding file count unnecessarily.
 
