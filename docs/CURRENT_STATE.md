@@ -66,6 +66,8 @@ Resonant Membership is a design-first systems project about how distributed syst
 
 These are open by design. The repo now constrains the semantic space more tightly than before, but it does not pretend to have frozen one full implementation policy.
 
+The maintained ledger for these unresolved issues lives in [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md).
+
 ## Top 5 Unresolved Tensions
 
 - how much residue is operationally useful before it becomes cognitive debt
