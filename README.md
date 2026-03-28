@@ -2,7 +2,25 @@
 
 Resonant Membership is a design-first systems treatise on gossip, trust, and convergence under partial observability. The claim is not that cluster membership is just a faster heartbeat table; it is that once bootstrap, witness, scoped dissemination, trust, merge rules, partition healing, hierarchy, and operator visibility become first-class, membership stops being a side channel and becomes a protocol for coordinated belief under weak coordination.
 
-This repository is organized around Resonant Membership as the active center of gravity. Earlier or adjacent threads, especially ChronOS and SameDiff, are preserved as archived lineages rather than treated as co-equal active projects.
+This repository is organized around **Resonant Membership** as the active center of gravity. Earlier or adjacent threads, especially **ChronOS** and **SameDiff**, are preserved as archived design lineages rather than treated as co-equal active projects.
+
+## Repository Architecture
+
+This repo follows one explicit model:
+
+- **Active project:** Resonant Membership, at the root and under [`docs/`](docs)
+- **Archived adjacent lineage:** ChronOS / `chrono flow`, under [`notes/archive/chronos/`](notes/archive/chronos)
+- **Archived adjacent lineage:** SameDiff / contrast-calculus notes, under [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
+
+This is intentional. The repo should read as one active treatise with preserved neighboring lineages, not as three half-active projects competing for the same front page.
+
+## Project Map
+
+If you are here for:
+
+- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and the protocol stack under [`docs/`](docs)
+- **ChronOS:** start with [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md), then [`notes/archive/chronos/VISION.md`](notes/archive/chronos/VISION.md) and [`notes/archive/chronos/SPEC.md`](notes/archive/chronos/SPEC.md)
+- **SameDiff:** start with [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
 
 ## Three Theses
 
@@ -87,28 +105,12 @@ merger:
 - [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
 - [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams
 
-## Project Map
-
-If you are here for:
-
-- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), and [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
-- **ChronOS:** see the archived lineage in [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md)
-- **SameDiff:** see the archived adjacent note in [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
-
-## Repository Architecture
-
-The repository currently has:
-
-- one active project surface under `README.md` and `docs/`: Resonant Membership
-- one archived sibling lineage under `notes/archive/chronos/`: ChronOS / chrono flow
-- one archived adjacent note under `notes/archive/SAMEDIFF.md`: SameDiff / replay-diff lineage
-
-This is intentional. The repo should read as one active treatise with preserved historical or adjacent material, not as three partially overlapping active projects.
-
 ## Status
 
 This repository is a systems design document set. It describes intended primitives, invariants, and protocol shape; it should not be read as a claim that a complete runtime or implementation already exists.
 
 ## Start Here
 
-Read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, then [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md). Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) and [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) open while reading.
+For the active project, read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, then [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
+
+Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.

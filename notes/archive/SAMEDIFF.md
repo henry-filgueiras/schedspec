@@ -1,6 +1,10 @@
 # SameDiff
 ### A README for **Contrast Calculus** in delta-space
 
+SameDiff is preserved here as an adjacent archived lineage rather than as the active center of gravity of the repo.
+
+For the active project, see the root [`README.md`](../README.md). For the archive map, see [`README.md`](README.md).
+
 > **Thesis:** many hard problems become simpler when you stop asking *what is this thing?* and start asking *how does this differ from that?*
 
 SameDiff is a name for a style of reasoning where **difference itself becomes the primary object**.
