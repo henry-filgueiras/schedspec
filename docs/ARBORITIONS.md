@@ -15,6 +15,7 @@ See also:
 
 - [`PRIMITIVES.md`](PRIMITIVES.md) for shared vocabulary
 - [`SEMANTICS.md`](SEMANTICS.md) for overlay-role semantics
+- [`MECHANICS.md`](MECHANICS.md) for repair and aggregation selection loops
 - [`DISSEMINATION.md`](DISSEMINATION.md) for propagation behavior
 - [`TOPOLOGY.md`](TOPOLOGY.md) for hierarchy and locality
 - [`DIAGRAMS.md`](DIAGRAMS.md) for canonical overlay-forest and repair-path diagrams
