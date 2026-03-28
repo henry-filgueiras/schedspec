@@ -131,6 +131,8 @@ flowchart TB
     C --> D4["Deterministic tie-break path"]
 ```
 
+This diagram corresponds to [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md): one seeded ordering supports accountable fanout, witness selection, rendezvous, and arbitration without pretending those choices are arbitrary.
+
 ## Arborition Overlay Forest
 
 Adaptive forest shape for dissemination and repair:
@@ -147,6 +149,8 @@ flowchart TB
     C4 --> D
 ```
 
+This diagram corresponds to [`ARBORITIONS.md`](ARBORITIONS.md): the overlay is a forest because dissemination, witness gathering, and repair do not always want the same tree.
+
 ## Repair, Witness, And Upward Aggregation Paths
 
 Distinct but related paths for witnessing, repair, and summary propagation:
@@ -161,6 +165,8 @@ flowchart TB
     D --> E
     E --> F["Parent-proxy pool / higher scope"]
 ```
+
+This diagram shows the interaction among witness subtrees, repair subtrees, and parent-proxy upward aggregation. It is the clearest minimal picture of why a flat fanout graph is the wrong mental model for the protocol.
 
 ## Diagram Conventions
 

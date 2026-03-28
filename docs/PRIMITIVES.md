@@ -51,6 +51,11 @@ Two especially distinctive primitives in this repo are important enough to stand
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md)
 - [`ARBORITIONS.md`](ARBORITIONS.md)
 
+They are not decorative terminology. They are load-bearing parts of the protocol story:
+
+- **permutation rank** makes selection decisions reproducible enough to audit
+- **arboritions** make propagation and repair structure explicit enough to inspect
+
 ## Design Invariants
 
 The design aims to preserve these invariants:

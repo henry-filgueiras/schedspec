@@ -1,6 +1,6 @@
 # Glossary
 
-This is the compact vocabulary index. For operational detail and invariants, see [`PRIMITIVES.md`](PRIMITIVES.md).
+This is the compact vocabulary index. For operational detail and invariants, see [`PRIMITIVES.md`](PRIMITIVES.md). For the two most distinctive protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
 ## Quick Index
 
@@ -23,5 +23,5 @@ This is the compact vocabulary index. For operational detail and invariants, see
 - **witness set:** selected peers whose corroboration is relevant for a claim
 - **parent-proxy pool:** higher-level or delegated peers used to bridge scope boundaries
 - **deterministic reunion:** accountable repair path chosen when separated scopes reconnect
-- **permutation rank:** seeded deterministic ordering for fanout, rendezvous, arbitration, and audit
+- **permutation rank:** seeded deterministic ordering for fanout, rendezvous, witness-set selection, arbitration, and audit
 - **arborition:** adaptive topology-aware dissemination, witness, and repair forest; also described as an adaptive overlay forest

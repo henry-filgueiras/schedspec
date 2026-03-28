@@ -60,7 +60,11 @@ Permutation rank should support:
 - deterministic witness sets
 - reproducible tie-breaking
 
-It is a discipline against anonymous selection. See [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for the full protocol rationale, tradeoffs, and attack surfaces.
+It is a discipline against anonymous selection.
+
+In this repo, that makes it a load-bearing topology primitive rather than a convenience function. The topology layer needs a reproducible answer to which peers should be considered first, which subset should witness, and which reunion paths should activate when scopes reconnect.
+
+See [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for the full protocol rationale, tradeoffs, and attack surfaces.
 
 ## Arboritions In Topology
 
@@ -94,6 +98,8 @@ A plausible design may separate:
 - cross-partition repair paths
 
 The point is not to maximize graph elegance. It is to make the overlay match the semantics of the claim being carried.
+
+That is why arboritions are necessary to the protocol and not merely a name for whatever graph the implementation happens to use. They are the place where locality, hierarchy, parent-proxy interaction, and repair structure become explicit enough to reason about.
 
 ## Design Invariants
 
