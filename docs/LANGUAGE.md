@@ -1,6 +1,6 @@
 # Chrono Flow Language
 
-`chrono flow` is the proposed language layer for ChronOS. This document sketches its intended surface and semantics.
+`chrono flow` is the proposed language layer for ChronOS. This document sketches its surface and the determinism model behind it.
 
 Status:
 
@@ -8,19 +8,7 @@ Status:
 - the exact syntax is aspirational
 - examples below are illustrative, not final grammar
 
-For the system contract behind the language, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md). For worked scenarios, see [`EXAMPLES.md`](/Users/henry/schedspec/docs/EXAMPLES.md).
-
-## Notation Conventions
-
-The examples in this document follow a few consistent conventions:
-
-- `emit effect name(args)` records an effect intent
-- `on effect_succeeded name(result)` and `on effect_failed name(error)` observe recorded effect outcomes
-- `child flow_name(args) as handle` starts a child flow with an optional handle
-- `await child handle completed` waits on a specific child handle
-- `await all children completed` and `await quorum children ...` describe structured waits over the child set
-
-These forms are still illustrative, but the docs should use them consistently enough that the semantic load stays clear.
+This document is about language shape, not the full runtime contract. For the system contract behind the language, see [`SPEC.md`](SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](GLOSSARY.md). For worked scenarios, see [`EXAMPLES.md`](EXAMPLES.md).
 
 ## Design Goals
 
@@ -41,6 +29,18 @@ It should also make the dangerous parts difficult to smuggle in:
 - implicit wall-clock reads
 - untracked randomness
 - mutable shared ambient state
+
+## Notation Conventions
+
+The examples in this document follow a few consistent conventions:
+
+- `emit effect name(args)` records an effect intent
+- `on effect_succeeded name(result)` and `on effect_failed name(error)` observe recorded effect outcomes
+- `child flow_name(args) as handle` starts a child flow with an optional handle
+- `await child handle completed` waits on a specific child handle
+- `await all children completed` and `await quorum children ...` describe structured waits over the child set
+
+These forms are still illustrative, but the docs should use them consistently enough that the semantic load stays clear.
 
 ## Semantic Model
 
@@ -135,7 +135,7 @@ Illustrative forms:
 on start { ... }
 on timeout { ... }
 on operator.approved(by) { ... }
-on effect_succeeded authorize { ... }
+on effect_succeeded authorize_payment(result) { ... }
 on child_failed deploy_region(region) { ... }
 ```
 
@@ -175,6 +175,23 @@ An `await` should compile into:
 - timer registration if bounded by time
 - eventual wakeup as history advances
 
+## Control Flow Relationship
+
+The intended relationship between the core constructs is:
+
+- `on` reacts to an event or lifecycle trigger entering the deterministic boundary
+- `when` reacts to a derived condition becoming true over deterministic state and history
+- `await` suspends progress until a durable condition is satisfied and a wakeup event returns control to the flow
+- `child` introduces durable concurrent structure rather than hidden background activity
+- `retry`, `compensate`, and `cancel` describe explicit control paths that should remain visible in history
+
+In other words:
+
+- `on` and `when` decide
+- `await` yields
+- `child` branches durable work
+- retries, compensation, and cancellation shape failure behavior explicitly
+
 ## Timers and Deadlines
 
 Time must be explicit and durable.
@@ -213,38 +230,6 @@ emit effect authorize(order, amount) idempotent by order
 ```
 
 That surface is aspirational; the semantic requirement is not.
-
-## Retries
-
-Retries are part of the workflow contract, not hidden middleware behavior.
-
-Illustrative forms:
-
-```chrono
-retry in 30s
-retry in exponential(30s, factor: 2, max: 30m) up to 6 times
-retry effect capture_payment unless error.code in ["DECLINED", "INVALID"]
-```
-
-Retry policy should be visible in replay and operator tooling.
-
-## Compensation
-
-Compensation addresses partial external progress.
-
-Illustrative forms:
-
-```chrono
-compensate authorize(order, amount)
-compensate shift_traffic(service, previous_version)
-```
-
-ChronOS should support both:
-
-- direct compensating effects
-- compensating child flows
-
-Compensation is not a promise of perfect undo. It is a structured way to respond to partial commitment.
 
 ## Child Flows
 
@@ -286,6 +271,38 @@ The exact syntax is still open. The semantics should state clearly:
 - what happens on timeout
 - how late child completions are handled
 
+## Retries
+
+Retries are part of the workflow contract, not hidden middleware behavior.
+
+Illustrative forms:
+
+```chrono
+retry in 30s
+retry in exponential(30s, factor: 2, max: 30m) up to 6 times
+retry effect capture_payment unless error.code in ["DECLINED", "INVALID"]
+```
+
+Retry policy should be visible in replay and operator tooling.
+
+## Compensation
+
+Compensation addresses partial external progress.
+
+Illustrative forms:
+
+```chrono
+compensate authorize(order, amount)
+compensate shift_traffic(service, previous_version)
+```
+
+ChronOS should support both:
+
+- direct compensating effects
+- compensating child flows
+
+Compensation is not a promise of perfect undo. It is a structured way to respond to partial commitment.
+
 ## Cancellation
 
 Cancellation should be explicit and observable.
@@ -304,7 +321,7 @@ Open question:
 
 - whether cancellation is modeled as a built-in control action, a library pattern, or both
 
-## Determinism Constraints
+## What Must Remain Deterministic
 
 The language is intended to forbid or tightly control constructs that would break replay.
 
@@ -322,6 +339,8 @@ Allowed only via explicit boundaries:
 - operator actions recorded in history
 - timer firings recorded in history
 - version and migration metadata
+
+The practical test is simple: if a branch decision cannot be reconstructed from durable history plus explicit version context, it does not belong in the deterministic layer.
 
 ## Versioning and Migration in the Language
 
@@ -347,10 +366,10 @@ This area is aspirational, but the underlying requirement is firm: a live flow m
 flow deploy_region(service: ServiceId, version: Version, region: Region) {
   on start {
     emit effect deploy(service, version, region)
-    await effect_result deploy within 15m
+    await effect deploy settled within 15m
   }
 
-  on effect_succeeded deploy {
+  on effect_succeeded deploy(result) {
     complete ok
   }
 

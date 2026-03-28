@@ -1,6 +1,6 @@
 # ChronOS
 
-ChronOS is a proposed temporal operating system for stateful workflows. The claim is not that workflows need better glue code; it is that once time, identity, replay, recovery, and external effects become first-class, workflow execution becomes an operating-systems problem. `chrono flow` is the corresponding language layer: a durable, deterministic, time-aware language for specifying long-lived flows whose history is normative and whose materialized state is derived.
+ChronOS is a proposed temporal operating system for stateful workflows. The claim is not that workflows need better glue code; it is that once time, replay, recovery, migration, operator intervention, and external effects become first-class, workflow execution stops looking like "background jobs plus retries" and starts looking like an operating-systems problem. `chrono flow` is the corresponding language layer: a durable, deterministic, time-aware workflow language whose history is normative and whose materialized state is derived.
 
 ## Three Theses
 
@@ -31,7 +31,7 @@ ChronOS starts from a harder contract:
 ## Key Ideas
 
 - **Append-only history is the source of truth.** Materialized state is a projection, cache, or index over durable events.
-- **Deterministic decisions are separated from external effects.** A conforming runtime must be able to replay decision logic from history.
+- **Deterministic decisions are separated from external effects.** A conforming runtime would be able to replay decision logic from history.
 - **Flow IDs are durable identities.** A flow remains the same flow across retries, waits, restarts, migration, and operator intervention.
 - **Timers are data, not sleep calls.** Deadlines, waits, and wakeups must survive process failure.
 - **Operators act through audited events.** Manual approval, override, cancellation, and replay requests belong in history.
@@ -54,21 +54,22 @@ flow rollout(service: ServiceId, target: Version) {
   state {
     desired = target
     approved = false
-    deployed: set<Region> = {}
   }
 
   on start {
     emit effect create_change_ticket(service, desired)
     await operator.approve("release-manager")
+  }
+
+  on operator.approved(by) {
     approved = true
   }
 
   when approved {
-    for region in ["us-west", "us-east", "eu-central"] {
-      child deploy_region(service, desired, region)
-    }
-
-    await quorum child deploy_region ok >= 2 within 20m
+    child deploy_region(service, desired, "us-west") as west
+    child deploy_region(service, desired, "us-east") as east
+    child deploy_region(service, desired, "eu-central") as eu
+    await quorum children completed(status == ok) >= 2 within 20m
     emit effect shift_traffic(service, desired)
   }
 
@@ -81,21 +82,21 @@ flow rollout(service: ServiceId, target: Version) {
 
 ## Repo Map
 
-- [`README.md`](/Users/henry/schedspec/README.md): front page and navigation
-- [`docs/CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md): long-form vision and anti-goals
-- [`docs/GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md): core terms and invariants in one place
-- [`docs/SPEC.md`](/Users/henry/schedspec/docs/SPEC.md): semantic contract for flows, events, replay, timers, effects, migration, and observability
-- [`docs/LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md): `chrono flow` language sketch and determinism rules
-- [`docs/EXAMPLES.md`](/Users/henry/schedspec/docs/EXAMPLES.md): worked examples across deployment, approvals, payments, incident response, and AI orchestration
-- [`docs/GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md): contribution-sized hard problems that sharpen the model
-- [`docs/ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md): proposed runtime components and implementation strategies
-- [`docs/DIAGRAMS.md`](/Users/henry/schedspec/docs/DIAGRAMS.md): Mermaid diagrams for architecture, lifecycle, and lineage
-- [`SAMEDIFF.md`](/Users/henry/schedspec/SAMEDIFF.md): adjacent thinking on replay-diff, comparative replay, and contrast as a first-class explanatory tool
+- [`README.md`](README.md): concise front door
+- [`docs/CHRONOS_README.md`](docs/CHRONOS_README.md): long-form vision and thesis
+- [`docs/GLOSSARY.md`](docs/GLOSSARY.md): shared vocabulary and invariants
+- [`docs/SPEC.md`](docs/SPEC.md): semantic contract
+- [`docs/LANGUAGE.md`](docs/LANGUAGE.md): language sketch and determinism model
+- [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): proposed runtime shape
+- [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams and conventions
+- [`docs/GOOD_FIRST_DRAGONS.md`](docs/GOOD_FIRST_DRAGONS.md): contributor-scale hard problems
+- [`SAMEDIFF.md`](SAMEDIFF.md): adjacent replay-diff lineage
 
 ## Current Status
 
-This repository is currently design-first. The documents describe the intended model, invariants, and possible implementation directions; they should not be read as claims that a complete ChronOS runtime already exists.
+This repository is design-first. The documents describe intended semantics, invariants, and runtime shape; they should not be read as claims that a complete ChronOS runtime already exists.
 
 ## Start Here
 
-Read [`docs/CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md) for the thesis, [`docs/GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md) for the core vocabulary and invariants, then [`docs/SPEC.md`](/Users/henry/schedspec/docs/SPEC.md) for the contract, followed by [`docs/LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md), [`docs/ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md), and [`docs/GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md).
+Read [`docs/CHRONOS_README.md`](docs/CHRONOS_README.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) for the shared vocabulary and invariants, then [`docs/SPEC.md`](docs/SPEC.md) for the contract, followed by [`docs/LANGUAGE.md`](docs/LANGUAGE.md), [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), and [`docs/GOOD_FIRST_DRAGONS.md`](docs/GOOD_FIRST_DRAGONS.md).

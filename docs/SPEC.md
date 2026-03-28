@@ -1,6 +1,6 @@
 # ChronOS Specification
 
-This document describes the semantic contract ChronOS is intended to satisfy. It is a proposal, not a claim of completed implementation.
+This document states the semantic contract ChronOS intends to satisfy. It is a proposal, not a claim of completed implementation.
 
 ChronOS defines a runtime model for durable, time-aware workflows. The central entities are:
 
@@ -12,7 +12,7 @@ ChronOS defines a runtime model for durable, time-aware workflows. The central e
 - **effect:** an explicit interaction with an external system or human operator
 - **version:** the semantic identity of the flow definition used to interpret subsequent decisions
 
-For the surrounding vision, see [`CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md). For the language sketch, see [`LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md).
+For the surrounding vision, see [`CHRONOS_README.md`](CHRONOS_README.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](GLOSSARY.md). For the language sketch, see [`LANGUAGE.md`](LANGUAGE.md).
 
 ## Semantic Invariants
 
@@ -26,6 +26,7 @@ A conforming implementation should preserve these invariants:
 6. **Operator actions are events.** Human interventions must enter history as first-class facts.
 7. **Projection is rebuildable.** Losing a projection must not lose truth.
 8. **Migration is explicit.** Version change for live flows must be observable and rule-governed.
+9. **Replay does not smuggle side effects.** A conforming implementation would never depend on hidden live I/O to explain prior decisions.
 
 ## Flow Lifecycle
 
@@ -181,7 +182,7 @@ The output should identify:
 - changed effect schedule
 - changed compensation behavior
 
-This is where the project intersects with replay-diff and the `SameDiff` framing in [`SAMEDIFF.md`](/Users/henry/schedspec/SAMEDIFF.md).
+This is where the project intersects with replay-diff and the `SameDiff` framing in [`../SAMEDIFF.md`](../SAMEDIFF.md).
 
 ## Versioning and Migration
 
@@ -271,7 +272,7 @@ Examples:
 - annotate a flow with investigative notes
 - request replay or comparative replay
 
-Operator authority should be policy-aware. A conforming implementation may define role-based constraints, but whatever is allowed should remain visible in history.
+A conforming implementation may define role-based constraints, but whatever is allowed should remain visible in history.
 
 ## Observability Requirements
 

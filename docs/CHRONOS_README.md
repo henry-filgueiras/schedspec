@@ -4,17 +4,9 @@ ChronOS is a proposed temporal operating system for stateful workflows, and `chr
 
 The core claim is deliberately sharp: once workflow execution must preserve identity across time, survive failure, replay deterministically, expose operator intervention, and recover from evolving schemas and dependencies, the problem stops looking like "background jobs plus retries" and starts looking like an operating system for durable process-like entities.
 
-ChronOS is therefore framed less like a task runner and more like a temporal kernel:
+This document is the long-form "why" of the project. The semantic contract lives in [`SPEC.md`](SPEC.md); the runtime shape lives in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
-- flows have stable identity
-- history is normative
-- replay is primitive
-- effects cross an explicit boundary
-- time is durable
-- operators are part of the model
-- migration is ordinary life, not an afterthought
-
-For the formal contract, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md). For the language sketch, see [`LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md). For runtime shape, see [`ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md). For contributor-scale hard problems, see [`GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md).
+For the formal contract, see [`SPEC.md`](SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](GLOSSARY.md). For the language sketch, see [`LANGUAGE.md`](LANGUAGE.md). For runtime shape, see [`ARCHITECTURE.md`](ARCHITECTURE.md). For contributor-scale hard problems, see [`GOOD_FIRST_DRAGONS.md`](GOOD_FIRST_DRAGONS.md).
 
 ## Thesis
 
@@ -85,7 +77,7 @@ Its intended character is:
 - structured around event history rather than opaque call stacks
 - able to express child workflows, joins, quorum waits, retries, cancellation, and compensation
 
-The language is not yet frozen. See [`LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md) for the current sketch and for a clear separation between nailed-down semantic commitments and aspirational syntax.
+The language is not yet frozen. See [`LANGUAGE.md`](LANGUAGE.md) for the current sketch and for a clear separation between nailed-down semantic commitments and aspirational syntax.
 
 ## History First
 
@@ -119,7 +111,7 @@ A flow is not "the latest row in a table" and not "the currently running corouti
 - operator intervention
 - projection rebuilds
 
-Stable flow IDs make lineage possible. Parent-child flow trees become auditable structures rather than best-effort conventions. See the child flow and lineage semantics in [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md) and the lineage diagram in [`DIAGRAMS.md`](/Users/henry/schedspec/docs/DIAGRAMS.md).
+Stable flow IDs make lineage possible. Parent-child flow trees become auditable structures rather than best-effort conventions. See the child flow and lineage semantics in [`SPEC.md`](SPEC.md) and the lineage diagram in [`DIAGRAMS.md`](DIAGRAMS.md).
 
 ## Replay as Explanation
 
@@ -132,7 +124,7 @@ Replay serves at least four jobs:
 - **comparison:** evaluate the consequences of a rule, version, or policy change
 - **migration:** re-interpret history under a new model with explicit version boundaries
 
-The adjacent `SameDiff` material in [`SAMEDIFF.md`](/Users/henry/schedspec/SAMEDIFF.md) is relevant here. ChronOS should not merely replay a flow; it should eventually support comparative replay and replay-diff as first-class operator tools.
+The adjacent `SameDiff` material in [`../SAMEDIFF.md`](../SAMEDIFF.md) is relevant here. ChronOS should not merely replay a flow; it should eventually support comparative replay and replay-diff as first-class operator tools.
 
 ## Explicit Nondeterminism Boundary
 
@@ -190,7 +182,7 @@ And ambitious in the right places:
 - migration as a normal, observable operation
 - observability based on structure, not log archaeology
 
-For one proposed component breakdown, see [`ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md).
+For one proposed component breakdown, see [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ## Anti-Goals
 
@@ -252,7 +244,7 @@ That comparison is not yet implemented here, but it is central to the project th
 
 ## Good First Dragons
 
-See [`GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md) for a contributor-facing version of this list with concrete success criteria.
+See [`GOOD_FIRST_DRAGONS.md`](GOOD_FIRST_DRAGONS.md) for a contributor-facing version of this list with concrete success criteria.
 
 ## Current Status
 

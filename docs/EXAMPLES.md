@@ -2,7 +2,7 @@
 
 These examples are intentionally text-first and semantics-first. They illustrate the kind of workflows ChronOS and `chrono flow` are meant to handle, rather than claiming a finished runtime or frozen syntax.
 
-For the language sketch, see [`LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md). For the semantic contract, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md). For the core vocabulary, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md).
+For the language sketch, see [`LANGUAGE.md`](LANGUAGE.md). For the semantic contract, see [`SPEC.md`](SPEC.md). For the core vocabulary, see [`GLOSSARY.md`](GLOSSARY.md).
 
 ## 1. Deployment Rollout
 
@@ -45,7 +45,7 @@ flow global_rollout(service: ServiceId, target: Version) {
     emit effect page_release_team(service, region)
   }
 
-  on effect_failed shift_global_traffic {
+  on effect_failed shift_global_traffic(error) {
     compensate create_release_record(service, target)
     complete failed
   }
@@ -130,8 +130,8 @@ flow charge_order(order: OrderId, amount: Money) {
     emit effect capture_payment(auth_id, amount)
   }
 
-  on effect_succeeded capture_payment(capture_id) {
-    capture_id = some(capture_id)
+  on effect_succeeded capture_payment(capture) {
+    capture_id = some(capture)
     child fulfill_order(order) as fulfillment
     await child fulfillment completed within 2h
   }
@@ -193,7 +193,6 @@ flow incident_response(incident: IncidentId, severity: Severity) {
   when sev == critical {
     emit effect create_war_room(incident)
   }
-
 }
 ```
 

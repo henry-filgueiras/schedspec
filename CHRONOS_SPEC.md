@@ -1,5 +1,5 @@
 # ChronOS Specification
 
-The canonical ChronOS specification now lives at [`docs/SPEC.md`](/Users/henry/schedspec/docs/SPEC.md).
+The canonical ChronOS specification now lives at [`docs/SPEC.md`](docs/SPEC.md).
 
-Use that file for lifecycle, event, timer, effect, replay, migration, child-flow, and observability semantics.
+This redirect stub is intentional. Use that file for lifecycle, event, timer, effect, replay, migration, child-flow, and observability semantics.

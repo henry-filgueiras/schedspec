@@ -2,7 +2,7 @@
 
 These are not "easy issues." They are the smallest hard problems that force ChronOS to become precise in the right places.
 
-For the surrounding thesis, see [`CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md). For the semantic contract, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md). For the shared vocabulary, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md).
+For the surrounding thesis, see [`CHRONOS_README.md`](CHRONOS_README.md). For the semantic contract, see [`SPEC.md`](SPEC.md). For the shared vocabulary, see [`GLOSSARY.md`](GLOSSARY.md).
 
 ## 1. Event Envelope
 

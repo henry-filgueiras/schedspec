@@ -2,9 +2,9 @@
 
 These diagrams are text-first and intended to stay easy to review and diff. They are conceptual diagrams for the proposed system model.
 
-See [`ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md) for the surrounding architectural narrative, [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md) for the semantic contract, and [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md) for the shared vocabulary.
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the surrounding architectural narrative, [`SPEC.md`](SPEC.md) for the semantic contract, and [`GLOSSARY.md`](GLOSSARY.md) for the shared vocabulary.
 
-Mermaid is the canonical form for the diagrams in this repo because it stays easy to diff and edit. A few earlier rendered images are kept below as reference material where they still add visual flavor or framing.
+Mermaid is the canonical form for diagrams in this repo because it stays editable and diffable. Earlier rendered images are kept as reference material where they still add useful visual framing.
 
 ## Layered Architecture
 

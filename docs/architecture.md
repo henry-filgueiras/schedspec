@@ -2,7 +2,9 @@
 
 This document sketches a plausible ChronOS architecture. It is intentionally phrased in proposed terms rather than as a claim that the repository already contains a full implementation.
 
-For the semantic contract, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md). For diagrams, see [`DIAGRAMS.md`](/Users/henry/schedspec/docs/DIAGRAMS.md).
+Its job is to explain the proposed runtime shape, not to imply a finished implementation.
+
+For the semantic contract, see [`SPEC.md`](SPEC.md). For the shared vocabulary and invariants, see [`GLOSSARY.md`](GLOSSARY.md). For diagrams, see [`DIAGRAMS.md`](DIAGRAMS.md).
 
 ## Overview
 
@@ -25,8 +27,6 @@ The key architectural taste is the same throughout:
 - make nondeterminism explicit
 - allow recovery through replay
 - treat projections as rebuildable structure
-
-## Runtime Components
 
 ## 1. Flow Log
 
@@ -55,31 +55,12 @@ Responsibilities:
 
 - receive new events and wakeups
 - enqueue runnable flows
-- dispatch replay/decision work
+- dispatch replay or decision work
 - coordinate with timer expirations and effect outcomes
 
 This is where the temporal OS framing becomes operational. The scheduler is not merely handing out CPU slices; it is deciding which durable flow identities advance in response to time and history.
 
-## 3. Timer Subsystem
-
-The timer subsystem manages durable waits, deadlines, and wakeups.
-
-Responsibilities:
-
-- register timers from workflow decisions
-- persist timer metadata durably
-- trigger wakeup events when timers fire
-- support reconstruction after failure
-
-Possible strategies:
-
-- dedicated durable timer wheel or calendar queue
-- database-backed deadline index
-- hybrid approach with in-memory acceleration over durable state
-
-The important property is semantic, not stylistic: timers must survive crashes and be replay-compatible.
-
-## 4. Deterministic Decision Engine
+## 3. Deterministic Decision Engine
 
 The deterministic decision engine evaluates `chrono flow` logic against history and deterministic state.
 
@@ -96,7 +77,26 @@ Possible strategies:
 - compiled decision graph
 - generated code from a typed workflow IR
 
-This component should feel closer to a constrained runtime or state machine evaluator than to an unconstrained general agent loop.
+This component should feel closer to a constrained runtime or state-machine evaluator than to an unconstrained general agent loop.
+
+## 4. Durable Timer Subsystem
+
+The timer subsystem manages durable waits, deadlines, and wakeups.
+
+Responsibilities:
+
+- register timers from workflow decisions
+- persist timer metadata durably
+- trigger wakeup events when timers fire
+- support reconstruction after failure
+
+Possible strategies:
+
+- dedicated durable timer wheel or calendar queue
+- database-backed deadline index
+- hybrid approach with in-memory acceleration over durable state
+
+The important property is semantic, not stylistic: timers must survive crashes and remain replay-compatible.
 
 ## 5. Effect Dispatcher
 
@@ -149,7 +149,7 @@ Comparative replay is especially important. A strong ChronOS implementation shou
 
 That is the architectural point where ChronOS meets replay-diff and the `SameDiff` direction.
 
-## 8. Migration and Version Manager
+## 8. Version and Migration Manager
 
 Long-lived flows will encounter semantic change. A version manager should make that explicit.
 
@@ -166,7 +166,7 @@ Possible strategies:
 - state transformation hooks attached to flow definitions
 - projection readers capable of multi-version interpretation
 
-## 9. Operator Console
+## 9. Operator Console and Observability Surfaces
 
 The operator console is the human control surface for live flows.
 
@@ -177,13 +177,7 @@ Responsibilities:
 - trigger replay or comparative replay
 - show migration boundaries and operator provenance
 
-An operator console should be thought of as a view over structured workflow state, not a dashboard taped onto logs.
-
-## 10. Observability Surface
-
-ChronOS observability should expose structure directly.
-
-Examples:
+ChronOS observability should expose structure directly:
 
 - current lifecycle state
 - active waits and deadlines
@@ -193,9 +187,9 @@ Examples:
 - operator interventions
 - replay divergence summaries
 
-This may be implemented through APIs, materialized views, traces, or structured events, but the user-facing model should be causal and temporal rather than raw-string-centric.
+An operator console should be thought of as a view over structured workflow state, not a dashboard taped onto logs.
 
-## Reference Data Flow
+## Execution Shape
 
 At a high level:
 
@@ -217,7 +211,7 @@ A conforming implementation should recover by leaning on durable history:
 
 The architecture should prefer explainable recovery over clever hidden caches.
 
-## Implementation Strategies
+## Possible Implementation Strategies
 
 Several implementation shapes appear plausible:
 

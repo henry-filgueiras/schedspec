@@ -2,7 +2,7 @@
 
 This document is the short path into the project vocabulary. It defines the core terms and the invariant statements the rest of the docs assume.
 
-For the long-form thesis, see [`CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md). For the full semantic contract, see [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md).
+For the long-form thesis, see [`CHRONOS_README.md`](CHRONOS_README.md). For the full semantic contract, see [`SPEC.md`](SPEC.md).
 
 ## Core Terms
 
@@ -36,12 +36,12 @@ These are the project's shortest serious statements.
 
 ## Fast Distinctions
 
-- **History vs state:** history is authoritative; state is a projection over history
-- **Decision vs effect:** decisions must replay; effects cross the boundary into the external world
-- **Replay vs rerun:** replay explains or recovers from history; rerun would perform fresh live actions
-- **Compensation vs undo:** compensation is a structured response to partial external progress, not a promise of perfect reversal
-- **Child flow vs function call:** child flows have durable identity, lineage, and terminal outcomes
-- **Operator action vs admin patch:** operator actions belong in history and are visible to replay and audit
+- **history vs state:** history is authoritative; state is a projection over history
+- **decision vs effect:** decisions must replay; effects cross the boundary into the external world
+- **replay vs rerun:** replay explains or recovers from history; rerun would perform fresh live actions
+- **compensation vs undo:** compensation is a structured response to partial external progress, not a promise of perfect reversal
+- **child flow vs function call:** child flows have durable identity, lineage, and terminal outcomes
+- **operator action vs admin patch:** operator actions belong in history and are visible to replay and audit
 
 ## Questions ChronOS Should Answer Cleanly
 
