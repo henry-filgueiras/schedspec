@@ -2,7 +2,7 @@
 
 This document describes how hierarchy, locality, permutation rank, and arboritions shape dissemination, witness selection, and repair.
 
-For membership behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dissemination behavior, see [`DISSEMINATION.md`](DISSEMINATION.md). For merge and repair semantics, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md).
+For membership behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dissemination behavior, see [`DISSEMINATION.md`](DISSEMINATION.md). For merge and repair semantics, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md). For dedicated treatments of the two distinctive primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
 ## Hierarchy Is Normal
 
@@ -29,7 +29,7 @@ Hierarchy matters for at least three reasons:
 
 The protocol should therefore allow beliefs to be locally strong and globally tentative.
 
-## Permutation Rank
+## Permutation Rank In Topology
 
 Permutation rank is a seeded deterministic ordering over a candidate peer set.
 
@@ -47,9 +47,9 @@ Permutation rank should support:
 - deterministic witness sets
 - reproducible tie-breaking
 
-It is a discipline against anonymous selection.
+It is a discipline against anonymous selection. See [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for the full protocol rationale, tradeoffs, and attack surfaces.
 
-## Arboritions
+## Arboritions In Topology
 
 An **arborition** is an adaptive topology-aware dissemination, witness, and repair forest.
 
@@ -67,6 +67,8 @@ An arborition may be re-shaped by:
 - scope changes
 - hot spots or overloaded rendezvous sets
 - operator intervention
+
+See [`ARBORITIONS.md`](ARBORITIONS.md) for the full treatment of why forests beat one flat fanout graph as a mental model.
 
 ## Dissemination Overlays
 

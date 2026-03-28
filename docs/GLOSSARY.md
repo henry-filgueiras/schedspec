@@ -22,4 +22,4 @@ This is the compact vocabulary index. For operational detail and invariants, see
 - **parent-proxy pool:** higher-level or delegated peers used to bridge scope boundaries
 - **deterministic reunion:** accountable repair path chosen when separated scopes reconnect
 - **permutation rank:** seeded deterministic ordering for fanout, rendezvous, arbitration, and audit
-- **arborition:** adaptive topology-aware dissemination, witness, and repair forest
+- **arborition:** adaptive topology-aware dissemination, witness, and repair forest; also described as an adaptive overlay forest

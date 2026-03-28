@@ -2,7 +2,7 @@
 
 This document defines the shared vocabulary used across the Resonant Membership docs.
 
-For the long-form framing, see [`ABSTRACT.md`](ABSTRACT.md). For the compact terminology index, see [`GLOSSARY.md`](GLOSSARY.md). For lifecycle and protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md).
+For the long-form framing, see [`ABSTRACT.md`](ABSTRACT.md). For the compact terminology index, see [`GLOSSARY.md`](GLOSSARY.md). For lifecycle and protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dedicated protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
 ## Core Terms
 
@@ -32,6 +32,11 @@ Resonant Membership repeatedly performs a small set of operations:
 - repair divergence after connectivity or trust changes
 
 These operations are more central than any particular transport.
+
+Two especially distinctive primitives in this repo are important enough to stand on their own:
+
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md)
+- [`ARBORITIONS.md`](ARBORITIONS.md)
 
 ## Core Invariants
 

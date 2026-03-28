@@ -76,6 +76,8 @@ merger:
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): manifesto and framing
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
 - [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
+- [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md): deterministic ordering as a protocol primitive
+- [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md): adaptive overlay forests for dissemination, witness, and repair
 - [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped dissemination, operator visibility
 - [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md): scoped fanout, witness spread, parent-proxy pools
 - [`docs/TRUST.md`](docs/TRUST.md): trust roots, witness weighting, confidence, blast radius
@@ -89,7 +91,7 @@ merger:
 
 If you are here for:
 
-- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), and [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
+- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), and [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
 - **ChronOS:** see the archived lineage in [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md)
 - **SameDiff:** see the archived adjacent note in [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
 

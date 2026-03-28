@@ -2,7 +2,7 @@
 
 This document describes the protocol-facing membership model for Resonant Membership. It focuses on bootstrap, witness, trust, scoped dissemination, and operator visibility under partial observability.
 
-For shared terms, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For trust behavior, see [`TRUST.md`](TRUST.md). For dissemination, see [`DISSEMINATION.md`](DISSEMINATION.md). For reconciliation and partition repair, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md).
+For shared terms, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For trust behavior, see [`TRUST.md`](TRUST.md). For dissemination, see [`DISSEMINATION.md`](DISSEMINATION.md). For the two most distinctive protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For reconciliation and partition repair, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md).
 
 ## Membership Lifecycle
 
@@ -103,7 +103,7 @@ It should be usable for:
 - determining tie-break order when claims arrive simultaneously
 - making fanout choices reconstructable after the fact
 
-The important property is not just determinism, but accountable determinism. Two operators should be able to explain why the same witness set was chosen from the same seed and candidate set.
+The important property is not just determinism, but accountable determinism. Two operators should be able to explain why the same witness set was chosen from the same seed and candidate set. See [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for the full treatment.
 
 ## Accountability
 

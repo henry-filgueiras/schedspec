@@ -2,7 +2,7 @@
 
 These diagrams are canonical Mermaid sketches for the proposed system model. They are intentionally text-first so the conceptual structure stays easy to review and revise.
 
-See [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md), and [`PRIMITIVES.md`](PRIMITIVES.md) for the surrounding text.
+See [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), and [`PRIMITIVES.md`](PRIMITIVES.md) for the surrounding text.
 
 ## Bootstrap Ladder
 
@@ -95,6 +95,18 @@ flowchart LR
     D --> H["Audit trail"]
 ```
 
+## Permutation-Rank Peer Selection
+
+```mermaid
+flowchart TB
+    A["Candidate peers"] --> B["Apply seed"]
+    B --> C["Permutation rank order"]
+    C --> D1["First k for accountable fanout"]
+    C --> D2["First m for witness set"]
+    C --> D3["Top rendezvous pair for reunion"]
+    C --> D4["Deterministic tie-break path"]
+```
+
 ## Arborition Overlay Forest
 
 ```mermaid
@@ -107,6 +119,19 @@ flowchart TB
     B2 --> C4["Cross-scope repair subtree"]
     C2 --> D["Partition-healing rendezvous"]
     C4 --> D
+```
+
+## Repair, Witness, And Upward Aggregation Paths
+
+```mermaid
+flowchart TB
+    A["Local scope"] --> B1["Witness subtree"]
+    A --> B2["Repair subtree"]
+    B1 --> C["Scoped convergence summary"]
+    B2 --> D["Anti-entropy / healing traffic"]
+    C --> E["Upward aggregation path"]
+    D --> E
+    E --> F["Parent-proxy pool / higher scope"]
 ```
 
 ## Diagram Conventions

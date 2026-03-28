@@ -2,7 +2,7 @@
 
 This document describes how Resonant Membership should reconcile competing views and repair divergence after omission, delay, distrust, or partition.
 
-For the lifecycle and trust pipeline, see [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md). For topology-aware repair structures, see [`TOPOLOGY.md`](TOPOLOGY.md).
+For the lifecycle and trust pipeline, see [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md). For topology-aware repair structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For deterministic reunion and rendezvous ordering, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
 
 ## Why Merge Matters
 

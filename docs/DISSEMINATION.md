@@ -2,7 +2,7 @@
 
 This document describes how claims should spread under partial observability. The subject is not raw message fanout. It is scoped fanout with provenance, trust weighting, and topology awareness.
 
-For trust behavior, see [`TRUST.md`](TRUST.md). For topology-aware structures, see [`TOPOLOGY.md`](TOPOLOGY.md).
+For trust behavior, see [`TRUST.md`](TRUST.md). For topology-aware structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For accountable ordering of relay and witness choices, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
 
 ## Scoped Fanout
 

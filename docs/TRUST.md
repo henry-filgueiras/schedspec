@@ -2,7 +2,7 @@
 
 This document describes how witness quality, trust roots, confidence, and blast radius should interact in Resonant Membership.
 
-For lifecycle behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For threat cases, see [`THREAT_MODEL.md`](THREAT_MODEL.md).
+For lifecycle behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For threat cases, see [`THREAT_MODEL.md`](THREAT_MODEL.md). For witness-set selection discipline, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
 
 ## Trust Is Protocol State
 
