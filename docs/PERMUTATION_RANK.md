@@ -9,7 +9,7 @@ See also:
 - [`PRIMITIVES.md`](PRIMITIVES.md) for the shared vocabulary
 - [`TOPOLOGY.md`](TOPOLOGY.md) for topology-shaped use
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for deterministic reunion and tie-breaking
-- [`DIAGRAMS.md`](DIAGRAMS.md) for peer-selection diagrams
+- [`DIAGRAMS.md`](DIAGRAMS.md) for canonical peer-selection diagrams
 - [`EXAMPLES.md`](EXAMPLES.md) for concrete witness-selection and reunion scenarios
 
 ## What Problem This Primitive Solves

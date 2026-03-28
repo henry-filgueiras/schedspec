@@ -9,6 +9,7 @@ See also:
 - [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two distinctive protocol primitives
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for reconciliation and partition repair
+- [`DIAGRAMS.md`](DIAGRAMS.md) for the canonical lifecycle and trust visuals
 - [`EXAMPLES.md`](EXAMPLES.md) for worked protocol scenarios
 
 ## What Problem This Section Solves

@@ -8,7 +8,7 @@ See also:
 - [`DISSEMINATION.md`](DISSEMINATION.md) and [`TRUST.md`](TRUST.md) for propagation and witness quality
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for reunion and repair structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
-- [`DIAGRAMS.md`](DIAGRAMS.md) for the canonical editable diagrams
+- [`DIAGRAMS.md`](DIAGRAMS.md) for the canonical editable diagrams that correspond to these scenarios
 
 ## What Problem This Section Solves
 
