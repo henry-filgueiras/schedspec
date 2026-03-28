@@ -18,6 +18,7 @@ The entries here are intentionally short. For semantics, invariants, and protoco
 - **observation:** local evidence backing or disputing a claim
 - **witness:** an observer whose corroboration or dispute matters
 - **witness record:** the protocol-visible contribution a witness makes to a claim or belief state
+- **witness history:** the collected witness records over time for a subject or scope
 - **scope:** the audience or jurisdiction in which a claim is relevant
 - **epoch:** bounded time or generation context for ordering and freshness
 - **digest:** compact summary of a membership view for anti-entropy or repair

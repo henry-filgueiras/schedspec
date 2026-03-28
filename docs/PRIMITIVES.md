@@ -31,6 +31,8 @@ The definitions below are intentionally compact. They are the small vocabulary t
 - **claim:** a statement about membership state, identity, trust, scope, or reachability
 - **observation:** locally derived evidence, such as direct contact, timeout, challenge-response, or topology evidence
 - **witness:** an observer whose corroboration or dispute contributes to belief formation
+- **witness record:** the protocol-visible contribution a witness makes once observation, stance, freshness, and context are attached
+- **witness history:** the collected witness records over time for a subject or scope
 - **introducer:** a node or authority that first presents a subject to a scope
 - **scope:** the bounded audience or jurisdiction for a claim, such as rack, zone, service, region, or trust domain
 - **trust weight:** the protocol-relevant credibility attached to an introducer or witness
@@ -81,8 +83,11 @@ The design aims to preserve these invariants:
 ## Fast Distinctions
 
 - **observation vs claim:** an observation is local evidence; a claim is transmissible protocol content
+- **witness vs witness record:** a witness is the actor; a witness record is the protocol-visible object that actor contributes
+- **witness set vs witness history:** a witness set is the selected peer set for a round; a witness history is the collected witness records over time
 - **introducer vs witness:** an introducer presents a subject; a witness corroborates or disputes it
 - **confidence vs trust weight:** confidence is about a specific belief state; trust weight is about the credibility of a source
+- **claim vs belief state:** a claim is asserted content; a belief state is the protocol's current scoped judgment about that content
 - **scope vs topology:** scope controls where a claim is relevant; topology shapes how it should travel
 - **merge vs healing:** merge reconciles views at contact; healing is the broader repair process after divergence
 - **fanout vs permutation rank:** fanout is count; permutation rank is accountable ordering

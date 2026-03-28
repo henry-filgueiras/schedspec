@@ -26,6 +26,14 @@ Each scenario is written to answer the same questions the rest of the paper spin
 - what residue remains visible after the protocol does its work?
 - what should an operator be able to inspect afterward?
 
+Terminology note for this chapter:
+
+- `witness` means the actor
+- `observation` means the local evidence
+- `witness record` means the protocol-visible contribution
+- `witness history` means the collected witness records over time
+- `witness set` means the selected peers asked to witness in a round
+
 ## How To Read These Scenarios
 
 These are protocol examples, not stories about a specific implementation.
@@ -64,7 +72,7 @@ scope = mesh.us-west
 epoch = rollout-2048
 ```
 
-At this stage, the claim is meaningful in `mesh.us-west`, but not yet globally converged.
+At this stage, the claim body is meaningful in `mesh.us-west`, but the scoped belief state is not yet globally converged.
 
 ### Witness Selection
 
@@ -81,7 +89,7 @@ The witness policy then chooses:
 - at least one witness outside the immediate rack
 - no witnesses currently quarantined or below the regional trust threshold
 
-Permutation rank matters here because the system should be able to reconstruct why these witnesses, rather than some locally convenient alternatives, were asked to corroborate the claim.
+Permutation rank matters here because the system should be able to reconstruct why these witnesses, rather than some locally convenient alternatives, were asked to corroborate the claim and produce the first witness records.
 
 ### Propagation And Overlay Behavior
 
@@ -152,7 +160,7 @@ Residue is not noise here. It is the honest record that healing was a negotiated
 
 After the event, an operator should be able to inspect:
 
-- the original west introduction and its provenance
+- the original west claim body and its provenance
 - the west witness set and the permutation-rank seed used to choose it
 - the east suspicion history and its freshness window
 - the reunion peer set selected for healing
@@ -204,6 +212,8 @@ introducer = field-node-22
 ```
 
 The introducer is not fully rejected, but its trust history is uneven enough that the claim should not be allowed to flood outward on first contact.
+
+The important distinction is that the claim body exists immediately, while the scoped belief state stays weak until witness records accumulate.
 
 ### Witness Selection
 

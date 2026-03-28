@@ -195,6 +195,26 @@ Semantically required:
 
 - witness records must preserve enough structure to support explanation and repair
 
+### Canonical Object Mapping
+
+The repo uses the following object mapping:
+
+| Object | Meaning | What it is not |
+| --- | --- | --- |
+| claim body | transmissible asserted membership content about a subject | not local evidence; not the final belief state |
+| observation | local evidence about a subject | not a transmissible claim by itself |
+| witness record | the protocol-visible object that binds witness, stance, freshness, and context to a claim or subject | not merely the witness actor; not the whole witness history |
+| scoped belief state | the protocol's current state for a subject in a scope | not the raw claim body |
+| operator-visible status | human-facing summary of the scoped belief state | not a second hidden state machine |
+
+The witness-related terms are distinct:
+
+- **witness:** the actor who observes, corroborates, or disputes
+- **observation:** the evidence produced locally
+- **witness record:** the protocol object carrying the witness contribution
+- **witness history:** the collection of witness records over time for a subject or scope
+- **witness set:** the selected peers asked to witness in a round
+
 ### Trust Weight And Confidence
 
 **Trust weight** is the credibility attached to a source or witness.
@@ -434,6 +454,26 @@ Interpretation:
 - merge outputs such as accepted convergence, provisional convergence, scoped disagreement, and quarantine project onto these states rather than replacing them with a second lifecycle vocabulary
 - `revocation` is a visible transition event, not a separate durable subject state
 - revocation may apply either to a subject's prior acceptance or to a witness or trust source's standing
+
+### Canonical State Transitions
+
+The canonical subject-state transition model is:
+
+| State | Meaning | Typical incoming transitions | Typical outgoing transitions |
+| --- | --- | --- | --- |
+| `unknown` | no admitted scoped claim yet | initial state; `removed -> unknown` in a fresh epoch or new introduction context | `introduced` |
+| `introduced` | subject claim admitted into scope, not yet witnessed | `unknown`; new introduction after prior removal | `witnessed`, `quarantined`, `removed` |
+| `witnessed` | one or more witness records exist, but scoped belief is not yet strong enough for provisional acceptance | `introduced`; `provisional -> witnessed` after confidence loss but before active suspicion | `provisional`, `suspected`, `disputed`, `quarantined` |
+| `provisional` | bounded scoped belief that is usable but still tentative | `witnessed`; `quarantined -> provisional` after repair; `accepted -> provisional` after confidence narrows without active conflict | `accepted`, `suspected`, `disputed`, `quarantined`, `removed` |
+| `accepted` | stronger scoped convergence in that scope | `provisional`; repaired convergence after dispute | `suspected`, `disputed`, `quarantined`, `removed` |
+| `suspected` | previously stronger belief degraded by freshness loss, failed corroboration, or early conflict pressure | `witnessed`, `provisional`, `accepted` | `witnessed`, `provisional`, `accepted`, `disputed`, `quarantined`, `removed` |
+| `disputed` | fresh admissible evidence is in active conflict | `witnessed`, `provisional`, `accepted`, `suspected` | `provisional`, `accepted`, `quarantined`, `removed` |
+| `quarantined` | propagation, acceptance, or both are explicitly suspended pending repair or review | `introduced`, `witnessed`, `provisional`, `accepted`, `suspected`, `disputed` | `witnessed`, `provisional`, `accepted`, `removed` |
+| `removed` | subject is no longer treated as a member in that scope | `introduced`, `provisional`, `accepted`, `suspected`, `disputed`, `quarantined` | `introduced`, `unknown` |
+
+`revocation` is a transition event that may drive movement into `suspected`, `disputed`, `quarantined`, or `removed`. It is not itself a durable subject state.
+
+Witness or trust-source standing may have separate review, quarantine, and revocation behavior. Those are related control surfaces, but they are not the same thing as the subject-state lifecycle above.
 
 ## Decision Surfaces
 

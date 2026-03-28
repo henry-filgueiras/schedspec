@@ -36,6 +36,8 @@ Where helpful, the chapter uses light pseudocode. The pseudocode is semantic pse
 
 The chapter uses the canonical subject-state vocabulary from [`MEMBERSHIP.md`](MEMBERSHIP.md). Output classes such as provisional convergence, scoped disagreement, or quarantine are merge-result classifications that project onto that lifecycle rather than replacing it with a second state machine.
 
+It also uses the canonical witness terminology from [`SEMANTICS.md`](SEMANTICS.md): witness as actor, observation as evidence, witness record as protocol object, witness history as collection, witness set as selected peers.
+
 ## Subject Introduction Into A Scope
 
 This is the entry loop by which a subject first becomes protocol-visible inside a scope.
@@ -151,6 +153,8 @@ form_candidates(subject, scope, epoch, peers):
 - which peers were eligible
 - which peers were excluded
 - why exclusions happened
+
+The output here is a **witness set**, not a witness record. Witness records are formed later when selected witnesses attach observations and stance.
 
 ## Permutation-Rank Computation And Ranked Selection
 

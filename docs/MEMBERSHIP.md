@@ -68,6 +68,24 @@ For reading discipline across the repo:
 
 `revocation` is not a separate durable subject state. It is a visible transition event that withdraws prior acceptance or prior trust and may drive a subject or witness toward `suspected`, `disputed`, `quarantined`, or `removed` depending on scope and evidence.
 
+## Canonical Transition Table
+
+This chapter follows the canonical subject-state model from [`SEMANTICS.md`](SEMANTICS.md):
+
+| State | Meaning | Usual next states |
+| --- | --- | --- |
+| `unknown` | no admitted scoped claim yet | `introduced` |
+| `introduced` | admitted into scope, not yet witnessed | `witnessed`, `quarantined`, `removed` |
+| `witnessed` | witness records exist, but belief is not yet provisional | `provisional`, `suspected`, `disputed`, `quarantined` |
+| `provisional` | usable but still bounded scoped belief | `accepted`, `suspected`, `disputed`, `quarantined`, `removed` |
+| `accepted` | stronger scoped convergence | `suspected`, `disputed`, `quarantined`, `removed` |
+| `suspected` | previously stronger belief has degraded | `witnessed`, `provisional`, `accepted`, `disputed`, `quarantined`, `removed` |
+| `disputed` | fresh admissible evidence is in active conflict | `provisional`, `accepted`, `quarantined`, `removed` |
+| `quarantined` | propagation, acceptance, or both are suspended | `witnessed`, `provisional`, `accepted`, `removed` |
+| `removed` | subject no longer treated as a member in scope | `introduced`, `unknown` |
+
+The table is intentionally compact. The semantic contract and edge conditions live in [`SEMANTICS.md`](SEMANTICS.md).
+
 ## Bootstrap And Introduction
 
 Bootstrap is the first trust decision.
@@ -88,11 +106,19 @@ An introduction is not equivalent to acceptance. It is an invitation to witness.
 
 ## Witness Formation
 
+The witness terms here stay distinct:
+
+- **witness:** the selected actor
+- **observation:** the local evidence gathered by that actor
+- **witness record:** the protocol-visible contribution attached to the subject or claim
+- **witness history:** the collected witness records over time
+- **witness set:** the selected peers asked to witness in a round
+
 Claims should move through a witness pipeline:
 
 1. a subject is introduced
 2. candidate witnesses are selected
-3. witnesses attach local observation, confidence, and trust weight
+3. witnesses attach local observations and produce witness records with confidence and trust context
 4. the scope decides whether the resulting belief state is provisional, accepted, disputed, or quarantined
 
 This pipeline exists to prevent first contact from becoming irreversible truth.

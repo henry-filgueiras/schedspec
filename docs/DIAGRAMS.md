@@ -24,6 +24,8 @@ They are not decoration. They are compact arguments about what the protocol is c
 
 This state machine shows membership as a belief process rather than a liveness table. A subject moves through introduction, witness formation, scoped acceptance, dispute, quarantine, and repair.
 
+`revocation` is not drawn as a durable node because the canonical model treats it as a transition event rather than as a subject state.
+
 Design invariant: membership is a structured belief state, not a binary alive-or-dead fact.
 
 ```mermaid
@@ -60,6 +62,13 @@ flowchart LR
     S --> A["Fresh corroboration restores confidence"]
     S --> R["Revocation or removal transition"]
 ```
+
+Reading key:
+
+- `Observation` is local evidence
+- `Claim` is transmissible asserted content
+- `Witness record formed` is the protocol object, not merely the witness actor
+- `Accepted belief state in scope` is the resulting scoped belief state
 
 ## 3. Partition Healing And Deterministic Reunion
 
