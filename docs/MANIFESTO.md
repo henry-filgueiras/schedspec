@@ -18,7 +18,9 @@ Its job is not to specify semantics in detail. Its job is to keep the project ho
 
 The interesting failure mode is not that one node misses one heartbeat.
 
-The interesting failure mode is that one scope accepts a claim another scope still disputes. A weak witness receives more blast radius than it deserves. A partition heals but reality does not yet agree with itself. An operator sees convergence but cannot explain why the system believed this view instead of its competitor.
+The interesting failure mode is that one scope accepts a claim another scope still disputes.
+
+A weak witness receives more blast radius than it deserves. A partition heals but reality does not yet agree with itself. An operator sees convergence but cannot explain why the system believed this view instead of its competitor.
 
 That is the point at which "membership" stops being a table-maintenance exercise and becomes a systems problem.
 
@@ -51,7 +53,9 @@ The manifesto is anchored by a few propositions that recur across the rest of th
 
 This design direction is intentionally less comforting than a generic gossip story.
 
-It asks the system to preserve uncertainty instead of flattening it early. It asks operators to inspect merge and witness quality rather than trusting summary tables. It asks the protocol to explain its fanout, reunion, and repair behavior in reconstructable terms.
+It asks the system to preserve uncertainty instead of flattening it early.
+
+It asks operators to inspect merge and witness quality rather than trusting summary tables. It asks the protocol to explain its fanout, reunion, and repair behavior in reconstructable terms.
 
 That comes with costs:
 

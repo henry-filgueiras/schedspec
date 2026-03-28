@@ -19,7 +19,15 @@ This section defines what it means to maintain membership when no participant ca
 
 A system that speaks only in terms of alive and dead hides too much.
 
-It hides who introduced a subject, who corroborated it, which scope currently accepts it, what evidence remains disputed, and why some observers are trusted more than others. Resonant Membership treats those details as the substance of membership rather than as annotations on top of a liveness table.
+It hides:
+
+- who introduced a subject
+- who corroborated it
+- which scope currently accepts it
+- what evidence remains disputed
+- why some observers are trusted more than others
+
+Resonant Membership treats those details as the substance of membership rather than as annotations on top of a liveness table.
 
 ## Core Objects And Semantics
 
@@ -27,7 +35,9 @@ Membership is the evolving answer to a harder question than "is this node up?"
 
 The real question is: what does this scope currently believe about this subject, on what evidence, with what confidence, and under what right to spread that belief further?
 
-That formulation matters because different scopes can legitimately hold different views at the same moment. A rack-local scope may treat a subject as strongly witnessed while a regional scope still treats it as provisional. A weakly trusted introduction may be useful locally while remaining unsuitable for broader dissemination. Partial observability makes such asymmetry normal rather than pathological.
+That formulation matters because different scopes can legitimately hold different views at the same moment.
+
+A rack-local scope may treat a subject as strongly witnessed while a regional scope still treats it as provisional. A weakly trusted introduction may be useful locally while remaining unsuitable for broader dissemination. Partial observability makes such asymmetry normal rather than pathological.
 
 The core semantic states are therefore not merely liveness labels. They are stages in the formation, spread, and repair of belief.
 

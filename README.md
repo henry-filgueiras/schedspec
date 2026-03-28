@@ -4,6 +4,15 @@ Resonant Membership is a design-first systems treatise on gossip, trust, and con
 
 This repository is organized around **Resonant Membership** as the active center of gravity. Earlier or adjacent threads, especially **ChronOS** and **SameDiff**, are preserved as archived design lineages rather than treated as co-equal active projects.
 
+## Start Here
+
+If you are new to the repo:
+
+1. Read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis and framing.
+2. Read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure.
+3. Read [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md) for the core protocol argument.
+4. Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.
+
 ## Repository Architecture
 
 This repo follows one explicit model:
@@ -16,11 +25,11 @@ This is intentional. The repo should read as one active treatise with preserved 
 
 ## Project Map
 
-If you are here for:
+If you are here for a specific thread:
 
-- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and the protocol stack under [`docs/`](docs)
-- **ChronOS:** start with [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md), then [`notes/archive/chronos/VISION.md`](notes/archive/chronos/VISION.md) and [`notes/archive/chronos/SPEC.md`](notes/archive/chronos/SPEC.md)
-- **SameDiff:** start with [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
+- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), and then the protocol stack under [`docs/`](docs)
+- **ChronOS:** start with the archived lineage at [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md)
+- **SameDiff:** start with the archived note at [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
 
 ## Three Theses
 
@@ -91,7 +100,7 @@ merger:
 ## Docs
 
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
-- [`docs/ABSTRACT.md`](docs/ABSTRACT.md): manifesto and framing
+- [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
 - [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
 - [`docs/SEMANTICS.md`](docs/SEMANTICS.md): semantic contract for protocol objects and decision surfaces
@@ -110,11 +119,3 @@ merger:
 ## Status
 
 This repository is a systems design document set. It describes intended primitives, invariants, and protocol shape; it should not be read as a claim that a complete runtime or implementation already exists.
-
-## Start Here
-
-For the active project, read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis.
-
-Then read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure, followed by [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
-
-Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.

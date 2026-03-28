@@ -2,6 +2,8 @@
 
 ChronOS is preserved here as an archived sibling lineage.
 
+It is not the active center of gravity of the repo. For the active project, start at [`README.md`](../../README.md).
+
 ChronOS was framed as:
 
 - **ChronOS:** a proposed temporal operating system for stateful workflows
@@ -11,7 +13,7 @@ Core thesis:
 
 > once time, replay, recovery, migration, operator intervention, and external effects become first-class, workflow execution stops looking like "background jobs plus retries" and starts looking like an operating-systems problem
 
-This material is not the active center of gravity of the repo anymore. That role belongs to Resonant Membership at the root [`README.md`](../../README.md). ChronOS remains here because the wording and framing are still strong and adjacent.
+ChronOS remains here because the wording and framing are still strong and adjacent.
 
 ## Start Here
 

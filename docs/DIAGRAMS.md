@@ -15,14 +15,15 @@ See also:
 
 The prose in this repo is trying to describe state transitions, trust flow, deterministic selection, and healing structure without collapsing them into generic gossip intuition.
 
-These diagrams exist to keep the semantics legible. They are not decoration. They are compact arguments about what the protocol is claiming matters.
+These diagrams exist to keep the semantics legible.
+
+They are not decoration. They are compact arguments about what the protocol is claiming matters.
 
 ## 1. Membership Lifecycle State Machine
 
 This state machine shows membership as a belief process rather than a liveness table. A subject moves through introduction, witness formation, scoped acceptance, dispute, quarantine, and repair.
 
-Design invariant:
-Membership is a structured belief state, not a binary alive-or-dead fact.
+Design invariant: membership is a structured belief state, not a binary alive-or-dead fact.
 
 ```mermaid
 stateDiagram-v2
@@ -45,8 +46,7 @@ stateDiagram-v2
 
 This diagram makes the trust story sequential. Observations do not become accepted fact immediately. They move through claim formation, witness corroboration, trust weighting, and state transition, with room for staleness and revocation.
 
-Design invariant:
-Trust and witness quality must shape belief formation before broad propagation occurs.
+Design invariant: trust and witness quality must shape belief formation before broad propagation occurs.
 
 ```mermaid
 flowchart LR
@@ -64,8 +64,7 @@ flowchart LR
 
 This diagram shows healing as an explicit protocol phase rather than as "rumor resumes." Recontact triggers summary exchange, deterministic rendezvous selection, merge, repair dissemination, and possibly visible unresolved conflict.
 
-Design invariant:
-Restored connectivity is not convergence; healing must preserve provenance and residue.
+Design invariant: restored connectivity is not convergence; healing must preserve provenance and residue.
 
 ```mermaid
 flowchart TB
@@ -84,8 +83,7 @@ flowchart TB
 
 This diagram shows that scopes are hierarchical and that upward visibility should often pass through bounded parent-proxy pools rather than unconstrained mesh contact.
 
-Design invariant:
-Hierarchy and locality are protocol constraints, not transport afterthoughts.
+Design invariant: hierarchy and locality are protocol constraints, not transport afterthoughts.
 
 ```mermaid
 flowchart TB
@@ -106,8 +104,7 @@ flowchart TB
 
 This diagram shows how one seeded ordering can drive multiple accountable choices: fanout, witness selection, rendezvous, and tie-breaking.
 
-Design invariant:
-Selection should be reproducible and auditable rather than dependent on host-local enumeration order.
+Design invariant: selection should be reproducible and auditable rather than dependent on host-local enumeration order.
 
 ```mermaid
 flowchart TB
@@ -125,8 +122,7 @@ flowchart TB
 
 This diagram shows why the repo uses the term `arborition`: dissemination, witness, and repair do not always want the same tree, so the protocol should model a forest of related overlays instead of one flat graph.
 
-Design invariant:
-Propagation, witness gathering, and repair should be explicit overlay roles, not one undifferentiated fanout path.
+Design invariant: propagation, witness gathering, and repair should be explicit overlay roles, not one undifferentiated fanout path.
 
 ```mermaid
 flowchart TB
@@ -146,8 +142,7 @@ flowchart TB
 
 This final diagram isolates the most operationally useful overlay distinction: one subtree gathers witnesses, one carries repair traffic, and one carries scoped summaries upward through parent-proxy pools.
 
-Design invariant:
-A flat fanout graph hides the difference between witness collection, repair traffic, and bounded upward visibility.
+Design invariant: a flat fanout graph hides the difference between witness collection, repair traffic, and bounded upward visibility.
 
 ```mermaid
 flowchart TB

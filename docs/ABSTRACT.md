@@ -15,7 +15,9 @@ See also:
 
 This document exists to frame the whole repo as one systems argument rather than as a stack of related notes.
 
-The question underneath every other page is the same: how should a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
+The question underneath every other page is the same:
+
+How should a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
 
 ## Abstract
 
@@ -35,7 +37,11 @@ The core semantic objects in the repo are deliberately small:
 - **membership views** that represent structured belief rather than flat membership sets
 - **residue** that preserves unresolved disagreement instead of flattening it away
 
-The proposal claims that once those objects are made explicit, the protocol can speak more honestly about what it knows, what it only suspects, and what it still has not repaired.
+The proposal claims that once those objects are made explicit, the protocol can speak more honestly about:
+
+- what it knows
+- what it only suspects
+- what it still has not repaired
 
 ## Problem Setting
 

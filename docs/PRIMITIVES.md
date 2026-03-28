@@ -16,7 +16,9 @@ Systems papers tend to fail early when their terms drift.
 
 This section exists to keep the rest of the repo from quietly changing the meaning of words like `claim`, `witness`, `scope`, `confidence`, or `residue` from page to page.
 
-The goal is not merely definitional hygiene. A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
+The goal is not merely definitional hygiene.
+
+A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
 
 ## Core Objects And Semantics
 
@@ -90,7 +92,9 @@ Vocabulary does not remove ambiguity by itself.
 
 The failure mode this section tries to prevent is quieter: multiple components behaving coherently locally while disagreeing about the meaning of key terms globally. Once that happens, even correct-looking convergence becomes hard to reason about.
 
-Another danger is compression in the wrong place. If the system uses the word `membership` to hide distinctions among introduction, witness, acceptance, dispute, quarantine, and residue, then the paper may look clean while the protocol itself remains under-specified.
+Another danger is compression in the wrong place.
+
+If the system uses the word `membership` to hide distinctions among introduction, witness, acceptance, dispute, quarantine, and residue, then the paper may look clean while the protocol itself remains under-specified.
 
 ## Operator Interpretation
 

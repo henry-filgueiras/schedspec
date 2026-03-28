@@ -1,5 +1,6 @@
 # SameDiff
-### A README for **Contrast Calculus** in delta-space
+
+## Archived Note On Contrast Calculus
 
 SameDiff is preserved here as an adjacent archived lineage rather than as the active center of gravity of the repo.
 

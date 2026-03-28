@@ -27,7 +27,9 @@ Each scenario is written to answer the same questions the rest of the paper spin
 
 ## How To Read These Scenarios
 
-These are protocol examples, not stories about a specific implementation. They use the vocabulary of the repo as if a conforming system existed, but they should be read as worked semantic sketches rather than logs from a completed runtime.
+These are protocol examples, not stories about a specific implementation.
+
+They use the vocabulary of the repo as if a conforming system existed, but they should be read as worked semantic sketches rather than logs from a completed runtime.
 
 The point is not to show a happy path. The point is to force the concepts to interact under pressure.
 
