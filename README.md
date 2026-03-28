@@ -1,102 +1,92 @@
-# ChronOS
+# Resonant Membership
 
-ChronOS is a proposed temporal operating system for stateful workflows. The claim is not that workflows need better glue code; it is that once time, replay, recovery, migration, operator intervention, and external effects become first-class, workflow execution stops looking like "background jobs plus retries" and starts looking like an operating-systems problem. `chrono flow` is the corresponding language layer: a durable, deterministic, time-aware workflow language whose history is normative and whose materialized state is derived.
+Resonant Membership is a design-first systems treatise on gossip, trust, and convergence under partial observability. The claim is not that cluster membership is just a faster heartbeat table; it is that once bootstrap, witness, scoped dissemination, trust, merge rules, partition healing, hierarchy, and operator visibility become first-class, membership stops being a side channel and becomes a protocol for coordinated belief under weak coordination.
 
 ## Three Theses
 
-- **Workflow execution becomes an OS problem once time and recovery are first-class.**
-- **History is normative; materialized state is a derived cache.**
-- **Replay is not a debug trick. It is part of the execution model.**
+- **Membership is a problem of converging belief, not merely detecting liveness.**
+- **Partial observability is normal, so trust, witness, and repair must be explicit.**
+- **Deterministic ordering and topology matter because operators need accountable dissemination, not anonymous rumor.**
 
-## Why ChronOS Exists
+## Why This Exists
 
-Most workflow systems are comfortable while the flow is short-lived, mostly synchronous, and lightly audited. They become vague at the exact point the real problem starts:
+Most gossip discussions flatten the hard parts:
 
-- a workflow lives for hours, days, or months
-- timers and deadlines matter
-- humans intervene
-- external APIs fail, retry, or change shape
-- operators need to explain what happened
-- schemas evolve while instances remain alive
-- replay must recover meaning, not just reproduce a bug
+- who gets to introduce a node
+- who is allowed to witness or dispute a claim
+- how trust is accumulated, scoped, or revoked
+- how partitions heal without pretending the split never happened
+- how hierarchy and locality shape dissemination cost
+- how an operator explains why the system believed one view and not another
 
-ChronOS starts from a harder contract:
+Resonant Membership starts from a harder setting:
 
-- history first
-- stable identity across time
-- replay as an execution primitive
-- explicit nondeterminism boundaries
-- migration as a normal condition of life
+- observability is partial
+- witnesses disagree
+- trust is uneven
+- dissemination is scoped
+- topology is heterogeneous
+- partitions are expected
+- convergence must still be auditable
 
 ## Key Ideas
 
-- **Append-only history is the source of truth.** Materialized state is a projection, cache, or index over durable events.
-- **Deterministic decisions are separated from external effects.** A conforming runtime would be able to replay decision logic from history.
-- **Flow IDs are durable identities.** A flow remains the same flow across retries, waits, restarts, migration, and operator intervention.
-- **Timers are data, not sleep calls.** Deadlines, waits, and wakeups must survive process failure.
-- **Operators act through audited events.** Manual approval, override, cancellation, and replay requests belong in history.
-- **Observability is structural.** The system should explain a flow in terms of causality, state, effects, waits, children, and divergence, not force operators to reconstruct intent from logs.
+- **Permutation rank:** seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability
+- **Witness and trust pipeline:** claims should move through introduction, corroboration, weighting, and acceptance rather than becoming truth on first contact
+- **Scoped dissemination:** not every claim should flood everywhere at once; scope and audience are protocol concerns
+- **Merge and healing:** membership views must reconcile after drift, omission, and partition rather than assuming a single canonical observer
+- **Hierarchy and arboritions:** adaptive topology-aware dissemination, witness, and repair trees or overlay forests should reflect locality and trust structure
+- **Operator observability:** the system should answer why a view converged, which witnesses mattered, and where disagreement still lives
 
 ## Anti-Goals
 
-- not a toy workflow engine
-- not a vague "agent framework"
-- not hidden side effects wrapped in optimistic retries
-- not mutable current state pretending history is optional
-- not a finished implementation with claims this repo cannot support
+- not a generic gossip tutorial
+- not a marketing page for a finished implementation
+- not a simplistic heartbeat-only membership protocol
+- not a trustless model pretending witness quality does not matter
+- not a centralized control-plane paper in disguise
 
 ## Example
 
-Illustrative `chrono flow` sketch, not frozen syntax:
+Illustrative protocol sketch:
 
-```chrono
-flow rollout(service: ServiceId, target: Version) {
-  state {
-    desired = target
-    approved = false
-  }
+```text
+seed = epoch || cluster_id || subject_id
+rank = permutation_rank(seed, candidate_peers)
 
-  on start {
-    emit effect create_change_ticket(service, desired)
-    await operator.approve("release-manager")
-  }
+introducer -> witnesses[rank[0..k]]:
+  propose subject S in scope edge.us-west
 
-  on operator.approved(by) {
-    approved = true
-  }
+witnesses:
+  record observation
+  attach trust weight and freshness
+  disseminate upward only if local corroboration threshold is met
 
-  when approved {
-    child deploy_region(service, desired, "us-west") as west
-    child deploy_region(service, desired, "us-east") as east
-    child deploy_region(service, desired, "eu-central") as eu
-    await quorum children completed(status == ok) >= 2 within 20m
-    emit effect shift_traffic(service, desired)
-  }
-
-  on child_failed deploy_region(region) {
-    compensate shift_traffic(service, previous_version(service))
-    emit effect page_oncall(service, region)
-  }
-}
+merger:
+  join signed observations
+  prefer higher-confidence convergent view
+  preserve unresolved disagreement as visible residue
 ```
 
-## Repo Map
+## Docs
 
-- [`README.md`](README.md): concise front door
-- [`docs/CHRONOS_README.md`](docs/CHRONOS_README.md): long-form vision and thesis
-- [`docs/GLOSSARY.md`](docs/GLOSSARY.md): shared vocabulary and invariants
-- [`docs/SPEC.md`](docs/SPEC.md): semantic contract
-- [`docs/LANGUAGE.md`](docs/LANGUAGE.md): language sketch and determinism model
+- [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
+- [`docs/ABSTRACT.md`](docs/ABSTRACT.md): manifesto and framing
+- [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
+- [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
+- [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped dissemination, operator visibility
+- [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md): scoped fanout, witness spread, parent-proxy pools
+- [`docs/TRUST.md`](docs/TRUST.md): trust roots, witness weighting, confidence, blast radius
+- [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md): merge rules, reconciliation, partition healing
+- [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md): hierarchy, permutation rank, and arborition overlays
+- [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md): failures, adversaries, and abuse cases
 - [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): proposed runtime shape
-- [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams and conventions
-- [`docs/GOOD_FIRST_DRAGONS.md`](docs/GOOD_FIRST_DRAGONS.md): contributor-scale hard problems
-- [`SAMEDIFF.md`](SAMEDIFF.md): adjacent replay-diff lineage
+- [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams
 
-## Current Status
+## Status
 
-This repository is design-first. The documents describe intended semantics, invariants, and runtime shape; they should not be read as claims that a complete ChronOS runtime already exists.
+This repository is a systems design document set. It describes intended primitives, invariants, and protocol shape; it should not be read as a claim that a complete runtime or implementation already exists.
 
 ## Start Here
 
-Read [`docs/CHRONOS_README.md`](docs/CHRONOS_README.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) for the shared vocabulary and invariants, then [`docs/SPEC.md`](docs/SPEC.md) for the contract, followed by [`docs/LANGUAGE.md`](docs/LANGUAGE.md), [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), and [`docs/GOOD_FIRST_DRAGONS.md`](docs/GOOD_FIRST_DRAGONS.md).
+Read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, then [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md). Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) and [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) open while reading.

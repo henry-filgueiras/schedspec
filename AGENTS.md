@@ -1,98 +1,183 @@
 # AGENTS.md
 
-Guidance for agents editing this repository.
+## Project identity
 
-## Project Identity
+This repository is a design-first systems project centered on:
 
-- `ChronOS` is a proposed temporal operating system for stateful workflows.
-- `chrono flow` is its proposed durable, deterministic, time-aware workflow language.
-- This repo is design-first. Do not imply a finished implementation unless a file in the repo proves it.
+**Resonant Membership: Gossip, Trust, and Convergence Under Partial Observability**
 
-Core thesis to preserve:
+The project is not “just about gossip protocols” in the narrow epidemic-broadcast sense.
 
-- once time, replay, recovery, migration, operator intervention, and external effects become first-class, workflow execution stops looking like "background jobs plus retries" and starts looking like an operating-systems problem
+Its real subject is:
 
-## Canonical Doc Stack
+> How distributed systems construct, maintain, and repair a usable shared belief about membership and system state when no node can directly inspect global truth.
 
-The intended stack is:
-
-- `README.md`: concise front door
-- `docs/CHRONOS_README.md`: long-form vision and thesis
-- `docs/GLOSSARY.md`: shared vocabulary and invariants
-- `docs/SPEC.md`: semantic contract
-- `docs/LANGUAGE.md`: language sketch and determinism model
-- `docs/EXAMPLES.md`: worked scenarios
-- `docs/ARCHITECTURE.md`: proposed runtime shape
-- `docs/DIAGRAMS.md`: canonical Mermaid diagrams and conventions
-- `docs/GOOD_FIRST_DRAGONS.md`: contributor-scale hard problems
-- `SAMEDIFF.md`: adjacent replay-diff lineage
-
-Top-level `CHRONOS_README.md` and `CHRONOS_SPEC.md` are intentional redirect stubs. Do not expand them into competing full documents unless explicitly asked.
-
-## Editing Priorities
-
-When editing docs in this repo:
-
-- preserve the strongest existing phrasing where it already works
-- keep README concise and navigational
-- keep proposal wording explicit: use forms like "proposed", "intended", and "a conforming implementation would..."
-- reduce duplication across docs; each file should have a clear job
-- prefer elegant compression over bloated explanation
-- keep links repo-relative, not absolute filesystem paths
-
-## Invariants To Preserve
-
-These ideas should remain consistent across the repo:
-
-- history is normative; materialized state is derived
-- flow identity persists across time
-- replay is a primitive, not merely a debugging trick
-- effects cross an explicit nondeterminism boundary
-- timers are durable data, not sleep calls
-- operator actions are auditable events
-- migration is normal life for long-lived workflows
-- observability should be structural, not log archaeology
+The center of gravity is:
+- bootstrap
+- membership
+- trust / witness / provenance
+- scoped dissemination
+- deterministic merge
+- partition healing
+- hierarchy and topology
+- operator observability
 
 ## Tone
 
-Desired tone:
+Write like a serious systems treatise with dangerous preface energy:
+- technically grounded
+- crisp
+- structured
+- memorable
+- no fake implementation claims
+- no startup fluff
+- no academic sludge
 
-- serious systems-language / PL / distributed-systems flavor
-- sharp and enticing, but not hypey
-- ambitious, but technically grounded
+Prefer:
+- thesis lines
+- invariants
+- state machines
+- threat models
+- merge rules
+- cost / tradeoff discussion
+- diagrams that clarify semantics
 
 Avoid:
+- generic networking tutorial voice
+- hand-wavy “eventual consistency solves it” energy
+- overclaiming Byzantine guarantees without paying for them
+- pretending the project is already implemented unless repo contents prove that
 
-- generic startup copy
-- hand-wavy "agent framework" language
-- fabricated benchmarks, deployments, or implementation status
-- faux certainty where the design is still open
+## Canonical framing
 
-## Language And Spec Boundaries
+Strong coordination is expensive.
+Perfect knowledge is usually unavailable.
+Systems must still decide:
+- who exists
+- who belongs
+- what changed
+- which claims deserve belief
+- whether a partition has healed
+- how to merge competing realities safely
 
-Keep these boundaries clear:
+Gossip is therefore not merely message dissemination.
+It is an epistemic control plane for systems that cannot afford certainty.
 
-- `docs/CHRONOS_README.md` explains why the project exists
-- `docs/GLOSSARY.md` defines terms and invariants
-- `docs/SPEC.md` states the semantic contract
-- `docs/LANGUAGE.md` sketches syntax and determinism constraints without prematurely freezing the surface
-- `docs/ARCHITECTURE.md` explains proposed runtime shape without pretending the runtime exists
+## Core invariants
 
-## Diagrams
+These ideas should recur across docs:
 
-- Mermaid is canonical.
-- Rendered PNGs under `docs/reference-images/` are supporting reference material, not the source of truth.
-- Keep diagram terminology aligned with the rest of the docs.
+1. Membership is a belief state, not a list.
+2. Every claim has scope, provenance, and staleness.
+3. Dissemination without trust weighting is noise amplification.
+4. Convergence requires merge semantics, not just restored connectivity.
+5. Healing must be rate-limited enough to avoid oscillation.
+6. Trust should influence blast radius, not only acceptance.
+7. Operator visibility is part of correctness.
+8. Partition healing is negotiated reality merge.
+9. Partial observability is the normal case, not an edge case.
 
-## Repo Conventions
+## Vocabulary to preserve and refine
 
-- Use repo-relative Markdown links.
-- Prefer text-first artifacts.
-- Keep `SAMEDIFF.md` integrated where replay-diff and divergence explanation matter, but do not let it overshadow ChronOS.
-- Preserve the root-level structure unless there is a clear organizational improvement.
+Use and normalize these terms across the repo:
 
-## If You Add New Material
+- node
+- claim
+- observation
+- witness
+- membership view
+- confidence
+- scope
+- epoch
+- digest
+- residue
+- merge
+- trust root
+- quarantine
+- hysteresis
+- anti-entropy
+- scoped fanout
+- parent-proxy pool
+- witness set
+- deterministic reunion
 
-- Make it fit the existing doc stack instead of creating parallel narratives.
-- Cross-link it intentionally from the most relevant canonical doc.
-- Keep examples consistent with the current `chrono flow` notation style.
+### Permutation rank
+This is a first-class concept.
+
+Treat **permutation rank** as a seeded, deterministic ordering of peers or candidates used for things like:
+- accountable fanout choice
+- rendezvous / contact selection
+- merge tie-breaking
+- audit sampling
+- bounded influence ordering
+- deterministic arbitration under partial visibility
+
+The seed and ranking function matter because they create:
+- reproducibility
+- auditability
+- reduced ambiguity
+- less accidental bias from local enumeration order
+
+Document it as a serious primitive, not a throwaway trick.
+
+### Arboritions
+This is a coined / provisional term.
+Treat it as a real concept worth either keeping or carefully renaming.
+
+Intended meaning:
+- topology-aware, often ephemeral dissemination / witness trees
+- tree-like or forest-like structures built over a changing peer set
+- used for scoped propagation, witness aggregation, repair paths, or region-aware dissemination
+- not necessarily a single global spanning tree
+- more like adaptive, policy-shaped “arborized” coordination overlays
+
+If the repo would be clearer with a more explicit label, Codex may propose alternatives such as:
+- witness trees
+- scoped dissemination trees
+- adaptive overlay forests
+- repair trees
+- arborized overlays
+
+But preserve the underlying concept and cross-link any rename.
+
+## Desired repository shape
+
+Prefer a docs stack like:
+
+- README.md
+- docs/MANIFESTO.md
+- docs/ABSTRACT.md
+- docs/PRIMITIVES.md
+- docs/MEMBERSHIP.md
+- docs/DISSEMINATION.md
+- docs/TRUST.md
+- docs/MERGE_AND_HEALING.md
+- docs/TOPOLOGIES.md
+- docs/THREAT_MODEL.md
+- docs/EXAMPLES.md
+- docs/DIAGRAMS.md
+- docs/GLOSSARY.md
+
+If the repo already has overlapping files, preserve good material and normalize rather than exploding file count unnecessarily.
+
+## Diagram preference
+
+Prefer editable Mermaid diagrams where practical.
+
+Important diagrams:
+- membership state machine
+- bootstrap ladder
+- trust / claim pipeline
+- partition healing / deterministic reunion
+- hierarchical topology diagram
+- arborition / overlay-forest diagram
+- permutation-rank selection diagram
+
+## Working style
+
+- inspect first
+- reuse strong existing wording
+- improve structure before adding more prose
+- cross-link aggressively but cleanly
+- show diffs before committing
+- do not auto-commit or auto-push unless explicitly asked
