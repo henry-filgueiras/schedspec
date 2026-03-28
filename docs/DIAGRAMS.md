@@ -2,13 +2,21 @@
 
 These diagrams are canonical Mermaid sketches for the proposed system model. They are intentionally text-first so the conceptual structure stays easy to review and revise.
 
-See [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), and [`PRIMITIVES.md`](PRIMITIVES.md) for the surrounding text.
+See also:
+
+- [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), and [`TRUST.md`](TRUST.md) for lifecycle and trust flow
+- [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for repair and structure
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), and [`PRIMITIVES.md`](PRIMITIVES.md) for primitive semantics
 
 ## What Problem This Section Solves
 
-The prose in this repo is trying to describe state transitions, trust flow, deterministic selection, and healing structure without collapsing them into generic gossip intuition. These diagrams exist to keep the semantics legible. They are not decoration. They are compact arguments about what the protocol is claiming matters.
+The prose in this repo is trying to describe state transitions, trust flow, deterministic selection, and healing structure without collapsing them into generic gossip intuition.
+
+These diagrams exist to keep the semantics legible. They are not decoration. They are compact arguments about what the protocol is claiming matters.
 
 ## Bootstrap Ladder
+
+Illustrative sequence for introduction, witness, and scope-local decision:
 
 ```mermaid
 sequenceDiagram
@@ -26,6 +34,8 @@ sequenceDiagram
 ```
 
 ## Membership Lifecycle
+
+State machine sketch for belief formation and repair:
 
 ```mermaid
 stateDiagram-v2
@@ -46,6 +56,8 @@ stateDiagram-v2
 
 ## Trust Pipeline
 
+High-level flow from introduction to weighted belief:
+
 ```mermaid
 flowchart LR
     A["Introduction"] --> B["Candidate witnesses selected"]
@@ -58,6 +70,8 @@ flowchart LR
 ```
 
 ## Partition Healing / Deterministic Reunion
+
+Repair path once previously separated scopes re-establish contact:
 
 ```mermaid
 flowchart TB
@@ -74,6 +88,8 @@ flowchart TB
 
 ## Topology Hierarchy
 
+One possible hierarchy of scopes and local witness surfaces:
+
 ```mermaid
 flowchart TB
     G["Global scope"] --> R1["Region us-west"]
@@ -88,6 +104,8 @@ flowchart TB
 
 ## Permutation Rank Selection
 
+Minimal view of seeded deterministic ordering as a reusable primitive:
+
 ```mermaid
 flowchart LR
     A["Seed = epoch || scope || subject"] --> B["Candidate peer set"]
@@ -101,6 +119,8 @@ flowchart LR
 
 ## Permutation-Rank Peer Selection
 
+How one ordering can drive multiple accountable choices:
+
 ```mermaid
 flowchart TB
     A["Candidate peers"] --> B["Apply seed"]
@@ -112,6 +132,8 @@ flowchart TB
 ```
 
 ## Arborition Overlay Forest
+
+Adaptive forest shape for dissemination and repair:
 
 ```mermaid
 flowchart TB
@@ -126,6 +148,8 @@ flowchart TB
 ```
 
 ## Repair, Witness, And Upward Aggregation Paths
+
+Distinct but related paths for witnessing, repair, and summary propagation:
 
 ```mermaid
 flowchart TB

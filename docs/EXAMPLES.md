@@ -2,6 +2,12 @@
 
 These are Resonant Membership scenarios meant to make the abstractions concrete without pretending the protocol is fully implemented.
 
+See also:
+
+- [`MEMBERSHIP.md`](MEMBERSHIP.md) for the lifecycle model
+- [`DISSEMINATION.md`](DISSEMINATION.md) and [`TRUST.md`](TRUST.md) for propagation and witness quality
+- [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for reunion and repair structure
+
 ## What Problem This Section Solves
 
 The protocol vocabulary can sound elegant while remaining too abstract. These scenarios exist to show what scoped belief, witness quality, deterministic reunion, and topology-aware repair look like in plausible operating conditions.
@@ -15,7 +21,9 @@ Each scenario is written to answer the same four questions the rest of the paper
 
 ## 1. Service Mesh / Multi-Region Membership And Partition Healing
 
-Imagine a service mesh deployed across `us-west` and `us-east`, with local zone scopes under each region and a higher-level global scope above them. Membership is used for routing, placement, and failure handling, so the system cannot afford to confuse local usefulness with global certainty.
+Imagine a service mesh deployed across `us-west` and `us-east`, with local zone scopes under each region and a higher-level global scope above them.
+
+Membership is used for routing, placement, and failure handling, so the system cannot afford to confuse local usefulness with global certainty.
 
 ### Situation
 
@@ -51,7 +59,9 @@ If the system cannot answer those questions, it is hiding the most important par
 
 ## 2. Edge Swarm / Partial-Trust Cluster With Scoped Witness Behavior
 
-Now imagine a large edge swarm with uneven node quality, intermittent reachability, and several trust tiers. Some nodes are operator-managed, some are field-managed, and some are only weakly trusted due to unstable history. The system still needs usable local membership, but it cannot let every new introduction become a cluster-wide rumor.
+Now imagine a large edge swarm with uneven node quality, intermittent reachability, and several trust tiers. Some nodes are operator-managed, some are field-managed, and some are only weakly trusted due to unstable history.
+
+The system still needs usable local membership, but it cannot let every new introduction become a cluster-wide rumor.
 
 ### Situation
 
@@ -87,11 +97,15 @@ A design that cannot show this path will make edge behavior look arbitrary.
 
 ## 3. Bootstrapping A New Rack
 
-A new rack-local subject is introduced by a zone trust root. Local witnesses corroborate reachability, scoped fanout stays within zone until the witness threshold is met, and a parent-proxy pool relays a digest upward. Global scope marks the rack as provisional until cross-zone anti-entropy confirms it. The point of the scenario is that bootstrap should not quietly jump from "introduced" to "globally accepted" just because the rack came online through an approved path.
+A new rack-local subject is introduced by a zone trust root. Local witnesses corroborate reachability, scoped fanout stays within zone until the witness threshold is met, and a parent-proxy pool relays a digest upward. Global scope marks the rack as provisional until cross-zone anti-entropy confirms it.
+
+The point of the scenario is that bootstrap should not quietly jump from "introduced" to "globally accepted" just because the rack came online through an approved path.
 
 ## 4. Low-Trust Introduction Under Dispute
 
-A weakly trusted node introduces a subject. The claim spreads only within a narrow local scope. A stronger witness disputes the introduction, quarantine prevents broad blast radius, and operator visibility shows the conflict as provenance plus residue rather than silent suppression. This scenario exists to make clear that non-convergence can be the honest protocol outcome.
+A weakly trusted node introduces a subject. The claim spreads only within a narrow local scope. A stronger witness disputes the introduction, quarantine prevents broad blast radius, and operator visibility shows the conflict as provenance plus residue rather than silent suppression.
+
+This scenario exists to make clear that non-convergence can be the honest protocol outcome.
 
 ## Conclusion
 

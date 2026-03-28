@@ -2,11 +2,17 @@
 
 This document describes how claims should spread under partial observability. The subject is not raw message fanout. It is scoped fanout with provenance, trust weighting, and topology awareness.
 
-For trust behavior, see [`TRUST.md`](TRUST.md). For topology-aware structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For accountable ordering of relay and witness choices, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
+See also:
+
+- [`TRUST.md`](TRUST.md) for trust behavior
+- [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for topology-aware structure
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for accountable ordering of relay and witness choices
 
 ## What Problem This Section Solves
 
-The problem is not how to send a message to many peers. The problem is how to spread belief without turning weak evidence into system-wide noise. Dissemination therefore needs structure, scope, and trust sensitivity.
+The problem is not how to send a message to many peers. The problem is how to spread belief without turning weak evidence into system-wide noise.
+
+Dissemination therefore needs structure, scope, and trust sensitivity.
 
 A flat gossip story is tempting because it sounds simple: pick peers, send rumors, repeat until the cluster settles. But once claims differ in credibility, scope, urgency, and provenance, that mental model becomes too coarse. What matters is not merely that information moves. What matters is where it moves, in what form, under whose authority, and with what right to widen its blast radius.
 
@@ -50,7 +56,9 @@ Parent-proxy pools are not authorities by default. They are structured relay and
 
 Steady-state dissemination and anti-entropy are not the same thing.
 
-Steady-state dissemination spreads fresh claims. Anti-entropy repairs drift, omission, and summary mismatch. Repair may need different relay choices, different pacing, and different visibility than ordinary spread. A serious design should therefore keep both paths explicit instead of hiding repair behavior inside generic rumor traffic.
+Steady-state dissemination spreads fresh claims. Anti-entropy repairs drift, omission, and summary mismatch.
+
+Repair may need different relay choices, different pacing, and different visibility than ordinary spread. A serious design should therefore keep both paths explicit instead of hiding repair behavior inside generic rumor traffic.
 
 ## Design Invariants
 

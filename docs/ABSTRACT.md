@@ -2,7 +2,13 @@
 
 Resonant Membership is a design-first proposal for membership under weak coordination: bootstrap, witness, trust, scoped dissemination, merge rules, partition healing, hierarchy, and operator observability under partial observability.
 
-This document serves as the paper-style abstract and framing layer. For the sharper preface energy, see [`MANIFESTO.md`](MANIFESTO.md). For the shared vocabulary, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md).
+This document serves as the paper-style abstract and framing layer.
+
+See also:
+
+- [`MANIFESTO.md`](MANIFESTO.md) for the sharper preface energy
+- [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared vocabulary
+- [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md) for protocol behavior
 
 ## Abstract
 
@@ -14,7 +20,9 @@ Two distinctive primitives receive special attention. **Permutation rank** provi
 
 ## Problem Setting
 
-Many membership systems quietly assume a world cleaner than the one they actually inhabit. Bootstrap is trusted implicitly. Dissemination is treated as uniform. Observers are modeled as equally credible. Partitions are temporary inconveniences. Merge is imagined as set union plus timeout. Operators are expected to reconstruct truth from logs after the fact.
+Many membership systems quietly assume a world cleaner than the one they actually inhabit.
+
+Bootstrap is trusted implicitly. Dissemination is treated as uniform. Observers are modeled as equally credible. Partitions are temporary inconveniences. Merge is imagined as set union plus timeout. Operators are expected to reconstruct truth from logs after the fact.
 
 That model works only while disagreement is shallow and topology is forgiving.
 
@@ -51,9 +59,13 @@ The design claim is not that these questions disappear under eventual consistenc
 
 ## Why The Distinctive Primitives Matter
 
-One of the central ideas in this repo is **permutation rank**: seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability. Its value is not merely efficiency. It gives the protocol a legible answer to questions like why a node selected one witness set rather than another, why two peers converged on the same rendezvous choices, and why repair traffic flowed through a particular subset of candidates. Deterministic ordering becomes a discipline against accidental local bias and against explanations that collapse into "that was just the order the runtime happened to see."
+One of the central ideas in this repo is **permutation rank**: seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability.
 
-Another central idea is **arboritions**: adaptive topology-aware dissemination, witness, and repair trees or overlay forests. The point is to reject the idea that one flat fanout graph is the natural shape of the protocol. Dissemination, witness gathering, and healing often want related but distinct overlay structures. A serious system should admit that locality, hierarchy, trust, and partition state all reshape the best coordination paths.
+Its value is not merely efficiency. It gives the protocol a legible answer to questions like why a node selected one witness set rather than another, why two peers converged on the same rendezvous choices, and why repair traffic flowed through a particular subset of candidates. Deterministic ordering becomes a discipline against accidental local bias and against explanations that collapse into "that was just the order the runtime happened to see."
+
+Another central idea is **arboritions**: adaptive topology-aware dissemination, witness, and repair trees or overlay forests.
+
+The point is to reject the idea that one flat fanout graph is the natural shape of the protocol. Dissemination, witness gathering, and healing often want related but distinct overlay structures. A serious system should admit that locality, hierarchy, trust, and partition state all reshape the best coordination paths.
 
 ## Tradeoffs And Failure Modes
 

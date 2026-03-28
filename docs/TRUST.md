@@ -2,11 +2,17 @@
 
 This document describes how witness quality, trust roots, confidence, and blast radius should interact in Resonant Membership.
 
-For lifecycle behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For threat cases, see [`THREAT_MODEL.md`](THREAT_MODEL.md). For witness-set selection discipline, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
+See also:
+
+- [`MEMBERSHIP.md`](MEMBERSHIP.md) for lifecycle behavior
+- [`THREAT_MODEL.md`](THREAT_MODEL.md) for threat cases
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for witness-set selection discipline
 
 ## What Problem This Section Solves
 
-Partial observability creates a simple but dangerous question: when two claims conflict, why should the system believe one witness more than another? This section exists to keep trust from becoming an invisible scalar hidden behind implementation code.
+Partial observability creates a simple but dangerous question: when two claims conflict, why should the system believe one witness more than another?
+
+This section exists to keep trust from becoming an invisible scalar hidden behind implementation code.
 
 The problem is not merely whether a source is trusted. The problem is how trust should shape introduction, witness choice, blast radius, merge priority, and the threshold for quarantine or hysteresis. If those choices stay implicit, the protocol will still have a trust model, but no one will be able to say what it is.
 
@@ -44,7 +50,9 @@ Confidence is not the same thing as trust.
 
 A system should make that distinction visible.
 
-Witnesses should not be treated as interchangeable. Relevant factors may include source trust weight, freshness, proximity to the subject, diversity across failure domains, and equivocation history. This is why a witness set is more than a count. A large set of correlated weak witnesses may deserve less belief than a smaller, better-distributed set.
+Witnesses should not be treated as interchangeable.
+
+Relevant factors may include source trust weight, freshness, proximity to the subject, diversity across failure domains, and equivocation history. This is why a witness set is more than a count. A large set of correlated weak witnesses may deserve less belief than a smaller, better-distributed set.
 
 ## Blast Radius And Hysteresis
 
@@ -58,7 +66,9 @@ For example:
 
 The protocol should make these transitions explicit.
 
-Trust-sensitive systems also need hysteresis to avoid oscillation. Without it, witness churn becomes state churn, partitions produce flip-flopping acceptance, and healing traffic reopens recently closed disputes. Hysteresis is therefore not just an implementation tweak. It is part of correctness under uncertain evidence.
+Trust-sensitive systems also need hysteresis to avoid oscillation.
+
+Without it, witness churn becomes state churn, partitions produce flip-flopping acceptance, and healing traffic reopens recently closed disputes. Hysteresis is therefore not just an implementation tweak. It is part of correctness under uncertain evidence.
 
 ## Design Invariants
 

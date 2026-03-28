@@ -2,7 +2,13 @@
 
 This document describes the protocol-facing membership model for Resonant Membership. It focuses on bootstrap, witness, trust, scoped dissemination, and operator visibility under partial observability.
 
-For shared terms, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For trust behavior, see [`TRUST.md`](TRUST.md). For dissemination, see [`DISSEMINATION.md`](DISSEMINATION.md). For the two most distinctive protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For reconciliation and partition repair, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md).
+See also:
+
+- [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared terms
+- [`TRUST.md`](TRUST.md) for trust behavior
+- [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two distinctive protocol primitives
+- [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for reconciliation and partition repair
 
 ## What Problem This Section Solves
 
@@ -12,7 +18,9 @@ A system that speaks only in terms of alive and dead hides too much. It hides wh
 
 ## Membership As Belief State
 
-Membership is the evolving answer to a harder question than "is this node up?" The real question is: what does this scope currently believe about this subject, on what evidence, with what confidence, and under what right to spread that belief further?
+Membership is the evolving answer to a harder question than "is this node up?"
+
+The real question is: what does this scope currently believe about this subject, on what evidence, with what confidence, and under what right to spread that belief further?
 
 That formulation matters because different scopes can legitimately hold different views at the same moment. A rack-local scope may treat a subject as strongly witnessed while a regional scope still treats it as provisional. A weakly trusted introduction may be useful locally while remaining unsuitable for broader dissemination. Partial observability makes such asymmetry normal rather than pathological.
 
@@ -34,7 +42,9 @@ These states are not merely liveness labels. They are stages in the formation, s
 
 ## Bootstrap And Introduction
 
-Bootstrap is the first trust decision. The protocol must answer who may introduce a subject, to which scope the introduction is initially relevant, what evidence accompanies the introduction, and which witnesses are expected to corroborate or challenge it.
+Bootstrap is the first trust decision.
+
+The protocol must answer who may introduce a subject, to which scope the introduction is initially relevant, what evidence accompanies the introduction, and which witnesses are expected to corroborate or challenge it.
 
 A design that treats bootstrap as "just seed nodes" usually hides its most fragile assumptions.
 
@@ -57,7 +67,9 @@ Claims should move through a witness pipeline:
 3. witnesses attach local observation, confidence, and trust weight
 4. the scope decides whether the claim is tentative, accepted, disputed, or quarantined
 
-This pipeline exists to prevent first contact from becoming irreversible truth. Witnessing is not there to decorate a claim after the fact. It is there to make the right to believe and the right to spread visible and contestable.
+This pipeline exists to prevent first contact from becoming irreversible truth.
+
+Witnessing is not there to decorate a claim after the fact. It is there to make the right to believe and the right to spread visible and contestable.
 
 ## Scoped Membership
 

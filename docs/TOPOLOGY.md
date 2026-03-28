@@ -2,11 +2,18 @@
 
 This document describes how hierarchy, locality, permutation rank, and arboritions shape dissemination, witness selection, and repair.
 
-For membership behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dissemination behavior, see [`DISSEMINATION.md`](DISSEMINATION.md). For merge and repair semantics, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md). For dedicated treatments of the two distinctive primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
+See also:
+
+- [`MEMBERSHIP.md`](MEMBERSHIP.md) for membership behavior
+- [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
+- [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for merge and repair semantics
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for dedicated treatments of the two distinctive primitives
 
 ## What Problem This Section Solves
 
-Topology is often treated as an implementation detail beneath protocol semantics. Resonant Membership takes the opposite view. Locality, hierarchy, trust boundaries, and repair paths all shape what claims should mean, where they should travel, and which witnesses deserve belief.
+Topology is often treated as an implementation detail beneath protocol semantics.
+
+Resonant Membership takes the opposite view. Locality, hierarchy, trust boundaries, and repair paths all shape what claims should mean, where they should travel, and which witnesses deserve belief.
 
 The question is not only how to route efficiently. The deeper question is how to make the protocol honest about the structure of the world it is trying to converge across.
 
@@ -97,7 +104,9 @@ The point is not to maximize graph elegance. It is to make the overlay match the
 
 ## Tradeoffs And Failure Modes
 
-Bad topology choices can make a sound-looking protocol behave dishonestly. Witness selection may collapse into one failure domain. Local claims may be overruled too quickly by distant authorities. Repair traffic may concentrate on the same overloaded rendezvous sets. Overlay adaptation may become so dynamic that operators can no longer explain why dissemination took one path instead of another.
+Bad topology choices can make a sound-looking protocol behave dishonestly.
+
+Witness selection may collapse into one failure domain. Local claims may be overruled too quickly by distant authorities. Repair traffic may concentrate on the same overloaded rendezvous sets. Overlay adaptation may become so dynamic that operators can no longer explain why dissemination took one path instead of another.
 
 Topology is therefore a trust amplifier or trust hazard, depending on how it is used.
 

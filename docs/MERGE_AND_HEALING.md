@@ -2,11 +2,17 @@
 
 This document describes how Resonant Membership should reconcile competing views and repair divergence after omission, delay, distrust, or partition.
 
-For the lifecycle and trust pipeline, see [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md). For topology-aware repair structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For deterministic reunion and rendezvous ordering, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
+See also:
+
+- [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md) for lifecycle and trust behavior
+- [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for topology-aware repair structures
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for deterministic reunion and rendezvous ordering
 
 ## What Problem This Section Solves
 
-Restored connectivity is not enough. Systems that have diverged need a disciplined way to reconcile competing realities, preserve unresolved disagreement where needed, and avoid oscillating during repair.
+Restored connectivity is not enough.
+
+Systems that have diverged need a disciplined way to reconcile competing realities, preserve unresolved disagreement where needed, and avoid oscillating during repair.
 
 The hard case is not simply packet loss. The hard case is that multiple scopes can accumulate internally coherent but mutually incompatible histories. When contact resumes, the protocol must decide how to compare them, what evidence should dominate, what should remain unsettled, and how the system should make that process legible to operators.
 

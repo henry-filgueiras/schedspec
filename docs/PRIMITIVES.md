@@ -2,11 +2,18 @@
 
 This document defines the shared vocabulary used across the Resonant Membership docs.
 
-For the long-form framing, see [`ABSTRACT.md`](ABSTRACT.md). For the compact terminology index, see [`GLOSSARY.md`](GLOSSARY.md). For lifecycle and protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dedicated protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
+See also:
+
+- [`ABSTRACT.md`](ABSTRACT.md) for the long-form framing
+- [`GLOSSARY.md`](GLOSSARY.md) for the compact terminology index
+- [`MEMBERSHIP.md`](MEMBERSHIP.md) for lifecycle and protocol behavior
+- [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the distinctive protocol primitives
 
 ## What Problem This Section Solves
 
-Systems papers tend to fail early when their terms drift. This section exists to keep the rest of the repo from quietly changing the meaning of words like `claim`, `witness`, `scope`, `confidence`, or `residue` from page to page.
+Systems papers tend to fail early when their terms drift.
+
+This section exists to keep the rest of the repo from quietly changing the meaning of words like `claim`, `witness`, `scope`, `confidence`, or `residue` from page to page.
 
 The goal is not merely definitional hygiene. A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
 

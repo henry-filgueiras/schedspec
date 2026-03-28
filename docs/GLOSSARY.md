@@ -2,6 +2,8 @@
 
 This is the compact vocabulary index. For operational detail and invariants, see [`PRIMITIVES.md`](PRIMITIVES.md).
 
+## Quick Index
+
 - **membership view:** a node's structured belief about who belongs and with what confidence
 - **claim:** a transmissible statement about membership state
 - **observation:** local evidence backing or disputing a claim

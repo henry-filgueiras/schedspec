@@ -2,7 +2,9 @@
 
 Membership is not a list. It is a negotiated, scoped, decaying belief state.
 
-Strong coordination is expensive. Perfect knowledge is usually unavailable. Systems must still decide who exists, who belongs, what changed, which claims deserve belief, whether a partition has healed, and how to merge competing realities safely.
+Strong coordination is expensive. Perfect knowledge is usually unavailable.
+
+Systems must still decide who exists, who belongs, what changed, which claims deserve belief, whether a partition has healed, and how to merge competing realities safely.
 
 Gossip is therefore not merely message dissemination. It is an epistemic control plane for systems that cannot afford certainty.
 
@@ -41,7 +43,9 @@ The manifesto is anchored by a few propositions that recur across the rest of th
 
 ## Tradeoffs And Failure Modes
 
-This design direction is intentionally less comforting than a generic gossip story. It asks the system to preserve uncertainty instead of flattening it early. It asks operators to inspect merge and witness quality rather than trusting summary tables. It asks the protocol to explain its fanout, reunion, and repair behavior in reconstructable terms.
+This design direction is intentionally less comforting than a generic gossip story.
+
+It asks the system to preserve uncertainty instead of flattening it early. It asks operators to inspect merge and witness quality rather than trusting summary tables. It asks the protocol to explain its fanout, reunion, and repair behavior in reconstructable terms.
 
 That comes with costs:
 
