@@ -4,6 +4,8 @@ These diagrams are text-first and intended to stay easy to review and diff. They
 
 See [`ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md) for the surrounding architectural narrative, [`SPEC.md`](/Users/henry/schedspec/docs/SPEC.md) for the semantic contract, and [`GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md) for the shared vocabulary.
 
+Mermaid is the canonical form for the diagrams in this repo because it stays easy to diff and edit. A few earlier rendered images are kept below as reference material where they still add visual flavor or framing.
+
 ## Layered Architecture
 
 ```mermaid
@@ -41,6 +43,10 @@ Reading notes:
 - timers and effects feed history, not hidden side channels
 - replay, migration, and operator visibility all anchor on the same durable log
 
+Reference render:
+
+![Layered architecture reference](reference-images/chronos-layered-architecture-reference.png)
+
 ## Workflow Lifecycle with Compensation Paths
 
 ```mermaid
@@ -74,6 +80,10 @@ Reading notes:
 - retries are explicit lifecycle steps
 - compensation is a normal path, not an exception hidden in logs
 
+Reference render:
+
+![Workflow lifecycle reference](reference-images/workflow-lifecycle-reference.png)
+
 ## Lineage and Intellectual Roots
 
 ```mermaid
@@ -96,6 +106,10 @@ Reading notes:
 
 - ChronOS is not reducible to one tradition
 - the project lives at the intersection of temporal scheduling, durable history, orchestration, and replay-diff
+
+Reference render:
+
+![ChronOS lineage reference](reference-images/chronos-lineage-reference.png)
 
 ## Diagram Conventions
 
