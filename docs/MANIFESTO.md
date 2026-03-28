@@ -8,6 +8,12 @@ Systems must still decide who exists, who belongs, what changed, which claims de
 
 Gossip is therefore not merely message dissemination. It is an epistemic control plane for systems that cannot afford certainty.
 
+## What Problem This Section Solves
+
+This document serves as the dangerous preface to the rest of the repo.
+
+Its job is not to specify semantics in detail. Its job is to keep the project honest about what it thinks the real problem is, and to refuse the comforting simplifications that make many membership systems sound cleaner than they are.
+
 ## Dangerous Preface
 
 The interesting failure mode is not that one node misses one heartbeat.
@@ -16,7 +22,7 @@ The interesting failure mode is that one scope accepts a claim another scope sti
 
 That is the point at which "membership" stops being a table-maintenance exercise and becomes a systems problem.
 
-## What This Project Refuses To Hide
+## Core Claims
 
 This repo treats the hard parts as first-class:
 
@@ -56,12 +62,27 @@ That comes with costs:
 
 The alternative is simpler prose and more mysterious failures.
 
+## Operator Interpretation
+
+If the rest of the repo succeeds, an operator should be able to say:
+
+- who believed what
+- why they believed it
+- how far that belief was allowed to spread
+- what residue remained after healing
+
+If those answers are unavailable, the system is still hiding its most important semantics.
+
 ## Anti-Goals
 
 - not heartbeat folklore dressed up as protocol theory
 - not event-driven mysticism about eventual consistency
 - not fake Byzantine posturing without cost accounting
 - not a centralized authority paper pretending to be gossip
+
+## Non-Claims
+
+This document is not the protocol contract and not a claim of implementation. It is the preface that keeps the protocol contract from drifting toward a weaker problem statement.
 
 ## Coda
 

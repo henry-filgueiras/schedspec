@@ -19,6 +19,18 @@ Resonant Membership takes the opposite view. Locality, hierarchy, trust boundari
 
 The question is not only how to route efficiently. The deeper question is how to make the protocol honest about the structure of the world it is trying to converge across.
 
+## Core Objects And Semantics
+
+The relevant topological objects in this repo are:
+
+- scopes arranged in hierarchy
+- witness sets shaped by locality and failure domains
+- parent-proxy pools that bridge scope boundaries
+- arboritions that shape dissemination, witness, and repair overlays
+- permutation-ranked candidate sets that keep selection accountable
+
+Topology is therefore not only where packets travel. It is one of the places where the protocol decides what kind of propagation or repair is even appropriate.
+
 ## Hierarchy Is Normal
 
 Flat fanout is rarely the real deployment shape.
@@ -118,7 +130,7 @@ Witness selection may collapse into one failure domain. Local claims may be over
 
 Topology is therefore a trust amplifier or trust hazard, depending on how it is used.
 
-## Operator Questions
+## Operator Interpretation
 
 Topology-aware membership should let an operator answer:
 
@@ -129,3 +141,7 @@ Topology-aware membership should let an operator answer:
 - which trust boundaries constrained propagation?
 
 Those answers are part of the protocol design, not merely dashboard extras.
+
+## Non-Claims
+
+This document does not claim one universal topology or one optimal overlay shape. It specifies how topology must become semantically visible if the rest of the protocol is to remain honest.

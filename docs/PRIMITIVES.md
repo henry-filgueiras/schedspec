@@ -17,7 +17,7 @@ This section exists to keep the rest of the repo from quietly changing the meani
 
 The goal is not merely definitional hygiene. A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
 
-## Core Terms
+## Core Objects And Semantics
 
 The definitions below are intentionally compact. They are the small vocabulary the rest of the repo should keep reusing without drift.
 
@@ -34,6 +34,8 @@ The definitions below are intentionally compact. They are the small vocabulary t
 - **healing:** explicit reconciliation after partition, omission, or divergent evolution
 - **permutation rank:** seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability
 - **arborition:** adaptive topology-aware dissemination, witness, and repair trees or overlay forests
+
+These are not just labels. They are the semantic objects around which the rest of the treatise is organized.
 
 ## Primitive Operations
 
@@ -102,3 +104,7 @@ A serious system should answer questions like:
 - which arborition path is carrying repair traffic?
 
 If those questions cannot be answered structurally, the protocol is hiding too much of its own behavior.
+
+## Non-Claims
+
+This document does not freeze one syntax for every object or one wire format for every claim. It defines the shared semantic vocabulary the rest of the repo is expected to reuse consistently.

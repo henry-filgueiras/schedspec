@@ -2,6 +2,12 @@
 
 This is the compact vocabulary index. For operational detail and invariants, see [`PRIMITIVES.md`](PRIMITIVES.md). For the two most distinctive protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
+## What Problem This Section Solves
+
+The core docs need a compact lookup table so readers do not have to reconstruct the vocabulary from surrounding prose every time a term reappears.
+
+This page is deliberately brief. It is the index, not the full semantic argument.
+
 ## Quick Index
 
 The entries here are intentionally short. For semantics, invariants, and protocol consequences, follow the linked docs in [`PRIMITIVES.md`](PRIMITIVES.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), and [`ARBORITIONS.md`](ARBORITIONS.md).
@@ -27,3 +33,11 @@ The entries here are intentionally short. For semantics, invariants, and protoco
 - **deterministic reunion:** accountable repair path chosen when separated scopes reconnect
 - **permutation rank:** seeded deterministic ordering for fanout, rendezvous, witness-set selection, arbitration, and audit
 - **arborition:** adaptive topology-aware dissemination, witness, and repair forest; also described as an adaptive overlay forest
+
+## Operator Use
+
+When a reader or operator needs to remember what a term is supposed to mean in the rest of the paper spine, this page should be the fastest stable reference.
+
+## Non-Claims
+
+This glossary does not replace the semantic chapters. It is a compact index, not the protocol contract.

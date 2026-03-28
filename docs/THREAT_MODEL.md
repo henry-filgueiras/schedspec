@@ -18,6 +18,19 @@ This section exists to make sure the rest of the repo is read against hostile ti
 
 The point is not to claim exhaustive adversarial coverage. It is to make clear which forms of failure the protocol is trying to surface rather than silently flatten.
 
+## Core Objects And Semantics
+
+The threat model in this repo includes:
+
+- non-malicious delay, omission, and partial visibility
+- stale or misleading witnesses
+- trust abuse across scope boundaries
+- equivocation and replay
+- partitions that create competing local convergence stories
+- operator actions that can either repair or distort the system's visible state
+
+The crucial semantic claim is that not every disagreement is malice, but every disagreement still has to be accounted for.
+
 ## Assumed Conditions
 
 The design assumes:
@@ -94,7 +107,7 @@ Stronger quarantine rules can delay legitimate convergence. More cautious healin
 
 The repo does not deny those tradeoffs. It argues they should be surfaced explicitly so the protocol can be evaluated honestly.
 
-## Operator Threat Surface
+## Operator Interpretation
 
 Operators themselves are part of the threat and recovery model.
 
@@ -106,6 +119,10 @@ Relevant questions include:
 - how are these actions logged and explained?
 
 Operator actions should be visible enough that the system can distinguish protocol convergence from administrative override.
+
+## Non-Claims
+
+This document does not claim exhaustive adversarial coverage or Byzantine closure. It states the pressure the protocol is expected to survive well enough to remain semantically honest.
 
 ## Desired Defenses
 

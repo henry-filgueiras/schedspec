@@ -19,17 +19,17 @@ The problem is not merely whether a source is trusted.
 
 The problem is how trust should shape introduction, witness choice, blast radius, merge priority, and the threshold for quarantine or hysteresis. If those choices stay implicit, the protocol will still have a trust model, but no one will be able to say what it is.
 
-## Trust Is Protocol State
+## Core Objects And Semantics
 
-Trust should not be treated as invisible background configuration.
-
-It affects:
+Trust in this repo is not just an allowlist or a background weight. It is protocol state that shapes:
 
 - whose introductions are meaningful
 - which witnesses matter
 - how far a claim may travel
 - what merge rule dominates under conflict
 - when quarantine or hysteresis should apply
+
+Confidence is not the same thing as trust. Trust is about source credibility. Confidence is about the current composite belief once source, freshness, corroboration, and conflict are all taken into account.
 
 ## Trust Roots
 
@@ -103,3 +103,7 @@ Operators should be able to ask:
 - why did the system retain residue instead of converging?
 
 If those questions are unanswerable, trust is operating as hidden control flow.
+
+## Non-Claims
+
+This document does not claim one universal trust calculus. It defines the semantic responsibilities trust must satisfy if the rest of the protocol is to remain explainable.

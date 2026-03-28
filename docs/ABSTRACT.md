@@ -10,6 +10,12 @@ See also:
 - [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared vocabulary
 - [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md) for protocol behavior
 
+## What Problem This Section Solves
+
+This document exists to frame the whole repo as one systems argument rather than as a stack of related notes.
+
+The question underneath every other page is the same: how should a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
+
 ## Abstract
 
 Distributed systems usually maintain a membership view while lacking direct access to global truth. Under those conditions, liveness detection alone is an insufficient abstraction. A practical system must decide who may introduce a subject, which witnesses deserve belief, how claims should be scoped and disseminated, how contradictory local realities should be merged after partition, and how operators can inspect the resulting convergence process.
@@ -17,6 +23,18 @@ Distributed systems usually maintain a membership view while lacking direct acce
 Resonant Membership treats gossip not merely as message dissemination but as an epistemic control plane for systems that cannot afford certainty. The proposal centers membership as a structured belief state rather than a flat list, and it promotes scope, provenance, trust weighting, staleness, deterministic ordering, and repair structure to first-class protocol concerns. In this framing, convergence depends on merge semantics rather than restored connectivity alone, and partition healing is understood as negotiated reality merge rather than simple rumor resumption.
 
 Two distinctive primitives receive special attention. **Permutation rank** provides seeded deterministic peer ordering for accountable fanout, witness-set selection, rendezvous choice, tie-breaking, and auditability. **Arboritions** provide adaptive topology-aware dissemination, witness, and repair forests that better match hierarchy, trust boundaries, and failure domains than one flat fanout graph. Together these primitives aim to make convergence more inspectable, less accidental, and more structurally honest under partial observability.
+
+## Core Objects And Semantics
+
+The core semantic objects in the repo are deliberately small:
+
+- **subjects** that are introduced, witnessed, disputed, or removed
+- **claims** that carry scope, provenance, and staleness
+- **witnesses** whose credibility is part of the protocol rather than hidden configuration
+- **membership views** that represent structured belief rather than flat membership sets
+- **residue** that preserves unresolved disagreement instead of flattening it away
+
+The proposal claims that once those objects are made explicit, the protocol can speak more honestly about what it knows, what it only suspects, and what it still has not repaired.
 
 ## Problem Setting
 
@@ -41,21 +59,6 @@ The project keeps returning to a small set of invariants:
 7. Operator visibility is part of correctness.
 8. Partition healing is negotiated reality merge.
 9. Partial observability is the normal case, not an edge case.
-
-## What This Paper Spine Is Solving
-
-The docs in this repo are trying to answer one durable systems question: how does a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
-
-That question immediately forces several others.
-
-- What counts as an introduction rather than an acceptance?
-- Which witnesses deserve belief, and within which scope?
-- How far should a weak claim be allowed to travel?
-- What should happen when two local realities both look internally coherent?
-- How should topology shape dissemination and healing?
-- What evidence should remain visible when convergence is incomplete?
-
-The design claim is not that these questions disappear under eventual consistency. The claim is that a protocol which fails to model them explicitly is already relying on hidden answers.
 
 ## Why The Distinctive Primitives Matter
 
@@ -95,6 +98,10 @@ A serious membership system should answer:
 - which arborition path is currently carrying repair traffic?
 
 Those are structural questions. A system that cannot answer them structurally is under-specified.
+
+## Non-Claims
+
+This document does not claim a finished protocol, implementation, or literature-proof novelty argument. It is the framing layer for a design treatise.
 
 ## Closing Thread
 

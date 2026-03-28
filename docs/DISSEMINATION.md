@@ -17,6 +17,17 @@ Dissemination therefore needs structure, scope, and trust sensitivity.
 
 A flat gossip story is tempting because it sounds simple: pick peers, send rumors, repeat until the cluster settles. But once claims differ in credibility, scope, urgency, and provenance, that mental model becomes too coarse. What matters is not merely that information moves. What matters is where it moves, in what form, under whose authority, and with what right to widen its blast radius.
 
+## Core Objects And Semantics
+
+Dissemination in this repo is about:
+
+- who receives a claim
+- in what form they receive it
+- under what scope and trust assumptions
+- along which overlay path it travels
+
+That means dissemination is not separable from topology, witness policy, or blast-radius control. It is a semantic part of the protocol, not just a transport loop.
+
 ## Scoped Fanout
 
 Claims should spread according to scope, credibility, and urgency.
@@ -93,3 +104,7 @@ Operators should be able to ask:
 - where is anti-entropy still outstanding?
 
 Dissemination that cannot explain its own path is only rumor with metrics.
+
+## Non-Claims
+
+This document does not prescribe one network substrate or one relay algorithm. It defines the semantic obligations of dissemination under partial observability.

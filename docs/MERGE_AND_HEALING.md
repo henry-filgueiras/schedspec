@@ -20,6 +20,21 @@ The hard case is not simply packet loss.
 
 The hard case is that multiple scopes can accumulate internally coherent but mutually incompatible histories. When contact resumes, the protocol must decide how to compare them, what evidence should dominate, what should remain unsettled, and how the system should make that process legible to operators.
 
+## Core Objects And Semantics
+
+Merge and healing operate over:
+
+- direct observations
+- witness claims
+- introducer provenance
+- freshness or epoch metadata
+- scope-local authority
+- trust weight
+- equivocation evidence
+- prior merge history
+
+The key semantic claim is that merge is not data-structure union. It is the point where the protocol states what kind of disagreement it is willing to preserve, and what kind it is willing to resolve.
+
 ## Why Merge Matters
 
 A membership system eventually reveals itself in merge behavior.
@@ -32,21 +47,6 @@ It must answer:
 - how does the system distinguish delayed propagation from genuine conflict?
 
 Merge is therefore not just data-structure union. It is the point where the protocol states what kind of disagreement it is willing to remember.
-
-## Merge Inputs
-
-Relevant inputs may include:
-
-- direct observations
-- witness claims
-- introducer provenance
-- freshness or epoch metadata
-- scope
-- trust weight
-- equivocation evidence
-- prior merge history
-
-Different deployments may weight these differently, but a serious design must make the weighting legible.
 
 ## Merge Outcomes
 
@@ -143,12 +143,12 @@ Operators should be able to inspect:
 
 Healing that cannot explain itself will be distrusted precisely when it matters most.
 
+## Non-Claims
+
+This document does not freeze one merge calculus. It specifies the kind of merge and healing behavior the protocol must make explicit.
+
 ## Closing Thread
 
 Partial observability means no scope gets the whole world for free. Witness quality decides which claims deserve belief. Scope decides where that belief is allowed to matter. Deterministic ordering gives healing a reproducible shape instead of a situational improvisation. Residue records what remains unresolved rather than laundering conflict into premature agreement.
 
 If Resonant Membership has a single systems claim, it is that healing is not a return to innocence. It is the disciplined construction of a shared reality after the system has already learned that its observers can diverge.
-
-## Non-Claims
-
-This document does not freeze one merge calculus. It specifies the kind of merge and healing behavior the protocol must make explicit.
