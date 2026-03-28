@@ -5,6 +5,7 @@ These diagrams are the canonical editable Mermaid sketches for the proposed syst
 See also:
 
 - [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), and [`TRUST.md`](TRUST.md) for lifecycle and trust semantics
+- [`SEMANTICS.md`](SEMANTICS.md) for the protocol objects and decision surfaces the diagrams refer to
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for repair and structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
 - [`EXAMPLES.md`](EXAMPLES.md) for worked scenarios that exercise these diagrams under pressure

@@ -5,6 +5,7 @@ This document describes how Resonant Membership should reconcile competing views
 See also:
 
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md) for lifecycle and trust behavior
+- [`SEMANTICS.md`](SEMANTICS.md) for merge input, output, and healing-round semantics
 - [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for topology-aware repair structures
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for deterministic reunion and rendezvous ordering
 - [`DIAGRAMS.md`](DIAGRAMS.md) for canonical reunion and repair diagrams

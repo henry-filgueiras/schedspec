@@ -94,6 +94,7 @@ merger:
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): manifesto and framing
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
 - [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
+- [`docs/SEMANTICS.md`](docs/SEMANTICS.md): semantic contract for protocol objects and decision surfaces
 - [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md): deterministic ordering as a protocol primitive
 - [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md): adaptive overlay forests for dissemination, witness, and repair
 - [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped dissemination, operator visibility
@@ -113,6 +114,6 @@ This repository is a systems design document set. It describes intended primitiv
 
 For the active project, read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis.
 
-Then read [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, followed by [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
+Then read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure, followed by [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
 
 Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.

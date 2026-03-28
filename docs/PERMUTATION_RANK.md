@@ -7,6 +7,7 @@ It is a seeded, deterministic ordering over a candidate peer set. The important 
 See also:
 
 - [`PRIMITIVES.md`](PRIMITIVES.md) for the shared vocabulary
+- [`SEMANTICS.md`](SEMANTICS.md) for seed and candidate-set semantics
 - [`TOPOLOGY.md`](TOPOLOGY.md) for topology-shaped use
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for deterministic reunion and tie-breaking
 - [`DIAGRAMS.md`](DIAGRAMS.md) for canonical peer-selection diagrams

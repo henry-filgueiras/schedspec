@@ -5,6 +5,7 @@ These are Resonant Membership scenarios meant to make the abstractions concrete 
 See also:
 
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) for the lifecycle model
+- [`SEMANTICS.md`](SEMANTICS.md) for the protocol-object and decision-surface backbone
 - [`DISSEMINATION.md`](DISSEMINATION.md) and [`TRUST.md`](TRUST.md) for propagation and witness quality
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) and [`TOPOLOGY.md`](TOPOLOGY.md) for reunion and repair structure
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives

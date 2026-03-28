@@ -6,6 +6,7 @@ See also:
 
 - [`ABSTRACT.md`](ABSTRACT.md) for the long-form framing
 - [`GLOSSARY.md`](GLOSSARY.md) for the compact terminology index
+- [`SEMANTICS.md`](SEMANTICS.md) for the semantic contract layer
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) for lifecycle and protocol behavior
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the distinctive protocol primitives
 

@@ -5,6 +5,7 @@ This document describes the protocol-facing membership model for Resonant Member
 See also:
 
 - [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared terms
+- [`SEMANTICS.md`](SEMANTICS.md) for the protocol-object and decision-surface contract
 - [`TRUST.md`](TRUST.md) for trust behavior
 - [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two distinctive protocol primitives

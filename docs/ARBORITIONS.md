@@ -14,6 +14,7 @@ If the repo later adopts a more explicit label, the current term should remain c
 See also:
 
 - [`PRIMITIVES.md`](PRIMITIVES.md) for shared vocabulary
+- [`SEMANTICS.md`](SEMANTICS.md) for overlay-role semantics
 - [`DISSEMINATION.md`](DISSEMINATION.md) for propagation behavior
 - [`TOPOLOGY.md`](TOPOLOGY.md) for hierarchy and locality
 - [`DIAGRAMS.md`](DIAGRAMS.md) for canonical overlay-forest and repair-path diagrams
