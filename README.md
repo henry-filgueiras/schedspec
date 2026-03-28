@@ -1,532 +1,101 @@
-# schedspec
+# ChronOS
 
-**A declarative scheduler policy language for runtime systems.**
+ChronOS is a proposed temporal operating system for stateful workflows. The claim is not that workflows need better glue code; it is that once time, identity, replay, recovery, and external effects become first-class, workflow execution becomes an operating-systems problem. `chrono flow` is the corresponding language layer: a durable, deterministic, time-aware language for specifying long-lived flows whose history is normative and whose materialized state is derived.
 
-Modern schedulers often entangle **mechanism** and **policy** until both become hard to reason about.  
-`schedspec` explores a different split:
+## Three Theses
 
-- express **scheduling policy declaratively** over live runtime state
-- compile that policy into a **bounded, incremental runtime object**
-- keep the actual **mechanism** in the host runtime or kernel
+- **Workflow execution becomes an OS problem once time and recovery are first-class.**
+- **History is normative; materialized state is a derived cache.**
+- **Replay is not a debug trick. It is part of the execution model.**
 
-The goal is **not** to run Prolog in the kernel.  
-The goal is to make scheduling policy easier to:
+## Why ChronOS Exists
 
-- design
-- simulate
-- explain
-- profile
-- verify
-- evolve
+Most workflow systems are comfortable while the flow is short-lived, mostly synchronous, and lightly audited. They become vague at the exact point the real problem starts:
 
-...without giving up runtime discipline.
+- a workflow lives for hours, days, or months
+- timers and deadlines matter
+- humans intervene
+- external APIs fail, retry, or change shape
+- operators need to explain what happened
+- schemas evolve while instances remain alive
+- replay must recover meaning, not just reproduce a bug
 
----
+ChronOS starts from a harder contract:
 
-## The pitch
+- history first
+- stable identity across time
+- replay as an execution primitive
+- explicit nondeterminism boundaries
+- migration as a normal condition of life
 
-What if scheduling policy were a **legible artifact** instead of a pile of folklore?
+## Key Ideas
 
-What if the same policy description could be used to:
+- **Append-only history is the source of truth.** Materialized state is a projection, cache, or index over durable events.
+- **Deterministic decisions are separated from external effects.** A conforming runtime must be able to replay decision logic from history.
+- **Flow IDs are durable identities.** A flow remains the same flow across retries, waits, restarts, migration, and operator intervention.
+- **Timers are data, not sleep calls.** Deadlines, waits, and wakeups must survive process failure.
+- **Operators act through audited events.** Manual approval, override, cancellation, and replay requests belong in history.
+- **Observability is structural.** The system should explain a flow in terms of causality, state, effects, waits, children, and divergence, not force operators to reconstruct intent from logs.
 
-- replay traces offline
-- compare fairness vs locality tradeoffs
-- generate fast decision logic
-- explain why thread X beat thread Y
-- eventually target a constrained plugin/runtime interface
+## Anti-Goals
 
-This project is an attempt to build that.
+- not a toy workflow engine
+- not a vague "agent framework"
+- not hidden side effects wrapped in optimistic retries
+- not mutable current state pretending history is optional
+- not a finished implementation with claims this repo cannot support
 
----
+## Example
 
-## Core idea
+Illustrative `chrono flow` sketch, not frozen syntax:
 
-A policy author writes things like:
+```chrono
+flow rollout(service: ServiceId, target: Version) {
+  state {
+    desired = target
+    approved = false
+    deployed: set<Region> = {}
+  }
 
-- which threads are eligible to run
-- which placements are illegal
-- which choices are preferred
-- what fairness means
-- how urgency trades off against locality
-- what must be hard constraints vs soft preferences
+  on start {
+    emit effect create_change_ticket(service, desired)
+    await operator.approve("release-manager")
+    approved = true
+  }
 
-That policy is compiled into a runtime object that receives hook events such as:
+  when approved {
+    for region in ["us-west", "us-east", "eu-central"] {
+      child deploy_region(service, desired, region)
+    }
 
-- `on_wake(thread)`
-- `on_block(thread)`
-- `on_tick(cpu, dt)`
-- `on_affinity_change(thread)`
-- `choose_next(cpu)`
+    await quorum child deploy_region ok >= 2 within 20m
+    emit effect shift_traffic(service, desired)
+  }
 
-The host runtime still owns the real mechanism:
-
-- runqueues
-- timers
-- preemption
-- context switching
-- accounting
-- locking
-- cross-CPU coordination
-- fallback safety
-
-In other words:
-
- > **policy can be declarative; mechanism remains imperative.**
-
----
-
-## Architecture sketch
-
-```text
-policy source
-    ↓
-policy IR
-    ↓
-compiler / lowering
-    ↓
-runtime policy object  <----- live state deltas / hook events
-    ↓
-dispatch choice / migration hints / explanation trace
-    ↓
-host scheduler mechanism
+  on child_failed deploy_region(region) {
+    compensate shift_traffic(service, previous_version(service))
+    emit effect page_oncall(service, region)
+  }
+}
 ```
 
-A more operational view:
+## Repo Map
 
-```text
-[declarative policy]
-    relations
-    constraints
-    objectives
-    priorities
+- [`README.md`](/Users/henry/schedspec/README.md): front page and navigation
+- [`docs/CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md): long-form vision and anti-goals
+- [`docs/GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md): core terms and invariants in one place
+- [`docs/SPEC.md`](/Users/henry/schedspec/docs/SPEC.md): semantic contract for flows, events, replay, timers, effects, migration, and observability
+- [`docs/LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md): `chrono flow` language sketch and determinism rules
+- [`docs/EXAMPLES.md`](/Users/henry/schedspec/docs/EXAMPLES.md): worked examples across deployment, approvals, payments, incident response, and AI orchestration
+- [`docs/GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md): contribution-sized hard problems that sharpen the model
+- [`docs/ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md): proposed runtime components and implementation strategies
+- [`docs/DIAGRAMS.md`](/Users/henry/schedspec/docs/DIAGRAMS.md): Mermaid diagrams for architecture, lifecycle, and lineage
+- [`SAMEDIFF.md`](/Users/henry/schedspec/SAMEDIFF.md): adjacent thinking on replay-diff, comparative replay, and contrast as a first-class explanatory tool
 
-        ↓ compile
+## Current Status
 
-[bounded runtime evaluator]
-    incremental state
-    specialized scoring
-    legality filters
-    bounded selection
+This repository is currently design-first. The documents describe the intended model, invariants, and possible implementation directions; they should not be read as claims that a complete ChronOS runtime already exists.
 
-        ↓ fed by
+## Start Here
 
-[host runtime / kernel]
-    runnable set
-    vruntime / debt / budget
-    deadlines / affinity / topology
-    wakeups / sleeps / ticks
-```
-
----
-
-## Why this is interesting
-
-Schedulers are full of hidden law:
-
-- fairness debt
-- eligibility
-- pinning
-- anti-affinity
-- locality
-- latency sensitivity
-- deadlines
-- throttling
-- class precedence
-
-In production systems, those laws are often embedded in hand-entangled code and evolving heuristics.
-
-\`schedspec\` asks whether those laws can become:
-
-- explicit
-- composable
-- testable
-- replayable
-- comparable
-- compilable
-
-This is interesting at the intersection of:
-
-- operating systems
-- compilers
-- logic / Datalog / constraints
-- reactive systems
-- eEPF-like runtime restrictions
-- policy engines
-- trace-driven performance analysis
-
----
-
-## Non-goals
-
-This project is **not** trying to:
-
-- interpret a general-purpose logic language in a hot dispatch path
-- replace scheduler mechanism with unrestricted plugins
-- pretend exact global optimization is realistic on every tick
-- erase the difference between relations, constraints, and decision variables
-- hide concurrency and timing reality behind magical abstractions
-
-This project is also **not** married to one implementation target.  
-The same policy source might eventually support:
-
-- offline simulation
-- userspace prototypes
-- generated C++/Rust evaluators
-- restricted plugin/VM targets
-- trace-analysis tooling
-
----
-
-## Policy model
-
-The language is currently aimed at a split between:
-
-### 1. Relations
-Finite facts and derived predicates:
-
-- `runnable(Thread)`
-- `affinity(Thread, Cpu)`
-- `eligible(Thread, Cpu)`
-- `must_run(Thread)`
-
-### 2. Decision variables
-Scheduler choices for the current dispatch epoch:
-
-- `cpu_of[Thread] : option<Cpu>`
-- or simpler — "pick next thread for CPU X" forms
-
-### 3. Constraints
-Hard legality conditions:
-
-- pinning
-- throttling
-- one thread per CPU
-- affinity correctness
-- class invariants
-
-### 4. Objectives
-Soft preferences :
-
-- urgency
-- fairness rescue
-- cache warmth
-- locality
-- anti-SMT interference
-- load spreading / packing
-
-### 5. Event-driven updates
-Policy state evolves through a restricted hook surface:
-
-- wake
-- block
-- tick
-- migrate
-- affinity change
-- CPU becomes idle
-- budget/deadline changes
-
----
-
-## Example shape
-
-This is illustrative pseudocode, not a frozen syntax.
-
-```cpp
-pred eligible(Thread, Cpu);
-
-rule eligible(?t, ?c) :-
-    runnable(?t),
-    affinity(?t, ?c),
-    not throttled(?t);
-
-fdvar cpu_of[Thread] : option<Cpu>;
-
-rule cpu_of[?t] = some(?c) :-
-    eligible(?t, ?c);
-
-require forall (<t in Thread, ?c in Cpu) {
-    (cpu_of[?t] == some(?c)) => eligible(?t, ?c);
-};
-
-maximize urgency_score + locality_score - smt_penalty;
-```
-
-A more scheduler-flavored sketch:
-
-```cpp
-pred must_run(Thread);
-
-rule must_run(?t) :-
-    runnable(?t),
-    class_of(?t) == "rt";
-
-rule must_run(?t) :-
-    runnable(?t),
-    class_of(?t) == "deadline",
-    deadline_slack_ns(?t) <= 0;
-
-require all_different_except(cpu_of, none);
-
-maximize lexicographic(
-    sum (?t in Thread where must_run(?t)) {
-        bool_to_int(cpu_of[?t] != none)
-    },
-    urgency_score + locality_score - smt_penalty,
-    fair_rescue_score
-);
-```
-
-The intended compilation model is not "run a theorem prover forever."  
-It is more like:
-
-- precompute legality structure
-- maintain incremental derived state
-- evaluate a bounded decision problem
-- return a candidate quickly
-- fall back safely if needed
-
----
-
-## Design principles
-
-### Policy / mechanism separation
-The policy describes what counts as a good decision.  
-The host owns the actual scheduling machinery.
-
-### Bounded runtime behavior
-Anything emitted from policy compilation must live within strict runtime and memory budgets.
-
-### Incremental state maintenance
-Hook events should update a compact derived model, not trigger global recomputation.
-
-### Explainable decisions
-A policy engine should be able to answer:
-
-- why was this thread eligible?
-- why did it beat that thread?
-- which hard constraints ruled others out?
-- which objective terms dominated?
-
-### Multiple backends
-The same policy source should be useful for:
-
-- simulation
-- trace replay
-- decision codegen
-- restricted runtime targets
-
-### Seriousness over magic
-If the model breaks under cross-CPU races, timer reality, or load, that matters.
-
----
-
-## What exists today
-
-Right now, this project is in the **design / architecture phase**.
-
-Current focus:
-
-- language shape
-- semantic model
-- policy IR
-- hook/event model
-- compilation strategy
-- minimal runtime object ABI
-- trace-driven prototype direction
-
-If you are here early, that is the opportunity:
-the architecture is still movable.
-
----
-
-## Open quests
-
-### Quest 0001 — Policy IR
-Define the smallest useful internal representation for:
-
-- finite relations
-- decision variables
-- hard constraints
-- soft objectives
-- event-triggered updates
-
-### Quest 0002 — Event / delta semantics
-Specify the host-to-policy hook model and what derived state may be maintained incrementally.
-
-### Quest 0003 — Dispatch epoch model
-Decide what the core selection problem is:
-
-- single-CPU next-thread pick
-- multi-CPU dispatch epoch
-- short-horizon bounded lookahead
-
-### Quest 0004 — CFS-shaped prototype
-Build a trace-driven prototype of a fair-scheduling policy using this model.
-
-### Quest 0005 — RT / deadline case studies
-Express at least one RT-like and one deadline-like policy in the same language family.
-
-### Quest 0006 — Runtime policy object ABI
-Design a bounded interface for compiled policy objects:
-
-- allowed hooks
-- allowed outputs
-- memory/runtime limits
-- fallback behavior
-- explanation hooks
-
-### Quest 0007 — Simulator + visualizer
-Replay workloads and show:
-
-- runnable state
-- chosen dispatches
-- rejected candidates
-- objective contributions
-- divergence between policies
-
-### Quest 0008 — Safety envelope
-Define static checks and runtime guardrails for policy objects.
-
----
-
-## Contribution types that would help
-
-This project benefits from more than code.
-
-### Architecture critiques
-Tell us where the model breaks against real scheduler behavior.
-
-### Lowering strategies
-How would you compile declarative policy into fast incremental decision logic?
-
-### Runtime safety proposals
-What must be true for a bounded policy object to be trustworthy?
-
-### Example policies
-CFS-like, RT-like, deadline-like, affinity-heavy, NUMA-heavy, or weird experimental policies.
-
-### Trace tooling
-Synthetic workloads, replay harnesses, comparison tools, visualization.
-
-### Language design
-Surface syntax is still fluid. Semantic clarity matters more than syntax bikeshedding, but both are welcome.
-
----
-
-## Suggested repo shape
-
-```text
-/docs
-  architecture.md
-  semantics.md
-  event-model.md
-  quests/
-
-/examples
-  fair/
-  rt/
-  deadline/
-  toy-traces/
-
-/sim
-  replay/
-  workloads/
-  visualizer/
-
-/compiler
-  parser/
-  ir/
-  lowering/
-
-/runtime
-  abi/
-  evaluator/
-  fallback/
-
-/notes
-  design-log/
-```
-
----
-
-## FAQ
-
-### Is this trying to replace a production kernel scheduler?
-No. The first goal is to make the design space more legible and executable.
-
-### Is this just Prolog for kernels?
-No. The interesting target is a compiled, bounded runtime artifact over live state.
-
-### Is this a solver in the hot path?
-Not necessarily. A compiled policy might lower to:
-- fast scoring code
-- table lookups
-- bounded local search
-- greedy selection with legality filters
-- or a hybrid approach
-
-### Why not just write heuristics directly?
-Because direct heuristics are easy to accrete and hard to compare, explain, replay, and evolve.
-
-### Why "policy object" instead of "scheduler plugin"?
-Because unrestricted plugins collapse the safety boundary. The runtime target should be constrained.
-
-### Is the syntax final?
-Not even close. Semantics first. Semantic clarity matters more than syntax bikeshedding, but both are welcome.
-
----
-
-## Contribution types that would help
-
-Open an issue if you have:
-
-- a counterexample
-- a policy sketch
-- a lowering idea
-- a runtime ABI proposal
-- a simulator idea
-- a trace format
-- a case study worth encoding
-
-Suggested labels:
-- `quest`
-- `good first quest`
-- `language`
-- `semantics`
-- `compiler`
-- `runtime`
-- `simulation`
-- `visualization`
-- `scheduler-policy`
-- `safety`
-- `trace-replay`
-
-A good first contribution is not necessarily small.  
-A really good issue here might be a one-page demolition of a bad assumption.
-
----
-
-## Status
-
-**Exploratory. Architecture-first. Looking for sharp collaborators.**
-
-If this idea grabs you, open an issue with one of:
-
-- "here is where this breaks"
-- "here is how I'd lower it"
-- "here is a better IR"
-- "here is a trace format"
-- "here is a minimal hook ABI"
-- "here is a scheduler policy example worth encoding"
-
----
-
-## License
-
-TBD.
-
----
-
-## One-sentence summary
-
-> `schedspec` explores whether scheduling policy can be authored declaratively and compiled into bounded runtime decision objects over live system state.
+Read [`docs/CHRONOS_README.md`](/Users/henry/schedspec/docs/CHRONOS_README.md) for the thesis, [`docs/GLOSSARY.md`](/Users/henry/schedspec/docs/GLOSSARY.md) for the core vocabulary and invariants, then [`docs/SPEC.md`](/Users/henry/schedspec/docs/SPEC.md) for the contract, followed by [`docs/LANGUAGE.md`](/Users/henry/schedspec/docs/LANGUAGE.md), [`docs/ARCHITECTURE.md`](/Users/henry/schedspec/docs/ARCHITECTURE.md), and [`docs/GOOD_FIRST_DRAGONS.md`](/Users/henry/schedspec/docs/GOOD_FIRST_DRAGONS.md).
