@@ -307,7 +307,19 @@ Topology determines:
 - which relay or repair paths are available
 - how dissemination, aggregation, and repair should move through the deployment
 
-Both may influence propagation, but they do so differently. Scope changes claim meaning and jurisdiction. Topology changes path shape, locality pressure, and candidate eligibility. A conforming design should not use topology as a hidden substitute for scope semantics.
+Both may influence:
+
+- propagation reach
+- witness eligibility in practice
+- repair pacing and widening discipline
+- operator interpretation of where a claim mattered and how it moved
+
+Semantic versus policy-shaped boundary:
+
+- **semantic:** claim meaning, authority boundary, scoped belief interpretation, admissibility boundary for merge
+- **policy-shaped:** candidate-set formation, relay strategy, overlay adaptation, pacing, thresholding, and topology-specific routing choices
+
+Both may influence propagation, but they do so differently. Scope changes claim meaning and jurisdiction. Topology changes path shape, locality pressure, and candidate eligibility. A conforming design should not use topology as a hidden substitute for scope semantics, and it should not pretend scope alone determines the operational path a claim will take.
 
 ### Freshness And Epoch
 
@@ -357,11 +369,25 @@ Minimum preserved fields:
 - provenance or provenance root
 - residue indicator when disagreement remains material
 
+It may omit:
+
+- full witness-record detail
+- raw observation payloads
+- complete path history
+- full proof attachments
+
 Invariants:
 
 - a digest may compress detail, but it must not erase the existence of material disagreement
 - a digest should remain distinguishable from full claim and witness-record material
 - summaries may trigger repair or escalation, but should not silently stand in for the full evidence needed for final merge when conflict remains live
+
+Summary-only reasoning is not semantically safe when:
+
+- fresh admissible evidence is still in material conflict
+- the digest indicates residue or unresolved dispute
+- scope widening would convert tentative local knowledge into stronger cross-scope belief
+- trust-root or witness-standing repair is itself part of the question being decided
 
 Semantically required:
 
@@ -549,6 +575,32 @@ Semantically required:
 ### Merge Precedence Contract
 
 The repo intentionally leaves room for deployment-shaped merge policy, but the following constraints are semantic rather than optional:
+
+Dimensions that may dominate:
+
+- provenance admissibility
+- scope authority
+- freshness
+- trust weight
+- corroboration quality or diversity
+
+Dimensions that may inform but should not dominate alone:
+
+- raw witness count
+- path convenience
+- local enumeration order
+
+Dimensions that may only tie-break:
+
+- deterministic permutation-rank ordering once higher-order distinctions are exhausted
+
+Residue is mandatory when:
+
+- fresh admissible evidence remains materially unresolved after the allowed dominance checks
+- scope-local and higher-scope views still conflict in a semantically meaningful way
+- trust-source or witness-standing repair is still entangled with the subject outcome
+
+The hard constraints are:
 
 1. stale or superseded evidence must not dominate fresh admissible evidence merely because it comes from a historically strong source
 2. scope authority and provenance admissibility bound which evidence is even eligible to dominate in a given scope

@@ -33,6 +33,16 @@ Topology is therefore not only where packets travel. It is one of the places whe
 
 Scope still supplies semantic meaning and jurisdiction. Topology supplies path shape, locality pressure, and candidate eligibility. The two interact constantly, but they should not silently substitute for one another.
 
+## Scope Boundary In Topology
+
+This chapter treats the boundary explicitly:
+
+- **scope determines:** where a claim is semantically meaningful, which authority boundary is in play, and where scoped belief may legitimately differ
+- **topology determines:** which peers are reachable or eligible, which overlays exist, and which dissemination or repair paths are practical
+- **both may influence:** blast radius, witness diversity in practice, repair widening, and operator explanation of how a claim moved
+
+The semantic commitments live with scope and belief meaning. The policy-shaped choices live with candidate formation, overlay construction, routing, pacing, and adaptation. Topology can pressure semantics, but it should not silently replace them.
+
 ## Hierarchy Is Normal
 
 Flat fanout is rarely the real deployment shape.

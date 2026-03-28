@@ -50,6 +50,31 @@ That scoped quality is what keeps trust from collapsing into a single hidden ran
 
 Trust-root status should be treated as visible scoped protocol state or visible deployment input, not as hidden folklore.
 
+How a source becomes trust-root-like:
+
+- by explicit operator or deployment policy
+- by cryptographic or identity lineage already treated as foundational in scope
+- by earned witness history that a deployment policy allows to harden into stronger scoped standing
+
+How scope limits apply:
+
+- trust-root standing is scoped, not presumed global
+- a source may be foundational in one scope and merely informative in another
+- widening trust-root influence across scopes is a policy action that should remain visible and explainable
+
+What can demote, suspend, or repair it:
+
+- stale or superseded standing
+- equivocation or provenance failure
+- trust abuse across scope boundaries
+- contradictory witness history strong enough to trigger review
+- explicit operator intervention or repair workflow
+
+Semantic versus policy-shaped boundary:
+
+- **semantic:** trust-root standing must be visible, scoped, and distinguishable from ordinary witness weight
+- **policy-shaped:** exact promotion thresholds, demotion thresholds, repair workflow, and whether earned history can harden into trust-root-like standing at all
+
 At minimum, the repo's semantics require that a conforming design be able to explain:
 
 - why a source is acting as a trust root in this scope

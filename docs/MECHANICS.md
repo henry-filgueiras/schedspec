@@ -276,6 +276,8 @@ This mechanism moves scoped summaries upward through bounded hierarchy surfaces.
 
 The digest sent upward is not an unstructured compression artifact. It should preserve enough scope, provenance, freshness, confidence, and residue information for the receiver to decide whether to accept the summary, request detail, or initiate repair.
 
+Summary-only reasoning is not sufficient for final merge when the digest still signals material residue, cross-scope disagreement, or active trust-source repair.
+
 **Mechanics**
 
 ```text
@@ -298,6 +300,8 @@ aggregate_upward(scoped_state, parent_proxy_pool):
 - what qualifies for upward aggregation
 - whether residue blocks widening or merely annotates it
 - the size and composition of the parent-proxy pool
+
+The semantic constraint is narrower and firmer: digest relay may compress, but it may not erase the need to fetch fuller evidence when the summary still indicates unresolved conflict.
 
 **Operator inspection**
 

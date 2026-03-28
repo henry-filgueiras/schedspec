@@ -65,6 +65,8 @@ Useful metrics include:
 
 The design is paying for scoped semantics precisely so the system does not have to choose only between local silence and global rumor.
 
+Evaluation should also test whether the implementation keeps scope semantics and topology policy meaningfully separated. If topology choices silently redefine claim meaning or authority, the design has failed one of its own semantic boundaries.
+
 ## Topology-Sensitive Metrics
 
 Resonant Membership claims topology is part of the protocol rather than a transport detail. That claim should be evaluated directly.
@@ -93,6 +95,21 @@ Important metrics include:
 - **quarantine overreach:** whether cautious trust policy unnecessarily delays useful local convergence
 
 The interesting question is not whether a witness has a number attached to it. The question is whether trust actually shapes dissemination and acceptance in ways that improve protocol honesty.
+
+This should include explicit testing of trust-root lifecycle behavior: whether foundational standing remains scoped, whether demotion and repair are visible, and whether earned standing quietly hardens into hidden authority.
+
+## Merge And Summary Discipline Metrics
+
+The proposal now carries explicit semantic constraints on merge precedence and digest use. Those constraints should also be evaluated directly.
+
+Useful metrics include:
+
+- **precedence stability:** whether the same admissible evidence yields the same dominance outcome across observers
+- **residue discipline:** whether residue appears when conflict remains materially unresolved, rather than only when the implementation happens to expose it
+- **summary sufficiency:** whether digests preserve enough structure to trigger correct fetch-or-hold behavior
+- **unsafe summary reliance:** how often summary-only reasoning would have produced a stronger conclusion than the fuller evidence justified
+
+If merge precedence stays opaque or digests silently over-compress live disagreement, the design is no longer paying for honest semantics. It is paying only for heavier prose.
 
 ## Operator-Observability Metrics
 

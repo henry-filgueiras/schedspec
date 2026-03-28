@@ -54,6 +54,30 @@ Merge is therefore not just data-structure union. It is the point where the prot
 
 This repo does not freeze one universal merge calculus, but it does commit to a constrained precedence family.
 
+May dominate:
+
+- provenance admissibility
+- scope authority
+- freshness
+- trust weight
+- corroboration quality or diversity
+
+May inform but should not dominate alone:
+
+- raw witness count
+- transport arrival order
+- convenience of the current path
+
+May only tie-break:
+
+- deterministic permutation-rank ordering once higher-order distinctions have been exhausted
+
+Residue is mandatory when:
+
+- fresh admissible evidence remains in material conflict after the allowed dominance checks
+- scoped disagreement remains semantically meaningful rather than merely stale
+- witness or trust-source repair is still entangled with the merge outcome
+
 At minimum:
 
 1. stale or superseded evidence must not dominate fresh admissible evidence merely because its source is historically strong

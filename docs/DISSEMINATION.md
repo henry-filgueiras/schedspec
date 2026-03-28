@@ -55,6 +55,8 @@ Different forms imply different blast radii and different trust assumptions.
 
 In this repo, a digest or summary must still preserve scope, provenance root, freshness context, and any material residue signal. Summarization is allowed to compress detail, not to hide live disagreement.
 
+Summary-only reasoning is not safe when widening scope would strengthen belief, when residue is still live, or when trust-source repair is part of the dispute. In those cases the summary should trigger detail fetch, repair, or bounded holding behavior rather than pretending the digest is the whole state.
+
 A system that treats all membership traffic as one undifferentiated message type gives up too much control over both cost and meaning.
 
 ## Parent-Proxy Pools
