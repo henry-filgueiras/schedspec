@@ -6,6 +6,12 @@ The goal is not to exhaust every attack. The goal is to keep the protocol honest
 
 For vocabulary, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For trust-sensitive behavior, see [`TRUST.md`](TRUST.md). For behavior under disagreement, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md).
 
+## What Problem This Section Solves
+
+A design-first membership protocol can become misleading if it only describes the cooperative happy path. This section exists to make sure the rest of the repo is read against hostile timing, stale witnesses, scoped disagreement, and operator intervention under uncertainty.
+
+The point is not to claim exhaustive adversarial coverage. It is to make clear which forms of failure the protocol is trying to surface rather than silently flatten.
+
 ## Assumed Conditions
 
 The design assumes:
@@ -66,6 +72,19 @@ Partitions create special hazards:
 - ambiguous residue after healing
 
 Partition healing must be designed to preserve evidence of these hazards rather than silently overwriting them.
+
+## Design Invariants
+
+1. disagreement should not be automatically interpreted as malice
+2. deterministic selection should remain auditable even when it is attacked
+3. trust abuse must be visible as scoped behavior, not only as final state
+4. operator intervention must be legible as intervention
+
+## Tradeoffs And Failure Modes
+
+Defensive structure has its own cost. Stronger quarantine rules can delay legitimate convergence. More cautious healing can preserve too much residue for too long. Deterministic rendezvous can improve explanation while also making selection more predictable to attackers. Better provenance can increase protocol weight and operator cognitive load.
+
+The repo does not deny those tradeoffs. It argues they should be surfaced explicitly so the protocol can be evaluated honestly.
 
 ## Operator Threat Surface
 

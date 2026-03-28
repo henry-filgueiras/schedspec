@@ -4,6 +4,12 @@ This document describes how Resonant Membership should reconcile competing views
 
 For the lifecycle and trust pipeline, see [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md). For topology-aware repair structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For deterministic reunion and rendezvous ordering, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
 
+## What Problem This Section Solves
+
+Restored connectivity is not enough. Systems that have diverged need a disciplined way to reconcile competing realities, preserve unresolved disagreement where needed, and avoid oscillating during repair.
+
+The hard case is not simply packet loss. The hard case is that multiple scopes can accumulate internally coherent but mutually incompatible histories. When contact resumes, the protocol must decide how to compare them, what evidence should dominate, what should remain unsettled, and how the system should make that process legible to operators.
+
 ## Why Merge Matters
 
 A membership system eventually reveals itself in merge behavior.
@@ -97,7 +103,25 @@ If two equally fresh claims compete, a design may use:
 
 The point is not which choice is universally correct. The point is that the choice should be reconstructable and auditable.
 
-## Operator Visibility
+## Design Invariants
+
+1. merge should not erase disagreement merely to simplify state
+2. healing should preserve provenance and residue where needed
+3. deterministic reunion should be inspectable
+4. healing must be rate-limited enough to avoid oscillation
+
+## Tradeoffs And Failure Modes
+
+Important failure modes include:
+
+- flattening scoped conflict too early
+- over-weighting freshness against trust
+- healing storms after broad recontact
+- residue becoming invisible once summaries collapse detail
+
+The protocol should make these costs legible rather than treating them as operational accidents.
+
+## Operator Interpretation
 
 Operators should be able to inspect:
 
@@ -108,6 +132,12 @@ Operators should be able to inspect:
 - repair paths currently active
 
 Healing that cannot explain itself will be distrusted precisely when it matters most.
+
+## Closing Thread
+
+Partial observability means no scope gets the whole world for free. Witness quality decides which claims deserve belief. Scope decides where that belief is allowed to matter. Deterministic ordering gives healing a reproducible shape instead of a situational improvisation. Residue records what remains unresolved rather than laundering conflict into premature agreement.
+
+If Resonant Membership has a single systems claim, it is that healing is not a return to innocence. It is the disciplined construction of a shared reality after the system has already learned that its observers can diverge.
 
 ## Non-Claims
 

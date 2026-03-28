@@ -4,6 +4,10 @@ These diagrams are canonical Mermaid sketches for the proposed system model. The
 
 See [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), and [`PRIMITIVES.md`](PRIMITIVES.md) for the surrounding text.
 
+## What Problem This Section Solves
+
+The prose in this repo is trying to describe state transitions, trust flow, deterministic selection, and healing structure without collapsing them into generic gossip intuition. These diagrams exist to keep the semantics legible. They are not decoration. They are compact arguments about what the protocol is claiming matters.
+
 ## Bootstrap Ladder
 
 ```mermaid
@@ -143,3 +147,13 @@ Across the docs, the intended conventions are:
 - deterministic ordering is treated as accountable selection
 - topology is a first-class semantic constraint
 - healing preserves residue when convergence is incomplete
+
+## Operator Use
+
+Operators should be able to read these diagrams as explanations of what the system ought to expose:
+
+- the membership lifecycle diagram explains why a subject is provisional, disputed, quarantined, or accepted
+- the trust pipeline explains how a claim moved from introduction to weighted belief
+- the reunion and arborition diagrams explain why repair traffic followed one path rather than another
+
+If the running system cannot surface structures that roughly correspond to these diagrams, the observability story is weaker than the protocol story.

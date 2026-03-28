@@ -1,164 +1,89 @@
 # Resonant Membership
 
-Resonant Membership is a proposal for reasoning about membership under weak coordination: bootstrap, witness, trust, scoped dissemination, merge rules, partition healing, hierarchy, and operator observability.
+Resonant Membership is a design-first proposal for membership under weak coordination: bootstrap, witness, trust, scoped dissemination, merge rules, partition healing, hierarchy, and operator observability under partial observability.
 
-The central claim is that membership under partial observability is not merely a question of who is alive. It is a question of how distributed observers form, transmit, dispute, merge, and repair beliefs about who belongs, who is trusted to report, and which view is sufficiently converged to act on.
+This document serves as the paper-style abstract and framing layer. For the sharper preface energy, see [`MANIFESTO.md`](MANIFESTO.md). For the shared vocabulary, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md).
 
-This document is the long-form "why" of the project. For the sharper thesis lines, see [`MANIFESTO.md`](MANIFESTO.md). For the shared vocabulary, see [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md). For protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), and [`TOPOLOGY.md`](TOPOLOGY.md).
+## Abstract
 
-## Thesis
+Distributed systems usually maintain a membership view while lacking direct access to global truth. Under those conditions, liveness detection alone is an insufficient abstraction. A practical system must decide who may introduce a subject, which witnesses deserve belief, how claims should be scoped and disseminated, how contradictory local realities should be merged after partition, and how operators can inspect the resulting convergence process.
 
-Many membership systems quietly assume a world that is cleaner than the one they inhabit:
+Resonant Membership treats gossip not merely as message dissemination but as an epistemic control plane for systems that cannot afford certainty. The proposal centers membership as a structured belief state rather than a flat list, and it promotes scope, provenance, trust weighting, staleness, deterministic ordering, and repair structure to first-class protocol concerns. In this framing, convergence depends on merge semantics rather than restored connectivity alone, and partition healing is understood as negotiated reality merge rather than simple rumor resumption.
 
-- bootstrap is trusted implicitly
-- dissemination is uniform
-- observers are equally credible
-- partitions are temporary inconveniences
-- merge is set union plus timeout
-- operators can reconstruct truth from logs after the fact
+Two distinctive primitives receive special attention. **Permutation rank** provides seeded deterministic peer ordering for accountable fanout, witness-set selection, rendezvous choice, tie-breaking, and auditability. **Arboritions** provide adaptive topology-aware dissemination, witness, and repair forests that better match hierarchy, trust boundaries, and failure domains than one flat fanout graph. Together these primitives aim to make convergence more inspectable, less accidental, and more structurally honest under partial observability.
 
-That works only while disagreement is shallow and topology is forgiving.
+## Problem Setting
 
-Resonant Membership assumes a harder world:
+Many membership systems quietly assume a world cleaner than the one they actually inhabit. Bootstrap is trusted implicitly. Dissemination is treated as uniform. Observers are modeled as equally credible. Partitions are temporary inconveniences. Merge is imagined as set union plus timeout. Operators are expected to reconstruct truth from logs after the fact.
 
-- some claims arrive through weakly trusted witnesses
-- not all peers should receive every claim at the same time
-- partitions may last long enough to accumulate contradictory views
-- topology and locality shape cost and credibility
-- convergence must be explainable, not merely eventual
+That model works only while disagreement is shallow and topology is forgiving.
 
-In that world:
+Resonant Membership assumes a harder world. Some claims arrive through weakly trusted witnesses. Not all peers should receive every claim at the same time. Partitions may last long enough to accumulate contradictory views. Topology and locality shape both cost and credibility. Convergence must be explainable, not merely eventual.
 
-- introduction matters
-- witness quality matters
-- dissemination scope matters
-- deterministic ordering matters
-- merge rules matter
-- operator visibility matters
+## Design Invariants
 
-## Membership As Converging Belief
+The project keeps returning to a small set of invariants:
 
-Membership is usually described as a table:
+1. Membership is a belief state, not a list.
+2. Every claim has scope, provenance, and staleness.
+3. Dissemination without trust weighting is noise amplification.
+4. Convergence requires merge semantics, not just restored connectivity.
+5. Healing must be rate-limited enough to avoid oscillation.
+6. Trust should influence blast radius, not only acceptance.
+7. Operator visibility is part of correctness.
+8. Partition healing is negotiated reality merge.
+9. Partial observability is the normal case, not an edge case.
 
-- node `A` is up
-- node `B` is down
-- node `C` is suspected
+## What This Paper Spine Is Solving
 
-That is an insufficient abstraction.
+The docs in this repo are trying to answer one durable systems question: how does a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
 
-Under partial observability, membership is better understood as a distributed belief state composed of:
+That question immediately forces several others.
 
-- observations
-- witness claims
-- trust weight
-- propagation scope
-- merge policy
-- unresolved residue
+- What counts as an introduction rather than an acceptance?
+- Which witnesses deserve belief, and within which scope?
+- How far should a weak claim be allowed to travel?
+- What should happen when two local realities both look internally coherent?
+- How should topology shape dissemination and healing?
+- What evidence should remain visible when convergence is incomplete?
 
-The interesting system question is therefore not just "what is the current set?" but:
+The design claim is not that these questions disappear under eventual consistency. The claim is that a protocol which fails to model them explicitly is already relying on hidden answers.
 
-- who introduced this node?
-- who corroborated the claim?
-- which scope accepted it?
-- which observers still disagree?
-- what repair path remains after a partition?
+## Why The Distinctive Primitives Matter
 
-## Bootstrap, Witness, Trust
+One of the central ideas in this repo is **permutation rank**: seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability. Its value is not merely efficiency. It gives the protocol a legible answer to questions like why a node selected one witness set rather than another, why two peers converged on the same rendezvous choices, and why repair traffic flowed through a particular subset of candidates. Deterministic ordering becomes a discipline against accidental local bias and against explanations that collapse into "that was just the order the runtime happened to see."
 
-Bootstrap is the first trust decision, not a boring prelude.
+Another central idea is **arboritions**: adaptive topology-aware dissemination, witness, and repair trees or overlay forests. The point is to reject the idea that one flat fanout graph is the natural shape of the protocol. Dissemination, witness gathering, and healing often want related but distinct overlay structures. A serious system should admit that locality, hierarchy, trust, and partition state all reshape the best coordination paths.
 
-Every membership system eventually answers:
+## Tradeoffs And Failure Modes
 
-- who is allowed to introduce a new participant?
-- what counts as sufficient witness?
-- when is a claim locally credible but globally tentative?
+This proposal is not a promise of cheap certainty. Once trust, scope, and witness quality become first-class, the protocol becomes more honest but also more demanding. It must carry more structure, preserve more disagreement, and expose more of its own uncertainty.
 
-Resonant Membership treats bootstrap and witness as protocol primitives rather than assumptions hidden in provisioning scripts or static seed lists.
+Important costs and failure modes include:
 
-Trust is similarly not binary. It may be:
+- over-modeling minor disagreement until the system becomes hard to operate
+- under-modeling residue and thereby flattening conflict into false certainty
+- making deterministic ordering too predictable without sufficient hardening
+- allowing topology-aware overlays to become opaque policy rather than inspectable structure
+- treating witness quantity as a substitute for witness diversity
 
-- rooted in static identity or operator policy
-- inferred from prior convergence quality
-- scoped by zone, rack, service, or role
-- reduced by equivocation, staleness, or isolation
+The repo does not claim those costs disappear. It argues they should be explicit design surfaces rather than accidental byproducts.
 
-## Permutation Rank
+## Operator Understanding
 
-One of the central ideas in this repo is **permutation rank**: seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability.
+A serious membership system should answer:
 
-Its value is not only efficiency. It gives the protocol a legible answer to questions like:
-
-- why did this node witness that claim first?
-- why were those peers selected for repair?
-- why did two observers choose the same rendezvous set?
-
-Deterministic ordering is a form of protocol accountability.
-
-## Arboritions
-
-Another central idea is **arboritions**: adaptive topology-aware dissemination, witness, and repair trees or overlay forests.
-
-The term is slightly coined on purpose. The point is to emphasize that the dissemination structure should be:
-
-- shaped like a living overlay forest rather than one flat fanout graph
-- adaptive to locality, trust, and partition state
-- useful for witness gathering, not only rumor spread
-- useful for repair after divergence, not only steady-state propagation
-
-If the term is later refined, the concept should remain.
-
-## Merge And Healing
-
-Merge is where a membership system admits what it believes about conflict.
-
-A serious design must answer:
-
-- which observations dominate under disagreement?
-- when does trust weight outrank freshness?
-- what does a node do with partially corroborated claims?
-- how is unresolved disagreement surfaced instead of erased?
-
-Partition healing is similarly not "resume gossip and hope." It is an explicit reconciliation phase between accumulated belief states.
-
-## Hierarchy And Scope
-
-Flat broadcast is often the wrong mental model.
-
-Real systems are shaped by:
-
-- racks
-- zones
-- regions
-- services
-- security domains
-- trust boundaries
-
-Resonant Membership therefore assumes hierarchy and scoped dissemination are normal conditions, not optional optimizations.
-
-## Operator Observability
-
-Operator visibility is not just metrics and logs.
-
-A useful system should answer:
-
-- which witnesses caused this node to be accepted?
-- which partition introduced divergence?
+- who introduced this subject?
+- who corroborated or disputed it?
+- which scope accepted the claim?
 - which merge rule resolved the conflict?
-- where does disagreement remain?
+- where does residue remain?
 - which arborition path is currently carrying repair traffic?
 
 Those are structural questions. A system that cannot answer them structurally is under-specified.
 
-## Anti-Goals
+## Closing Thread
 
-Resonant Membership is not trying to be:
+The design center is simple but nontrivial. Under partial observability, usable convergence depends on witness quality, scope, deterministic ordering, healing discipline, and explicit residue. If any of those disappear behind generic gossip language, the protocol becomes much harder to trust precisely when the system is under stress.
 
-- a generic gossip tutorial
-- a polished product page for a nonexistent system
-- a proof that trust can be ignored
-- a universal topology that fits every environment
-- a claim that convergence erases ambiguity
-
-## Current Status
-
-This repository is a design treatise. The point is to make the semantic and protocol commitments legible before an implementation calcifies accidental assumptions.
+Resonant Membership is therefore not a claim of finality. It is a claim about what must be modeled if distributed systems are going to speak honestly about how they decide who belongs.

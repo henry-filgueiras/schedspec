@@ -4,6 +4,12 @@ This document describes how claims should spread under partial observability. Th
 
 For trust behavior, see [`TRUST.md`](TRUST.md). For topology-aware structures, see [`TOPOLOGY.md`](TOPOLOGY.md) and [`ARBORITIONS.md`](ARBORITIONS.md). For accountable ordering of relay and witness choices, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md).
 
+## What Problem This Section Solves
+
+The problem is not how to send a message to many peers. The problem is how to spread belief without turning weak evidence into system-wide noise. Dissemination therefore needs structure, scope, and trust sensitivity.
+
+A flat gossip story is tempting because it sounds simple: pick peers, send rumors, repeat until the cluster settles. But once claims differ in credibility, scope, urgency, and provenance, that mental model becomes too coarse. What matters is not merely that information moves. What matters is where it moves, in what form, under whose authority, and with what right to widen its blast radius.
+
 ## Scoped Fanout
 
 Claims should spread according to scope, credibility, and urgency.
@@ -27,7 +33,7 @@ A dissemination path may carry:
 - healing request
 - quarantine notice
 
-Different forms imply different blast radii and different trust assumptions.
+Different forms imply different blast radii and different trust assumptions. A system that treats all membership traffic as one undifferentiated message type gives up too much control over both cost and meaning.
 
 ## Parent-Proxy Pools
 
@@ -40,29 +46,31 @@ A scope often needs bounded upward communication rather than full mesh contact. 
 
 Parent-proxy pools are not authorities by default. They are structured relay and witnessing surfaces.
 
-## Bounded Influence
-
-Trust should influence blast radius, not only acceptance.
-
-Low-confidence claims may still travel, but perhaps only:
-
-- within the local scope
-- to a restricted witness set
-- as a digest rather than a strong assertion
-- with hysteresis before further fanout
-
-This keeps weak evidence from becoming global noise.
-
-## Anti-Entropy
+## Anti-Entropy And Repair Traffic
 
 Steady-state dissemination and anti-entropy are not the same thing.
 
-Steady-state dissemination spreads fresh claims.
-Anti-entropy repairs drift, omission, and summary mismatch.
+Steady-state dissemination spreads fresh claims. Anti-entropy repairs drift, omission, and summary mismatch. Repair may need different relay choices, different pacing, and different visibility than ordinary spread. A serious design should therefore keep both paths explicit instead of hiding repair behavior inside generic rumor traffic.
 
-A serious design should keep both paths explicit.
+## Design Invariants
 
-## Operator Visibility
+1. dissemination should preserve provenance
+2. scope is part of propagation policy, not merely metadata
+3. weak confidence should imply bounded blast radius
+4. anti-entropy should be explicit rather than smuggled into ordinary spread
+
+## Tradeoffs And Failure Modes
+
+Important failure modes include:
+
+- over-broadcasting weak claims
+- starving a scope of witness visibility
+- parent-proxy pools becoming hidden choke points
+- repair traffic overwhelming steady-state fanout
+
+Dissemination should therefore be observable enough that operators can tell whether a problem is due to policy, topology, or trust. A protocol that only exposes message counts will have metrics without explanation.
+
+## Operator Interpretation
 
 Operators should be able to ask:
 

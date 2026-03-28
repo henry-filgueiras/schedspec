@@ -4,6 +4,12 @@ This document describes how hierarchy, locality, permutation rank, and arboritio
 
 For membership behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dissemination behavior, see [`DISSEMINATION.md`](DISSEMINATION.md). For merge and repair semantics, see [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md). For dedicated treatments of the two distinctive primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
+## What Problem This Section Solves
+
+Topology is often treated as an implementation detail beneath protocol semantics. Resonant Membership takes the opposite view. Locality, hierarchy, trust boundaries, and repair paths all shape what claims should mean, where they should travel, and which witnesses deserve belief.
+
+The question is not only how to route efficiently. The deeper question is how to make the protocol honest about the structure of the world it is trying to converge across.
+
 ## Hierarchy Is Normal
 
 Flat fanout is rarely the real deployment shape.
@@ -70,7 +76,7 @@ An arborition may be re-shaped by:
 
 See [`ARBORITIONS.md`](ARBORITIONS.md) for the full treatment of why forests beat one flat fanout graph as a mental model.
 
-## Dissemination Overlays
+## Dissemination And Repair Overlays
 
 Dissemination need not use the same overlay as repair.
 
@@ -82,15 +88,16 @@ A plausible design may separate:
 
 The point is not to maximize graph elegance. It is to make the overlay match the semantics of the claim being carried.
 
-## Witness Placement
+## Design Invariants
 
-Witness selection should respect both topology and trust.
+1. topology is part of protocol meaning, not just transport cost
+2. locality should influence witness and relay choice
+3. hierarchy should constrain blast radius before it constrains explanation
+4. repair overlays should be inspectable rather than emergent accidents
 
-Bad witness placement patterns include:
+## Tradeoffs And Failure Modes
 
-- selecting all witnesses from one failure domain
-- selecting only high-latency remote witnesses for a local claim
-- selecting peers whose trust history is correlated in exactly the wrong way
+Bad topology choices can make a sound-looking protocol behave dishonestly. Witness selection may collapse into one failure domain. Local claims may be overruled too quickly by distant authorities. Repair traffic may concentrate on the same overloaded rendezvous sets. Overlay adaptation may become so dynamic that operators can no longer explain why dissemination took one path instead of another.
 
 Topology is therefore a trust amplifier or trust hazard, depending on how it is used.
 

@@ -4,6 +4,12 @@ This document defines the shared vocabulary used across the Resonant Membership 
 
 For the long-form framing, see [`ABSTRACT.md`](ABSTRACT.md). For the compact terminology index, see [`GLOSSARY.md`](GLOSSARY.md). For lifecycle and protocol behavior, see [`MEMBERSHIP.md`](MEMBERSHIP.md). For dedicated protocol primitives, see [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md).
 
+## What Problem This Section Solves
+
+Systems papers tend to fail early when their terms drift. This section exists to keep the rest of the repo from quietly changing the meaning of words like `claim`, `witness`, `scope`, `confidence`, or `residue` from page to page.
+
+The goal is not merely definitional hygiene. A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
+
 ## Core Terms
 
 - **membership view:** a node's current structured belief about who belongs, in what state, under what confidence
@@ -38,7 +44,7 @@ Two especially distinctive primitives in this repo are important enough to stand
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md)
 - [`ARBORITIONS.md`](ARBORITIONS.md)
 
-## Core Invariants
+## Design Invariants
 
 The design aims to preserve these invariants:
 
@@ -61,7 +67,13 @@ The design aims to preserve these invariants:
 - **fanout vs permutation rank:** fanout is count; permutation rank is accountable ordering
 - **tree vs arborition:** a tree is static structure; an arborition is an adaptive overlay forest for dissemination, witness, and repair
 
-## Operator Questions
+## Tradeoffs And Failure Modes
+
+Vocabulary does not remove ambiguity by itself. The failure mode this section tries to prevent is quieter: multiple components behaving coherently locally while disagreeing about the meaning of key terms globally. Once that happens, even correct-looking convergence becomes hard to reason about.
+
+Another danger is compression in the wrong place. If the system uses the word `membership` to hide distinctions among introduction, witness, acceptance, dispute, quarantine, and residue, then the paper may look clean while the protocol itself remains under-specified.
+
+## Operator Interpretation
 
 A serious system should answer questions like:
 
