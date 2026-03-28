@@ -19,6 +19,8 @@ The question underneath every other page is the same:
 
 How should a distributed system construct, maintain, dispute, and repair a usable shared belief about membership when no node can inspect global truth directly?
 
+It is not the dangerous preface and not the semantic contract. Its job is to summarize the argument of the whole treatise cleanly enough that the later chapters have somewhere stable to stand.
+
 ## Abstract
 
 Distributed systems usually maintain a membership view while lacking direct access to global truth. Under those conditions, liveness detection alone is an insufficient abstraction. A practical system must decide who may introduce a subject, which witnesses deserve belief, how claims should be scoped and disseminated, how contradictory local realities should be merged after partition, and how operators can inspect the resulting convergence process.
@@ -27,7 +29,7 @@ Resonant Membership treats gossip not merely as message dissemination but as an 
 
 Two distinctive primitives receive special attention. **Permutation rank** provides seeded deterministic peer ordering for accountable fanout, witness-set selection, rendezvous choice, tie-breaking, and auditability. **Arboritions** provide adaptive topology-aware dissemination, witness, and repair forests that better match hierarchy, trust boundaries, and failure domains than one flat fanout graph. Together these primitives aim to make convergence more inspectable, less accidental, and more structurally honest under partial observability.
 
-## Core Objects And Semantics
+## Central Objects
 
 The core semantic objects in the repo are deliberately small:
 
@@ -67,7 +69,7 @@ The project keeps returning to a small set of invariants:
 8. Partition healing is negotiated reality merge.
 9. Partial observability is the normal case, not an edge case.
 
-## Why The Distinctive Primitives Matter
+## Distinctive Primitives
 
 One of the central ideas in this repo is **permutation rank**: seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability.
 

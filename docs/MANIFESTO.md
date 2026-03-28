@@ -12,7 +12,7 @@ Gossip is therefore not merely message dissemination. It is an epistemic control
 
 This document serves as the dangerous preface to the rest of the repo.
 
-Its job is not to specify semantics in detail. Its job is to keep the project honest about what it thinks the real problem is, and to refuse the comforting simplifications that make many membership systems sound cleaner than they are.
+Its job is not to specify semantics in detail, define metrics, or carry the full chapter stack. Its job is to keep the project honest about what it thinks the real problem is, and to refuse the comforting simplifications that make many membership systems sound cleaner than they are.
 
 ## Dangerous Preface
 

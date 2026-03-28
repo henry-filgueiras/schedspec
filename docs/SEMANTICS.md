@@ -18,6 +18,8 @@ The repo already has a framing layer, a set of core chapters, and a strong provi
 
 This document fills that gap. It does not define a wire format or an implementation API. It defines the semantic objects that a conforming design would need to preserve if the rest of the repo is to mean what it says.
 
+This chapter assumes the vocabulary from [`PRIMITIVES.md`](PRIMITIVES.md) and turns it into a sharper contract. It should not repeat the dangerous preface or the abstract's framing job.
+
 ## Scope Of This Document
 
 This is not:

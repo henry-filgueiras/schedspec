@@ -20,7 +20,9 @@ The goal is not merely definitional hygiene.
 
 A membership design built on partial observability depends on sharp vocabulary because the same event may mean different things to different scopes. If the terms blur, the semantics blur with them.
 
-## Core Objects And Semantics
+This chapter is intentionally compact. It names the terms and fast distinctions the later chapters depend on. The fuller object contract lives in [`SEMANTICS.md`](SEMANTICS.md).
+
+## Core Vocabulary
 
 The definitions below are intentionally compact. They are the small vocabulary the rest of the repo should keep reusing without drift.
 
@@ -38,7 +40,7 @@ The definitions below are intentionally compact. They are the small vocabulary t
 - **permutation rank:** seeded deterministic peer ordering for accountable fanout, rendezvous, tie-breaking, and auditability
 - **arborition:** adaptive topology-aware dissemination, witness, and repair trees or overlay forests
 
-These are not just labels. They are the semantic objects around which the rest of the treatise is organized.
+These are not just labels. They are the shared terms around which the rest of the treatise is organized.
 
 ## Primitive Operations
 

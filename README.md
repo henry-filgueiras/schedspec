@@ -9,9 +9,10 @@ This repository is organized around **Resonant Membership** as the active center
 If you are new to the repo:
 
 1. Read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis and framing.
-2. Read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure.
-3. Read [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md) for the core protocol argument.
-4. Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.
+2. Use [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md) if you want the chapter roles and intended reading order.
+3. Read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary and semantic structure.
+4. Read [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md) for the core protocol argument.
+5. Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.
 
 ## Repository Architecture
 
@@ -101,6 +102,7 @@ merger:
 
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
+- [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md): chapter roles and intended reading order
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
 - [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
 - [`docs/SEMANTICS.md`](docs/SEMANTICS.md): semantic contract for protocol objects and decision surfaces

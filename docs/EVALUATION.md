@@ -19,6 +19,8 @@ The rest of the repo argues that membership under partial observability should b
 
 This section exists to keep the proposal falsifiable. It names the dimensions on which the design should be compared, stressed, and possibly rejected.
 
+This chapter does not restate the semantic contract or threat model in full. Its job is to say how those commitments should be judged, costed, and potentially falsified.
+
 ## Evaluation Dimensions
 
 The design should be evaluated along several interacting axes:

@@ -17,6 +17,8 @@ See also:
 
 This section defines what it means to maintain membership when no participant can directly inspect global truth. The aim is to make "membership as belief state" operational rather than merely rhetorical.
 
+This chapter is about behavior: introduction, witness formation, scoped belief, and visible lifecycle state. The object contract itself lives in [`SEMANTICS.md`](SEMANTICS.md).
+
 A system that speaks only in terms of alive and dead hides too much.
 
 It hides:
@@ -29,7 +31,7 @@ It hides:
 
 Resonant Membership treats those details as the substance of membership rather than as annotations on top of a liveness table.
 
-## Core Objects And Semantics
+## Behavioral Model
 
 Membership is the evolving answer to a harder question than "is this node up?"
 
