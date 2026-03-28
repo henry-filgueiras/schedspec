@@ -6,6 +6,7 @@ Use this checklist before accepting a docs change in the active Resonant Members
 
 - Does the edit fit an existing chapter role?
 - If it changes reading order or active-doc inventory, were `README.md` and `PAPER_MAP.md` updated together?
+- If it changes doc classification, do `README.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, and `AGENTS.md` all agree on `spine chapter`, `interstitial primitive chapter`, or `appendix / support doc`?
 - If it adds a new major concept, was the existing docs set checked first for a better home?
 
 ## Terminology Checks
@@ -21,6 +22,7 @@ Use this checklist before accepting a docs change in the active Resonant Members
 - Does the doc link to its semantic home?
 - Does it link to adjacent chapters when those boundaries matter?
 - If a coined term or alias appears, is the canonical source linked?
+- Does the reading spine still match the canonical order in `README.md`, `PAPER_MAP.md`, and `EDITORIAL_GUIDE.md` exactly?
 
 ## Duplicate Thesis Checks
 

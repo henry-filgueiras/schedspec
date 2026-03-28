@@ -8,13 +8,11 @@ This repository is organized around **Resonant Membership** as the active center
 
 If you are new to the repo:
 
-1. Read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis and framing.
+1. Read the spine entry with [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis and framing.
 2. Use [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md) if you want the chapter roles and intended reading order.
-3. Read [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), and [`docs/SEMANTICS.md`](docs/SEMANTICS.md) for vocabulary, protocol objects, and semantic boundaries.
-4. Read [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), and [`docs/MECHANICS.md`](docs/MECHANICS.md) for the two distinctive primitives and the mechanics layer that makes the semantics feel buildable.
-5. Read [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md) for the core protocol argument.
-6. Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.
-7. Read [`docs/CRITIQUE.md`](docs/CRITIQUE.md) if you want the strongest internal objections on the table as well.
+3. Use the interstitial primitives [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), and [`docs/MECHANICS.md`](docs/MECHANICS.md) to keep vocabulary, primitives, and mechanics aligned while you read the spine.
+4. Read the spine chapters in order: [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
+5. Use the appendices and support docs [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), and [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) for pressure, judgment, objections, scenarios, and visuals.
 
 ## Repository Architecture
 
@@ -33,6 +31,36 @@ If you are here for a specific thread:
 - **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), and then the protocol stack under [`docs/`](docs)
 - **ChronOS:** start with the archived lineage at [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md)
 - **SameDiff:** start with the archived note at [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
+
+## Active Docs
+
+Canonical active-doc inventory:
+
+- **Front door:** [`README.md`](README.md)
+- **Spine chapters:** [`docs/MANIFESTO.md`](docs/MANIFESTO.md), [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
+- **Interstitial primitive chapters:** [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MECHANICS.md`](docs/MECHANICS.md)
+- **Appendices / support docs:** [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md), [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md), [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md)
+
+Canonical reading spine:
+
+1. [`docs/MANIFESTO.md`](docs/MANIFESTO.md)
+2. [`docs/ABSTRACT.md`](docs/ABSTRACT.md)
+3. [`docs/GLOSSARY.md`](docs/GLOSSARY.md)
+4. [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md)
+5. [`docs/SEMANTICS.md`](docs/SEMANTICS.md)
+6. [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md)
+7. [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md)
+8. [`docs/MECHANICS.md`](docs/MECHANICS.md)
+9. [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md)
+10. [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md)
+11. [`docs/TRUST.md`](docs/TRUST.md)
+12. [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
+13. [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
+14. [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md)
+15. [`docs/EVALUATION.md`](docs/EVALUATION.md)
+16. [`docs/CRITIQUE.md`](docs/CRITIQUE.md)
+17. [`docs/EXAMPLES.md`](docs/EXAMPLES.md)
+18. [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md)
 
 ## Three Theses
 
@@ -102,25 +130,30 @@ merger:
 
 ## Docs
 
+- **Spine chapters**
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
-- [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md): chapter roles and intended reading order
-- [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
-- [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): glossary and protocol primitives
+- [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): compact vocabulary and fast distinctions
 - [`docs/SEMANTICS.md`](docs/SEMANTICS.md): semantic contract for protocol objects and decision surfaces
-- [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md): deterministic ordering as a protocol primitive
-- [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md): adaptive overlay forests for dissemination, witness, and repair
-- [`docs/MECHANICS.md`](docs/MECHANICS.md): algorithm-shaped mechanics layer bridging semantics and plausible implementation discipline
-- [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped dissemination, operator visibility
-- [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md): scoped fanout, witness spread, parent-proxy pools
+- [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped belief, lifecycle behavior
+- [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md): scoped fanout, digests, parent-proxy pools
 - [`docs/TRUST.md`](docs/TRUST.md): trust roots, witness weighting, confidence, blast radius
 - [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md): merge rules, reconciliation, partition healing
 - [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md): hierarchy, permutation rank, and arborition overlays
+- **Interstitial primitive chapters**
+- [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
+- [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md): deterministic ordering as a protocol primitive
+- [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md): adaptive overlay forests for dissemination, witness, and repair
+- [`docs/MECHANICS.md`](docs/MECHANICS.md): algorithm-shaped mechanics layer bridging semantics and plausible implementation discipline
+- **Appendices / support docs**
 - [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md): failures, adversaries, and abuse cases
 - [`docs/EVALUATION.md`](docs/EVALUATION.md): how to judge, compare, stress, and potentially falsify the design
 - [`docs/CRITIQUE.md`](docs/CRITIQUE.md): strongest internal objections and project-level failure modes
 - [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
 - [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams
+- [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md): chapter roles and intended reading order
+- [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md): editorial source of truth for chapter roles, terms, and wording discipline
+- [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md): pre-acceptance checklist for doc changes
 
 ## Status
 

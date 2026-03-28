@@ -146,28 +146,10 @@ But preserve the underlying concept and cross-link any rename.
 
 Prefer a docs stack like:
 
-- README.md
-- docs/MANIFESTO.md
-- docs/ABSTRACT.md
-- docs/GLOSSARY.md
-- docs/PRIMITIVES.md
-- docs/SEMANTICS.md
-- docs/PERMUTATION_RANK.md
-- docs/ARBORITIONS.md
-- docs/MECHANICS.md
-- docs/MEMBERSHIP.md
-- docs/DISSEMINATION.md
-- docs/TRUST.md
-- docs/MERGE_AND_HEALING.md
-- docs/TOPOLOGY.md
-- docs/THREAT_MODEL.md
-- docs/EVALUATION.md
-- docs/CRITIQUE.md
-- docs/EXAMPLES.md
-- docs/DIAGRAMS.md
-- docs/PAPER_MAP.md
-- docs/EDITORIAL_GUIDE.md
-- docs/MAINTENANCE_CHECKLIST.md
+- front door: `README.md`
+- spine chapters: `docs/MANIFESTO.md`, `docs/ABSTRACT.md`, `docs/PRIMITIVES.md`, `docs/SEMANTICS.md`, `docs/MEMBERSHIP.md`, `docs/DISSEMINATION.md`, `docs/TRUST.md`, `docs/MERGE_AND_HEALING.md`, `docs/TOPOLOGY.md`
+- interstitial primitive chapters: `docs/GLOSSARY.md`, `docs/PERMUTATION_RANK.md`, `docs/ARBORITIONS.md`, `docs/MECHANICS.md`
+- appendices / support docs: `docs/THREAT_MODEL.md`, `docs/EVALUATION.md`, `docs/CRITIQUE.md`, `docs/EXAMPLES.md`, `docs/DIAGRAMS.md`, `docs/PAPER_MAP.md`, `docs/EDITORIAL_GUIDE.md`, `docs/MAINTENANCE_CHECKLIST.md`
 
 If the repo already has overlapping files, preserve good material and normalize rather than exploding file count unnecessarily.
 
@@ -177,6 +159,7 @@ For future documentation passes, treat these as maintenance constraints:
 
 - `docs/EDITORIAL_GUIDE.md` is the editorial source of truth for chapter roles, canonical reading order, term spellings, modal verb use, and proposal-vs-implementation wording.
 - `docs/MAINTENANCE_CHECKLIST.md` is the pre-acceptance checklist for terminology drift, cross-links, duplicate thesis, ambiguity, accidental scope growth, and policy-vs-semantics blur.
+- `README.md`, `docs/PAPER_MAP.md`, and `docs/EDITORIAL_GUIDE.md` should agree exactly on the active-doc inventory and canonical reading spine.
 
 When editing docs, prefer updating those control docs if repo-wide editorial rules change instead of re-explaining the same rule ad hoc in content chapters.
 

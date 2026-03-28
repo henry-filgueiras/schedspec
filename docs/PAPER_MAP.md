@@ -4,9 +4,18 @@ This document maps the repository into an eventual paper or treatise structure.
 
 Its purpose is editorial rather than semantic. It says what each chapter is for, what order it is best read in, and where adjacent archived material belongs without competing with the active project.
 
+## Active Docs
+
+Canonical active-doc inventory:
+
+- **Front door:** [`../README.md`](../README.md)
+- **Spine chapters:** [`MANIFESTO.md`](MANIFESTO.md), [`ABSTRACT.md`](ABSTRACT.md), [`PRIMITIVES.md`](PRIMITIVES.md), [`SEMANTICS.md`](SEMANTICS.md), [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md)
+- **Interstitial primitive chapters:** [`GLOSSARY.md`](GLOSSARY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), [`MECHANICS.md`](MECHANICS.md)
+- **Appendices / support docs:** [`THREAT_MODEL.md`](THREAT_MODEL.md), [`EVALUATION.md`](EVALUATION.md), [`CRITIQUE.md`](CRITIQUE.md), [`EXAMPLES.md`](EXAMPLES.md), [`DIAGRAMS.md`](DIAGRAMS.md), [`PAPER_MAP.md`](PAPER_MAP.md), [`EDITORIAL_GUIDE.md`](EDITORIAL_GUIDE.md), [`MAINTENANCE_CHECKLIST.md`](MAINTENANCE_CHECKLIST.md)
+
 ## Reading Order
 
-The intended active reading spine is:
+The canonical reading spine is:
 
 1. **Dangerous preface / manifesto**  
    [`MANIFESTO.md`](MANIFESTO.md)
@@ -67,7 +76,7 @@ Its job is to define compact shared terms and fast distinctions so that later ch
 
 ### Glossary
 
-[`GLOSSARY.md`](GLOSSARY.md) is the quick index.
+[`GLOSSARY.md`](GLOSSARY.md) is an interstitial primitive chapter.
 
 Its job is to give the reader a fast stable lookup surface for the load-bearing terms without replacing either `PRIMITIVES.md` or `SEMANTICS.md`.
 
@@ -79,19 +88,19 @@ Its job is to define the protocol objects, decision surfaces, invariants, and sk
 
 ### Permutation Rank
 
-[`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) is the deterministic-ordering chapter.
+[`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) is an interstitial primitive chapter.
 
 Its job is to treat seeded accountable ordering as a first-class primitive rather than as a convenience trick hidden inside witness or repair code.
 
 ### Arboritions
 
-[`ARBORITIONS.md`](ARBORITIONS.md) is the overlay-forest chapter.
+[`ARBORITIONS.md`](ARBORITIONS.md) is an interstitial primitive chapter.
 
 Its job is to define adaptive dissemination, witness, and repair forests as explicit protocol structure instead of implementation residue.
 
 ### Mechanics
 
-[`MECHANICS.md`](MECHANICS.md) is the bridge chapter.
+[`MECHANICS.md`](MECHANICS.md) is an interstitial primitive chapter.
 
 Its job is to turn the semantic model into algorithm-shaped procedures without pretending the repo already contains a complete runtime or wire protocol.
 
@@ -127,31 +136,31 @@ Its job is to explain locality, hierarchy, parent-proxy interaction, permutation
 
 ### Threat Model
 
-[`THREAT_MODEL.md`](THREAT_MODEL.md) is the pressure chapter.
+[`THREAT_MODEL.md`](THREAT_MODEL.md) is an appendix / support chapter.
 
 Its job is to say what hostile timing, stale witnesses, scope abuse, and adversarial behavior the design is trying to remain honest under.
 
 ### Evaluation
 
-[`EVALUATION.md`](EVALUATION.md) is the judgment chapter.
+[`EVALUATION.md`](EVALUATION.md) is an appendix / support chapter.
 
 Its job is to say how the design should be compared, stressed, costed, and potentially falsified.
 
 ### Critique
 
-[`CRITIQUE.md`](CRITIQUE.md) is the internal reviewer chapter.
+[`CRITIQUE.md`](CRITIQUE.md) is an appendix / support chapter.
 
 Its job is to state the strongest fair objections to the project, distinguish superficial complaints from genuinely dangerous ones, and say where the whole proposal could still fail.
 
 ### Examples
 
-[`EXAMPLES.md`](EXAMPLES.md) is the proving ground.
+[`EXAMPLES.md`](EXAMPLES.md) is an appendix / support chapter.
 
 Its job is to force the primitives and chapters to interact in concrete operating conditions.
 
 ### Diagrams
 
-[`DIAGRAMS.md`](DIAGRAMS.md) is the visual companion.
+[`DIAGRAMS.md`](DIAGRAMS.md) is an appendix / support chapter.
 
 Its job is to keep the protocol shape legible in canonical editable Mermaid form.
 
