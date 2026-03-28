@@ -2,6 +2,8 @@
 
 Resonant Membership is a design-first systems treatise on gossip, trust, and convergence under partial observability. The claim is not that cluster membership is just a faster heartbeat table; it is that once bootstrap, witness, scoped dissemination, trust, merge rules, partition healing, hierarchy, and operator visibility become first-class, membership stops being a side channel and becomes a protocol for coordinated belief under weak coordination.
 
+This repository is organized around Resonant Membership as the active center of gravity. Earlier or adjacent threads, especially ChronOS and SameDiff, are preserved as archived lineages rather than treated as co-equal active projects.
+
 ## Three Theses
 
 - **Membership is a problem of converging belief, not merely detecting liveness.**
@@ -82,6 +84,24 @@ merger:
 - [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md): failures, adversaries, and abuse cases
 - [`docs/EXAMPLES.md`](docs/EXAMPLES.md): worked scenarios
 - [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md): canonical Mermaid diagrams
+
+## Project Map
+
+If you are here for:
+
+- **Resonant Membership:** start with [`docs/MANIFESTO.md`](docs/MANIFESTO.md), then [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), and [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
+- **ChronOS:** see the archived lineage in [`notes/archive/chronos/README.md`](notes/archive/chronos/README.md)
+- **SameDiff:** see the archived adjacent note in [`notes/archive/SAMEDIFF.md`](notes/archive/SAMEDIFF.md)
+
+## Repository Architecture
+
+The repository currently has:
+
+- one active project surface under `README.md` and `docs/`: Resonant Membership
+- one archived sibling lineage under `notes/archive/chronos/`: ChronOS / chrono flow
+- one archived adjacent note under `notes/archive/SAMEDIFF.md`: SameDiff / replay-diff lineage
+
+This is intentional. The repo should read as one active treatise with preserved historical or adjacent material, not as three partially overlapping active projects.
 
 ## Status
 

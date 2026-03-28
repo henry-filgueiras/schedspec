@@ -1,6 +1,6 @@
 # Examples
 
-These are short scenarios meant to make the abstractions concrete without pretending the protocol is fully implemented.
+These are Resonant Membership scenarios meant to make the abstractions concrete without pretending the protocol is fully implemented.
 
 ## 1. Bootstrapping A New Rack
 

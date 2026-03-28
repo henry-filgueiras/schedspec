@@ -22,6 +22,8 @@ The center of gravity is:
 - hierarchy and topology
 - operator observability
 
+Resonant Membership is the active center of gravity of the repo. ChronOS and SameDiff, if preserved, should be treated as archived adjacent lineages rather than co-equal active projects unless the user explicitly asks for an umbrella architecture.
+
 ## Tone
 
 Write like a serious systems treatise with dangerous preface energy:
