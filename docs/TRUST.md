@@ -46,6 +46,19 @@ Trust roots need not be global. A trust root may be authoritative in one scope a
 
 That scoped quality is what keeps trust from collapsing into a single hidden ranking for the entire system.
 
+## Trust-Root Lifecycle
+
+Trust-root status should be treated as visible scoped protocol state or visible deployment input, not as hidden folklore.
+
+At minimum, the repo's semantics require that a conforming design be able to explain:
+
+- why a source is acting as a trust root in this scope
+- whether that standing came from operator policy, cryptographic lineage, or earned witness history
+- what kinds of evidence can narrow, suspend, or revoke that standing
+- whether the repair in question is subject repair, trust-source repair, or both
+
+Trust-root promotion and demotion are intentionally policy-shaped, but they are not semantically free-form. If a source can accumulate foundational influence from converged history, the system must also be able to explain how that influence is scoped, challenged, and reduced.
+
 ## Confidence And Witness Quality
 
 Confidence is not the same thing as trust.

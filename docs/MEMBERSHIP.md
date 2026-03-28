@@ -46,19 +46,27 @@ The core semantic states are therefore not merely liveness labels. They are stag
 
 ## Membership Lifecycle
 
-A subject may move through states such as:
+A subject's scoped belief state moves through the canonical protocol states below:
 
 - unknown
 - introduced
-- locally witnessed
-- provisionally accepted
-- widely accepted
+- witnessed
+- provisional
+- accepted
 - suspected
 - disputed
 - quarantined
 - removed
 
 These states are not merely liveness labels. They are stages in the formation, spread, and repair of belief.
+
+For reading discipline across the repo:
+
+- `witnessed` is the state reached once introduction has acquired protocol-visible witness records
+- `provisional` is bounded scoped acceptance that has not yet earned wider confidence
+- `accepted` is stronger scoped convergence; phrases like "widely accepted" describe this state rather than introducing a second accepted state
+
+`revocation` is not a separate durable subject state. It is a visible transition event that withdraws prior acceptance or prior trust and may drive a subject or witness toward `suspected`, `disputed`, `quarantined`, or `removed` depending on scope and evidence.
 
 ## Bootstrap And Introduction
 
@@ -85,7 +93,7 @@ Claims should move through a witness pipeline:
 1. a subject is introduced
 2. candidate witnesses are selected
 3. witnesses attach local observation, confidence, and trust weight
-4. the scope decides whether the claim is tentative, accepted, disputed, or quarantined
+4. the scope decides whether the resulting belief state is provisional, accepted, disputed, or quarantined
 
 This pipeline exists to prevent first contact from becoming irreversible truth.
 

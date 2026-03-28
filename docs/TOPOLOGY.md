@@ -15,7 +15,7 @@ See also:
 
 Topology is often treated as an implementation detail beneath protocol semantics.
 
-Resonant Membership takes the opposite view. Locality, hierarchy, trust boundaries, and repair paths all shape what claims should mean, where they should travel, and which witnesses deserve belief.
+Resonant Membership takes the opposite view. Locality, hierarchy, trust boundaries, and repair paths all shape where claims should travel, which witnesses are operationally eligible, and how repair should proceed.
 
 The question is not only how to route efficiently. The deeper question is how to make the protocol honest about the structure of the world it is trying to converge across.
 
@@ -30,6 +30,8 @@ The relevant topological objects in this repo are:
 - permutation-ranked candidate sets that keep selection accountable
 
 Topology is therefore not only where packets travel. It is one of the places where the protocol decides what kind of propagation or repair is even appropriate.
+
+Scope still supplies semantic meaning and jurisdiction. Topology supplies path shape, locality pressure, and candidate eligibility. The two interact constantly, but they should not silently substitute for one another.
 
 ## Hierarchy Is Normal
 

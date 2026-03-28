@@ -6,35 +6,43 @@ Its purpose is editorial rather than semantic. It says what each chapter is for,
 
 ## Reading Order
 
-The intended paper spine is:
+The intended active reading spine is:
 
 1. **Dangerous preface / manifesto**  
    [`MANIFESTO.md`](MANIFESTO.md)
 2. **Abstract**  
    [`ABSTRACT.md`](ABSTRACT.md)
-3. **Primitives**  
+3. **Glossary companion**  
+   [`GLOSSARY.md`](GLOSSARY.md)
+4. **Primitives**  
    [`PRIMITIVES.md`](PRIMITIVES.md)
-4. **Semantics**  
+5. **Semantics**  
    [`SEMANTICS.md`](SEMANTICS.md)
-5. **Membership**  
+6. **Permutation rank**  
+   [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md)
+7. **Arboritions**  
+   [`ARBORITIONS.md`](ARBORITIONS.md)
+8. **Mechanics**  
+   [`MECHANICS.md`](MECHANICS.md)
+9. **Membership**  
    [`MEMBERSHIP.md`](MEMBERSHIP.md)
-6. **Dissemination**  
+10. **Dissemination**  
    [`DISSEMINATION.md`](DISSEMINATION.md)
-7. **Trust**  
+11. **Trust**  
    [`TRUST.md`](TRUST.md)
-8. **Merge and healing**  
+12. **Merge and healing**  
    [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md)
-9. **Topology**  
+13. **Topology**  
    [`TOPOLOGY.md`](TOPOLOGY.md)
-10. **Threat model**  
+14. **Threat model**  
    [`THREAT_MODEL.md`](THREAT_MODEL.md)
-11. **Evaluation**  
+15. **Evaluation**  
    [`EVALUATION.md`](EVALUATION.md)
-12. **Critique**  
+16. **Critique**  
    [`CRITIQUE.md`](CRITIQUE.md)
-13. **Examples**  
+17. **Examples**  
    [`EXAMPLES.md`](EXAMPLES.md)
-14. **Diagrams**  
+18. **Diagrams**  
    [`DIAGRAMS.md`](DIAGRAMS.md)
 
 ## Chapter Roles
@@ -57,11 +65,35 @@ Its job is to summarize the argument of the whole treatise in a paper-like way: 
 
 Its job is to define compact shared terms and fast distinctions so that later chapters can reuse words without drift. It should stay concise and avoid becoming the full semantic contract.
 
+### Glossary
+
+[`GLOSSARY.md`](GLOSSARY.md) is the quick index.
+
+Its job is to give the reader a fast stable lookup surface for the load-bearing terms without replacing either `PRIMITIVES.md` or `SEMANTICS.md`.
+
 ### Semantics
 
 [`SEMANTICS.md`](SEMANTICS.md) is the semantic backbone.
 
 Its job is to define the protocol objects, decision surfaces, invariants, and skeletal decision flows that a conforming design would need to preserve. This is where the model becomes crisp.
+
+### Permutation Rank
+
+[`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) is the deterministic-ordering chapter.
+
+Its job is to treat seeded accountable ordering as a first-class primitive rather than as a convenience trick hidden inside witness or repair code.
+
+### Arboritions
+
+[`ARBORITIONS.md`](ARBORITIONS.md) is the overlay-forest chapter.
+
+Its job is to define adaptive dissemination, witness, and repair forests as explicit protocol structure instead of implementation residue.
+
+### Mechanics
+
+[`MECHANICS.md`](MECHANICS.md) is the bridge chapter.
+
+Its job is to turn the semantic model into algorithm-shaped procedures without pretending the repo already contains a complete runtime or wire protocol.
 
 ### Membership
 

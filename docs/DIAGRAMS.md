@@ -45,20 +45,20 @@ stateDiagram-v2
 
 ## 2. Trust Pipeline
 
-This diagram makes the trust story sequential. Observations do not become accepted fact immediately. They move through claim formation, witness corroboration, trust weighting, and state transition, with room for staleness and revocation.
+This diagram makes the trust story sequential. Observations do not become accepted belief immediately. They move through claim formation, witness corroboration, trust weighting, and state transition, with room for staleness and revocation.
 
 Design invariant: trust and witness quality must shape belief formation before broad propagation occurs.
 
 ```mermaid
 flowchart LR
     O["Observation"] --> C["Claim"]
-    C --> W["Witnessed claim"]
+    C --> W["Witness record formed"]
     W --> D["Trust-weighted decision"]
-    D --> A["Accepted fact in scope"]
-    D --> Q["Quarantined or disputed state"]
+    D --> A["Accepted belief state in scope"]
+    D --> Q["Disputed or quarantined state"]
     A --> S["Stale"]
     S --> A["Fresh corroboration restores confidence"]
-    S --> R["Revoked or removed"]
+    S --> R["Revocation or removal transition"]
 ```
 
 ## 3. Partition Healing And Deterministic Reunion

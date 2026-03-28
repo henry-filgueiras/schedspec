@@ -34,6 +34,8 @@ Each mechanism below is described in the same way:
 
 Where helpful, the chapter uses light pseudocode. The pseudocode is semantic pseudocode, not implementation code.
 
+The chapter uses the canonical subject-state vocabulary from [`MEMBERSHIP.md`](MEMBERSHIP.md). Output classes such as provisional convergence, scoped disagreement, or quarantine are merge-result classifications that project onto that lifecycle rather than replacing it with a second state machine.
+
 ## Subject Introduction Into A Scope
 
 This is the entry loop by which a subject first becomes protocol-visible inside a scope.
@@ -268,6 +270,8 @@ This mechanism moves scoped summaries upward through bounded hierarchy surfaces.
 - deferred upward propagation
 - refusal to widen scope
 
+The digest sent upward is not an unstructured compression artifact. It should preserve enough scope, provenance, freshness, confidence, and residue information for the receiver to decide whether to accept the summary, request detail, or initiate repair.
+
 **Mechanics**
 
 ```text
@@ -402,6 +406,8 @@ deterministic_reunion(scope_a, scope_b, heal_round):
 
 This mechanism decides when a claim or witness should be suspended from acceptance, propagation, or both.
 
+`revocation` here is a visible transition event, not a separate durable lifecycle state. It may target subject standing, witness standing, or both.
+
 **Inputs**
 
 - conflicting witness records
@@ -470,7 +476,9 @@ This mechanism produces a merge result without laundering disagreement into fals
 
 ```text
 merge_with_residue(input):
-  dominant = compare_freshness_trust_scope(input)
+  admissible = filter_by_scope_and_provenance(input)
+  fresh = separate_fresh_from_stale(admissible)
+  dominant = compare_freshness_trust_scope(fresh)
   unresolved = detect_unresolved_conflict(input)
 
   if unresolved:
@@ -488,7 +496,7 @@ merge_with_residue(input):
 **Deterministic surfaces**
 
 - visible merge inputs and visible output classification
-- deterministic tie-break once higher-order semantic distinctions are exhausted
+- deterministic tie-break once freshness, provenance, scope authority, trust, and corroboration have been exhausted
 
 **Policy-shaped surfaces**
 

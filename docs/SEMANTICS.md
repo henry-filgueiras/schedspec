@@ -86,11 +86,12 @@ Semantically required:
 A **claim** is transmissible protocol content about a subject.
 
 A claim is not the same thing as an observation. A claim is what moves between observers and scopes.
+A claim is also not the same thing as the resulting scoped belief state. Claims are inputs to belief formation, not the final belief state itself.
 
 Fields or dimensions that matter:
 
 - subject
-- asserted state or membership fact
+- asserted state or membership claim
 - scope
 - introducer or provenance root
 - epoch or freshness context
@@ -270,6 +271,24 @@ Semantically required:
 
 - scopes must be explicit enough to explain why a claim mattered where it did
 
+### Scope Versus Topology Boundary
+
+**Scope** and **topology** are related but not interchangeable.
+
+Scope determines:
+
+- where a claim is semantically meaningful
+- which audience or authority boundary is in play
+- how scoped belief and merge authority should be interpreted
+
+Topology determines:
+
+- which witnesses are operationally eligible
+- which relay or repair paths are available
+- how dissemination, aggregation, and repair should move through the deployment
+
+Both may influence propagation, but they do so differently. Scope changes claim meaning and jurisdiction. Topology changes path shape, locality pressure, and candidate eligibility. A conforming design should not use topology as a hidden substitute for scope semantics.
+
 ### Freshness And Epoch
 
 **Freshness** is the temporal relevance of a claim, observation, or witness contribution.
@@ -304,6 +323,29 @@ Semantically required:
 
 - the system must be able to distinguish fresh, stale, and superseded evidence
 - epoch or equivalent generation context must be visible enough to support explanation of ordering and repair
+
+### Digest And Summary Objects
+
+A **digest** or **summary** is a compact representation of a scoped belief state used for anti-entropy, upward aggregation, or repair initiation.
+
+Minimum preserved fields:
+
+- subject identity or visible subject set
+- scope
+- freshness or epoch context
+- confidence or status summary
+- provenance or provenance root
+- residue indicator when disagreement remains material
+
+Invariants:
+
+- a digest may compress detail, but it must not erase the existence of material disagreement
+- a digest should remain distinguishable from full claim and witness-record material
+- summaries may trigger repair or escalation, but should not silently stand in for the full evidence needed for final merge when conflict remains live
+
+Semantically required:
+
+- digesting must preserve enough structure that explanation and repair remain possible
 
 ### Residue
 
@@ -372,6 +414,27 @@ Semantically required:
 - quarantine and revocation must be explainable protocol states, not informal implementation behavior
 - quarantine must be able to suspend propagation, acceptance, or both in a scoped way
 
+### Canonical Membership States
+
+The canonical subject-state vocabulary for the repo is:
+
+- `unknown`
+- `introduced`
+- `witnessed`
+- `provisional`
+- `accepted`
+- `suspected`
+- `disputed`
+- `quarantined`
+- `removed`
+
+Interpretation:
+
+- these are scoped belief states about a subject
+- merge outputs such as accepted convergence, provisional convergence, scoped disagreement, and quarantine project onto these states rather than replacing them with a second lifecycle vocabulary
+- `revocation` is a visible transition event, not a separate durable subject state
+- revocation may apply either to a subject's prior acceptance or to a witness or trust source's standing
+
 ## Decision Surfaces
 
 ### Merge Input
@@ -412,6 +475,8 @@ Semantically required:
 
 A **merge output** is the resulting scoped belief state produced by reconciliation.
 
+It is not the claim body itself. It is the protocol's current scoped belief about that claim material.
+
 Possible forms include:
 
 - accepted convergence
@@ -440,6 +505,18 @@ Intentionally open:
 Semantically required:
 
 - the output must remain explainable in terms of the inputs and decision policy
+
+### Merge Precedence Contract
+
+The repo intentionally leaves room for deployment-shaped merge policy, but the following constraints are semantic rather than optional:
+
+1. stale or superseded evidence must not dominate fresh admissible evidence merely because it comes from a historically strong source
+2. scope authority and provenance admissibility bound which evidence is even eligible to dominate in a given scope
+3. among admissible and fresh evidence, trust weight and corroboration quality may dominate over simple witness count
+4. deterministic permutation-rank tie-breaking is permitted only after higher-order distinctions are exhausted
+5. residue is mandatory when fresh admissible evidence remains materially unresolved after those comparisons
+
+This is a precedence family, not one frozen calculus. Its purpose is to constrain what kinds of hidden merge behavior would be semantically out of bounds.
 
 ### Permutation-Rank Seed And Candidate-Set Semantics
 
@@ -528,7 +605,7 @@ A compact claim lifecycle looks like:
 5. dissemination widens or stays bounded according to trust and scope
 6. later merge or healing may revise the visible state
 
-The important point is that a claim does not become a fact merely because it exists. It becomes meaningful through witness, trust, scope, and repair behavior.
+The important point is that a claim does not become a settled belief merely because it exists. It becomes meaningful through witness, trust, scope, and repair behavior.
 
 ## Witness-Selection Skeleton
 
@@ -549,7 +626,7 @@ A compact merge skeleton looks like:
 
 1. collect merge input
 2. separate fresh from stale evidence
-3. compare provenance, trust, corroboration, and scope authority
+3. compare provenance admissibility, scope authority, freshness, trust, and corroboration
 4. preserve unresolved disagreement as residue where needed
 5. produce accepted, provisional, disputed, quarantined, or residual output
 6. expose enough structure for explanation

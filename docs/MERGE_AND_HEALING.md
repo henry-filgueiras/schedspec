@@ -27,7 +27,7 @@ The hard case is that multiple scopes can accumulate internally coherent but mut
 Merge and healing operate over:
 
 - direct observations
-- witness claims
+- witness records
 - introducer provenance
 - freshness or epoch metadata
 - scope-local authority
@@ -49,6 +49,20 @@ It must answer:
 - how does the system distinguish delayed propagation from genuine conflict?
 
 Merge is therefore not just data-structure union. It is the point where the protocol states what kind of disagreement it is willing to remember.
+
+## Merge Precedence Contract
+
+This repo does not freeze one universal merge calculus, but it does commit to a constrained precedence family.
+
+At minimum:
+
+1. stale or superseded evidence must not dominate fresh admissible evidence merely because its source is historically strong
+2. scope authority and provenance admissibility bound which evidence may dominate in the first place
+3. among fresh admissible evidence, trust weight and corroboration quality may dominate over raw witness count
+4. deterministic permutation-rank tie-breaking is a last resort once higher-order distinctions are exhausted
+5. residue is mandatory when fresh admissible evidence remains materially unresolved after those comparisons
+
+Without those constraints, "merge policy" becomes too easy a place to hide contradictory semantics.
 
 ## Merge Outcomes
 

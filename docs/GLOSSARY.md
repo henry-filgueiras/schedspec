@@ -13,9 +13,11 @@ This page is deliberately brief. It is the index, not the full semantic argument
 The entries here are intentionally short. For semantics, invariants, and protocol consequences, follow the linked docs in [`PRIMITIVES.md`](PRIMITIVES.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), and [`ARBORITIONS.md`](ARBORITIONS.md).
 
 - **membership view:** a node's structured belief about who belongs and with what confidence
+- **subject:** the node, service, endpoint, or identity about which a claim is made
 - **claim:** a transmissible statement about membership state
 - **observation:** local evidence backing or disputing a claim
 - **witness:** an observer whose corroboration or dispute matters
+- **witness record:** the protocol-visible contribution a witness makes to a claim or belief state
 - **scope:** the audience or jurisdiction in which a claim is relevant
 - **epoch:** bounded time or generation context for ordering and freshness
 - **digest:** compact summary of a membership view for anti-entropy or repair
@@ -24,6 +26,7 @@ The entries here are intentionally short. For semantics, invariants, and protoco
 - **residue:** unresolved disagreement preserved as visible structure
 - **merge:** reconciliation of competing views
 - **quarantine:** bounded suspension of belief propagation or acceptance
+- **revocation:** explicit withdrawal of prior acceptance or prior trust
 - **hysteresis:** deliberate resistance to oscillation near thresholds
 - **anti-entropy:** explicit reconciliation mechanism for repairing drift
 - **scoped fanout:** propagation bounded by audience and policy

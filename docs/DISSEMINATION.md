@@ -53,6 +53,8 @@ A dissemination path may carry:
 
 Different forms imply different blast radii and different trust assumptions.
 
+In this repo, a digest or summary must still preserve scope, provenance root, freshness context, and any material residue signal. Summarization is allowed to compress detail, not to hide live disagreement.
+
 A system that treats all membership traffic as one undifferentiated message type gives up too much control over both cost and meaning.
 
 ## Parent-Proxy Pools
