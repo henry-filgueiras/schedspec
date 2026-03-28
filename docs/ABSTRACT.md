@@ -69,7 +69,9 @@ The point is to reject the idea that one flat fanout graph is the natural shape 
 
 ## Tradeoffs And Failure Modes
 
-This proposal is not a promise of cheap certainty. Once trust, scope, and witness quality become first-class, the protocol becomes more honest but also more demanding. It must carry more structure, preserve more disagreement, and expose more of its own uncertainty.
+This proposal is not a promise of cheap certainty.
+
+Once trust, scope, and witness quality become first-class, the protocol becomes more honest but also more demanding. It must carry more structure, preserve more disagreement, and expose more of its own uncertainty.
 
 Important costs and failure modes include:
 

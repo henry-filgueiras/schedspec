@@ -4,6 +4,8 @@ This is the compact vocabulary index. For operational detail and invariants, see
 
 ## Quick Index
 
+The entries here are intentionally short. For semantics, invariants, and protocol consequences, follow the linked docs in [`PRIMITIVES.md`](PRIMITIVES.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), and [`ARBORITIONS.md`](ARBORITIONS.md).
+
 - **membership view:** a node's structured belief about who belongs and with what confidence
 - **claim:** a transmissible statement about membership state
 - **observation:** local evidence backing or disputing a claim

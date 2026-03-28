@@ -43,7 +43,9 @@ A flat fanout graph hides too many important distinctions:
 - steady-state spread versus partition repair
 - scope-local confidence versus global tentative belief
 
-What looks simple as a graph often becomes confusing as a protocol. The graph is cleaner than the semantics it is asked to carry.
+What looks simple as a graph often becomes confusing as a protocol.
+
+The graph is cleaner than the semantics it is asked to carry.
 
 Arboritions make the protocol admit that different kinds of movement want different kinds of shape.
 
@@ -64,7 +66,9 @@ It may instead consist of multiple overlapping or transient trees serving differ
 - repair subtree
 - cross-scope bridging subtree
 
-That is why "adaptive overlay forest" is a useful explanatory alias. The protocol is not looking for one perfect spanning tree. It is shaping a family of related paths with different responsibilities.
+That is why "adaptive overlay forest" is a useful explanatory alias.
+
+The protocol is not looking for one perfect spanning tree. It is shaping a family of related paths with different responsibilities.
 
 ## Dissemination Overlays, Witness Overlays, And Repair Overlays
 
@@ -74,7 +78,9 @@ These roles often deserve separate emphasis:
 - **witness overlay:** gathers corroboration or dispute from chosen observers
 - **repair overlay:** carries anti-entropy and healing traffic after drift or partition
 
-An arborition may unify these overlays in simple cases or separate them in more complex deployments. What matters is that the protocol treats the distinction as meaningful instead of pretending one relay pattern naturally fits all three.
+An arborition may unify these overlays in simple cases or separate them in more complex deployments.
+
+What matters is that the protocol treats the distinction as meaningful instead of pretending one relay pattern naturally fits all three.
 
 ## Adaptation To Locality, Trust, And Partition State
 
@@ -89,7 +95,9 @@ Arboritions should be allowed to adapt to:
 
 Adaptation is not decorative. It is what keeps the overlay useful once the system stops looking like a uniform graph.
 
-Locality may favor nearby witness paths. Trust may favor different upward aggregation surfaces. Partition state may temporarily reshape repair subtrees around bounded reunion points. A serious protocol should be able to say not only that the overlay changed, but why it changed.
+Locality may favor nearby witness paths. Trust may favor different upward aggregation surfaces. Partition state may temporarily reshape repair subtrees around bounded reunion points.
+
+A serious protocol should be able to say not only that the overlay changed, but why it changed.
 
 ## Parent-Proxy Interaction
 
@@ -102,7 +110,9 @@ A local scope often cannot or should not communicate upward through unrestricted
 - cross-scope repair traffic
 - bounded external visibility
 
-An arborition is the broader overlay context in which those parent-proxy choices make sense. It shows how local witness subtrees connect to upward aggregation paths and how repair paths cross hierarchy boundaries without implying that every node should talk to every higher-level peer directly.
+An arborition is the broader overlay context in which those parent-proxy choices make sense.
+
+It shows how local witness subtrees connect to upward aggregation paths and how repair paths cross hierarchy boundaries without implying that every node should talk to every higher-level peer directly.
 
 ## Relation To Hierarchy And Locality
 
@@ -129,7 +139,9 @@ A useful system should answer:
 - where does upward aggregation bottleneck?
 - which scope boundary forced a topology transition?
 
-This is debugging value, not just elegance. A system that cannot expose these structures leaves operators with message counts and intuition, which is rarely enough during partition or trust-sensitive repair.
+This is debugging value, not just elegance.
+
+A system that cannot expose these structures leaves operators with message counts and intuition, which is rarely enough during partition or trust-sensitive repair.
 
 ## Design Invariants
 
@@ -154,7 +166,9 @@ Costs:
 - possible operator confusion if too many overlay roles are hidden
 - more policy coupling between topology, trust, and dissemination
 
-Arboritions are therefore not free. They are useful precisely because they make overlay policy explicit, and explicit policy is harder to ignore than a generic fanout loop.
+Arboritions are therefore not free.
+
+They are useful precisely because they make overlay policy explicit, and explicit policy is harder to ignore than a generic fanout loop.
 
 ## Non-Claims
 

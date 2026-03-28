@@ -14,7 +14,9 @@ See also:
 
 This section defines what it means to maintain membership when no participant can directly inspect global truth. The aim is to make "membership as belief state" operational rather than merely rhetorical.
 
-A system that speaks only in terms of alive and dead hides too much. It hides who introduced a subject, who corroborated it, which scope currently accepts it, what evidence remains disputed, and why some observers are trusted more than others. Resonant Membership treats those details as the substance of membership rather than as annotations on top of a liveness table.
+A system that speaks only in terms of alive and dead hides too much.
+
+It hides who introduced a subject, who corroborated it, which scope currently accepts it, what evidence remains disputed, and why some observers are trusted more than others. Resonant Membership treats those details as the substance of membership rather than as annotations on top of a liveness table.
 
 ## Membership As Belief State
 
@@ -103,7 +105,9 @@ Important membership failure modes include:
 - oscillation between suspicion and acceptance
 - silent disagreement hidden behind summary tables
 
-A belief-oriented membership system is more honest about those risks, but it also exposes them more often. The protocol should therefore make these failures inspectable instead of pretending they are noise.
+A belief-oriented membership system is more honest about those risks, but it also exposes them more often.
+
+The protocol should therefore make these failures inspectable instead of pretending they are noise.
 
 ## Operator Interpretation
 

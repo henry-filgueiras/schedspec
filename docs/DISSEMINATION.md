@@ -39,7 +39,9 @@ A dissemination path may carry:
 - healing request
 - quarantine notice
 
-Different forms imply different blast radii and different trust assumptions. A system that treats all membership traffic as one undifferentiated message type gives up too much control over both cost and meaning.
+Different forms imply different blast radii and different trust assumptions.
+
+A system that treats all membership traffic as one undifferentiated message type gives up too much control over both cost and meaning.
 
 ## Parent-Proxy Pools
 
@@ -76,7 +78,9 @@ Important failure modes include:
 - parent-proxy pools becoming hidden choke points
 - repair traffic overwhelming steady-state fanout
 
-Dissemination should therefore be observable enough that operators can tell whether a problem is due to policy, topology, or trust. A protocol that only exposes message counts will have metrics without explanation.
+Dissemination should therefore be observable enough that operators can tell whether a problem is due to policy, topology, or trust.
+
+A protocol that only exposes message counts will have metrics without explanation.
 
 ## Operator Interpretation
 

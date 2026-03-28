@@ -19,6 +19,8 @@ The goal is not merely definitional hygiene. A membership design built on partia
 
 ## Core Terms
 
+The definitions below are intentionally compact. They are the small vocabulary the rest of the repo should keep reusing without drift.
+
 - **membership view:** a node's current structured belief about who belongs, in what state, under what confidence
 - **subject:** the node, service, endpoint, or identity about which a claim is made
 - **claim:** a statement about membership state, identity, trust, scope, or reachability
@@ -81,7 +83,9 @@ The design aims to preserve these invariants:
 
 ## Tradeoffs And Failure Modes
 
-Vocabulary does not remove ambiguity by itself. The failure mode this section tries to prevent is quieter: multiple components behaving coherently locally while disagreeing about the meaning of key terms globally. Once that happens, even correct-looking convergence becomes hard to reason about.
+Vocabulary does not remove ambiguity by itself.
+
+The failure mode this section tries to prevent is quieter: multiple components behaving coherently locally while disagreeing about the meaning of key terms globally. Once that happens, even correct-looking convergence becomes hard to reason about.
 
 Another danger is compression in the wrong place. If the system uses the word `membership` to hide distinctions among introduction, witness, acceptance, dispute, quarantine, and residue, then the paper may look clean while the protocol itself remains under-specified.
 

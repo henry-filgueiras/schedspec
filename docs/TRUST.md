@@ -14,7 +14,9 @@ Partial observability creates a simple but dangerous question: when two claims c
 
 This section exists to keep trust from becoming an invisible scalar hidden behind implementation code.
 
-The problem is not merely whether a source is trusted. The problem is how trust should shape introduction, witness choice, blast radius, merge priority, and the threshold for quarantine or hysteresis. If those choices stay implicit, the protocol will still have a trust model, but no one will be able to say what it is.
+The problem is not merely whether a source is trusted.
+
+The problem is how trust should shape introduction, witness choice, blast radius, merge priority, and the threshold for quarantine or hysteresis. If those choices stay implicit, the protocol will still have a trust model, but no one will be able to say what it is.
 
 ## Trust Is Protocol State
 
@@ -39,7 +41,9 @@ Trust roots may come from:
 - deployment lineage
 - previously converged witness history
 
-Trust roots need not be global. A trust root may be authoritative in one scope and merely informative in another. That scoped quality is what keeps trust from collapsing into a single hidden ranking for the entire system.
+Trust roots need not be global. A trust root may be authoritative in one scope and merely informative in another.
+
+That scoped quality is what keeps trust from collapsing into a single hidden ranking for the entire system.
 
 ## Confidence And Witness Quality
 

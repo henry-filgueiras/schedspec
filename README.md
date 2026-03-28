@@ -111,6 +111,8 @@ This repository is a systems design document set. It describes intended primitiv
 
 ## Start Here
 
-For the active project, read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis, [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, then [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
+For the active project, read [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis.
+
+Then read [`docs/GLOSSARY.md`](docs/GLOSSARY.md) and [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) for vocabulary, followed by [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
 
 Keep [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/EXAMPLES.md`](docs/EXAMPLES.md) nearby while reading.

@@ -22,7 +22,9 @@ Too often those choices quietly inherit local accidents:
 - host-local peer enumeration
 - implementation-specific sorting quirks
 
-That ambiguity is not free. It turns protocol behavior into hidden control flow. Permutation rank exists to make those choices reproducible, inspectable, and accountable.
+That ambiguity is not free.
+
+It turns protocol behavior into hidden control flow. Permutation rank exists to make those choices reproducible, inspectable, and accountable.
 
 ## Definition
 
@@ -50,7 +52,9 @@ The resulting order can then be reused for multiple selection tasks without fall
 
 ## Why Seeded Deterministic Ordering Matters
 
-Determinism by itself is not enough. The seed and ranking function matter because they explain why the order exists in the shape it does.
+Determinism by itself is not enough.
+
+The seed and ranking function matter because they explain why the order exists in the shape it does.
 
 That makes it possible to answer questions like:
 
@@ -59,7 +63,9 @@ That makes it possible to answer questions like:
 - why did repair traffic begin with this subset of nodes?
 - why did this tie resolve in this direction instead of another?
 
-Permutation rank is therefore not a micro-optimization. It is a discipline against accidental choice masquerading as protocol choice.
+Permutation rank is therefore not a micro-optimization.
+
+It is a discipline against accidental choice masquerading as protocol choice.
 
 ## Accountable Fanout
 
@@ -92,7 +98,9 @@ Permutation rank gives a principled way to choose that set:
 - select the first `k` peers or the first acceptable peers by policy
 - reuse the same ordering for deterministic reunion across observers
 
-This matters because healing under partial observability benefits from shared expectations about who should meet first. Without that discipline, reunion can become noisy, redundant, and hard to explain.
+This matters because healing under partial observability benefits from shared expectations about who should meet first.
+
+Without that discipline, reunion can become noisy, redundant, and hard to explain.
 
 ## Deterministic Witness-Set Selection
 
@@ -123,7 +131,9 @@ Distributed systems accumulate ties:
 
 Tie-breaking should not collapse into "whatever this node happened to look at first."
 
-Permutation rank provides a deterministic arbitration surface when higher-order semantic distinctions are exhausted. It does not replace merge semantics, but it prevents the tail end of the merge decision from dissolving into implementation accident.
+Permutation rank provides a deterministic arbitration surface when higher-order semantic distinctions are exhausted.
+
+It does not replace merge semantics, but it prevents the tail end of the merge decision from dissolving into implementation accident.
 
 ## Auditability And Reproducibility
 
