@@ -28,124 +28,186 @@ Audit scope:
 Method:
 
 - read the full active docs set
-- check for cross-document consistency, contradiction, ambiguity, and navigation quality
 - record only grounded issues visible in the current text
 - do not rewrite the spec in this pass
 
 ## Executive Summary
 
-The repo has a strong center of gravity, a disciplined voice, and unusually good thesis coherence for a design-first systems project. The problems are not conceptual collapse. The problems are spec-shape problems: a few core boundaries are still unstable, some load-bearing terms do not yet have one canonical home, and the navigation stack understates part of the active spec.
+The repo is strong on framing, voice, and conceptual through-lines. It now has a real semantic backbone, a mechanics bridge, examples, diagrams, evaluation, and critique. The remaining problems are mostly spec-quality closure problems rather than vision problems.
 
-Most issues cluster around one pattern: the repo often says the right thing, but says it in several partially overlapping ways. That is still survivable now. It becomes dangerous later, when examples, diagrams, mechanics, and chapter prose begin to harden into different implied protocols.
+The sharpest issues are:
+
+- the protocol still lacks one fully canonical lifecycle vocabulary
+- scope semantics and topology policy remain partially entangled
+- digest and summary objects are load-bearing but still under-specified
+- trust-root lifecycle semantics remain too open relative to the risks the repo itself highlights
+
+There is also still some repetition and chapter bleed, especially at the public front door and in the relationship between support docs and the canonical paper spine.
 
 ## Severity Summary
 
 - Critical: 0
-- High: 6
-- Medium: 4
+- High: 4
+- Medium: 3
 - Low: 1
 
 ## Findings
 
-### 1. Active spec set and paper spine do not agree
+### 1. Membership state vocabulary is still not fully canonical
 
 - Severity: High
-- Location: `README.md:11-16`, `README.md:104-121`, `docs/PAPER_MAP.md:7-38`, `docs/PAPER_MAP.md:40-124`
-- Issue type: Inconsistency, Cross-link / navigation weakness
-- Short description: The repo now clearly treats `SEMANTICS.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, and `MECHANICS.md` as active, load-bearing chapters, but `PAPER_MAP.md` still presents a paper spine that omits `GLOSSARY.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, and `MECHANICS.md`. `README.md` lists most of them, but not `MECHANICS.md` in the main docs inventory. The result is an unstable answer to a basic question: what is the canonical active spec set?
-- Suggested fix: Normalize one canonical reading spine and one canonical active-doc inventory. Decide whether `GLOSSARY`, `PERMUTATION_RANK`, `ARBORITIONS`, and `MECHANICS` are appendix material, interstitial chapters, or first-class spine chapters, then make `README.md` and `PAPER_MAP.md` agree.
+- Location:
+  - `docs/MEMBERSHIP.md`
+  - `docs/SEMANTICS.md`
+  - `docs/DIAGRAMS.md`
+  - `docs/MECHANICS.md`
+- Issue type: Inconsistency, Ambiguity
+- Short description:
+  The repo still uses several near-overlapping vocabularies for state and outcome:
+  `introduced`, `locally witnessed`, `provisionally accepted`, `widely accepted`, `suspected`, `disputed`, `quarantined`, `removed` in `MEMBERSHIP.md`; `Introduced`, `Witnessed`, `Provisional`, `Accepted`, `Disputed`, `Quarantined`, `Suspected`, `Removed` in `DIAGRAMS.md`; and output classes such as `accepted convergence`, `provisional convergence`, `scoped disagreement`, `quarantine`, and `residue` in `SEMANTICS.md` and `MECHANICS.md`.
+  These are close enough to feel coherent, but not crisp enough to count as one canonical protocol state model.
+- Suggested fix:
+  Define one canonical lifecycle table that distinguishes:
+  - durable subject states
+  - merge-output classes
+  - transition events such as revocation
+  Then reference that table everywhere else.
 
-### 2. Membership lifecycle state vocabulary drifts across chapters
-
-- Severity: High
-- Location: `docs/MEMBERSHIP.md:47-61`, `docs/SEMANTICS.md:520-531`, `docs/DIAGRAMS.md:23-44`, `docs/MECHANICS.md:452-505`
-- Issue type: Inconsistency, Terminology drift
-- Short description: The repo does not currently maintain one canonical state machine. `MEMBERSHIP.md` names `unknown`, `introduced`, `locally witnessed`, `provisionally accepted`, `widely accepted`, `suspected`, `disputed`, `quarantined`, `removed`. `DIAGRAMS.md` uses `Unknown`, `Introduced`, `Witnessed`, `Provisional`, `Accepted`, `Disputed`, `Quarantined`, `Suspected`, `Removed`. `SEMANTICS.md` describes a lifecycle in verbs and output classes rather than the same explicit state list. `MECHANICS.md` talks in output classes such as accepted, provisional, scoped disagreement, quarantine, and residue. These are close, but not identical, and they are close in exactly the dangerous way that causes later drift.
-- Suggested fix: Define one canonical membership state machine and treat all other renderings as projections of it. Explicitly say which labels are protocol states, which are operator summaries, and which are merge-output classes.
-
-### 3. The relationship among quarantine, revocation, removal, suspicion, and dispute is not fixed
-
-- Severity: High
-- Location: `docs/SEMANTICS.md:340-374`, `docs/MEMBERSHIP.md:49-59`, `docs/DIAGRAMS.md:52-61`, `docs/MECHANICS.md:401-450`
-- Issue type: Ambiguity, Gap
-- Short description: `SEMANTICS.md` gives `quarantine` and `revocation` their own semantic section. `MEMBERSHIP.md` uses `suspected`, `disputed`, `quarantined`, and `removed` in the lifecycle. `DIAGRAMS.md` shows `Revoked or removed` in the trust pipeline, but not in the main state machine. `MECHANICS.md` has quarantine and release logic but no crisp canonical relation to removal or revocation. The repo therefore lacks a stable answer to whether revocation is a state, an event, a cause of removal, a trust-only transition, or some combination of these.
-- Suggested fix: Add a canonical transition table for `suspected`, `disputed`, `quarantined`, `revoked`, and `removed`. State which are subject states, which are witness or trust-source states, and which are transition events rather than durable states.
-
-### 4. Scope semantics and topology semantics are still partially entangled
+### 2. Scope semantics and topology policy are still partially entangled
 
 - Severity: High
-- Location: `docs/PRIMITIVES.md:83-90`, `docs/SEMANTICS.md:233-271`, `docs/TOPOLOGY.md:22-33`, `docs/TOPOLOGY.md:49-58`, `docs/ARBORITIONS.md:120-132`
+- Location:
+  - `docs/SEMANTICS.md`
+  - `docs/DISSEMINATION.md`
+  - `docs/TOPOLOGY.md`
+  - `docs/ARBORITIONS.md`
 - Issue type: Policy vs semantics confusion, Ambiguity
-- Short description: The repo correctly says `scope` and `topology` are different, but several chapters still let them blur. `PRIMITIVES.md` says scope controls where a claim is relevant while topology shapes how it travels. `SEMANTICS.md` makes scope part of claim meaning and merge authority. `TOPOLOGY.md` then treats scopes arranged in hierarchy as topological objects and says topology helps decide what claims should mean. `ARBORITIONS.md` says overlay structure is part of policy for how belief should move. The result is a recurring blur between semantic jurisdiction and transport or coordination shape.
-- Suggested fix: Add one explicit boundary section, probably in `SEMANTICS.md` or `TOPOLOGY.md`, that states: what scope determines, what topology determines, what can influence both, and which conflicts are resolved at semantic versus policy layers.
+- Short description:
+  The repo repeatedly says scope and topology are different, but still lets them bleed into one another. `SEMANTICS.md` treats scope as part of claim meaning and authority. `DISSEMINATION.md`, `TOPOLOGY.md`, and `ARBORITIONS.md` then describe path shape, hierarchy, parent-proxy pools, and overlay choice in ways that sometimes sound like they also determine claim meaning. The intended distinction is present, but not yet tight enough for a future implementation or formalization pass.
+- Suggested fix:
+  Add one canonical boundary section, ideally in `SEMANTICS.md`, that states:
+  - what scope determines
+  - what topology determines
+  - what may be influenced by both
+  - what must never silently migrate from policy into semantics
 
-### 5. Merge precedence is central but still under-specified
-
-- Severity: High
-- Location: `docs/MERGE_AND_HEALING.md:44-51`, `docs/MERGE_AND_HEALING.md:105-116`, `docs/SEMANTICS.md:546-557`, `docs/MECHANICS.md:471-498`
-- Issue type: Gap, Ambiguity
-- Short description: The repo repeatedly names the decisive merge dimensions: freshness, trust weight, corroboration strength, scope authority, provenance, and residue preservation. But it never establishes even a constrained precedence family for how those interact. `MERGE_AND_HEALING.md` explicitly asks what dominates. `SEMANTICS.md` gives only a skeleton. `MECHANICS.md` compresses the real decision into `compare_freshness_trust_scope(input)`. That is too open for one of the repo’s most load-bearing semantic surfaces.
-- Suggested fix: Define a minimal canonical merge precedence contract. It does not need one global calculus, but it should constrain the space: for example, which dimensions may dominate outright, which may only tie-break, and when residue is mandatory instead of optional.
-
-### 6. Trust-root promotion and trust repair semantics are missing relative to the repo’s own threat claims
+### 3. Digest and summary semantics are under-specified relative to their importance
 
 - Severity: High
-- Location: `docs/TRUST.md:34-47`, `docs/TRUST.md:85-105`, `docs/THREAT_MODEL.md:74-83`, `docs/CRITIQUE.md:90-115`, `docs/EXAMPLES.md:373-394`
-- Issue type: Gap, Policy vs semantics confusion
-- Short description: `TRUST.md` says trust roots may come from cryptographic identity, operator policy, deployment lineage, or previously converged witness history. That is a major semantic opening. At the same time, `THREAT_MODEL.md` and `CRITIQUE.md` warn about trust laundering, hidden authority, and soft centralization, while `EXAMPLES.md` includes witness re-evaluation and trust repair. The repo therefore raises the problem sharply but does not define the admission or demotion semantics strongly enough to keep the trust model from becoming hidden policy.
-- Suggested fix: Add a narrow trust-root lifecycle section: how a source becomes trust-root-like, how scope limits apply, what evidence can demote it, and whether trust-root status is semantic state or deployment policy input.
-
-### 7. Claim semantics and belief-state semantics are still partly conflated
-
-- Severity: Medium
-- Location: `docs/SEMANTICS.md:84-121`, `docs/SEMANTICS.md:411-442`, `docs/MEMBERSHIP.md:35-45`, `docs/DIAGRAMS.md:46-62`, `docs/EXAMPLES.md:58-65`, `docs/MECHANICS.md:58-76`
-- Issue type: Ambiguity, Policy vs semantics confusion
-- Short description: The repo insists that claims, observations, witness records, and merged belief states are distinct, but some artifacts still collapse them. `SEMANTICS.md` keeps the distinction sharp. `MEMBERSHIP.md` sometimes speaks as if a claim and a scoped belief state are nearly interchangeable. `DIAGRAMS.md` labels the trust pipeline output as `Accepted fact in scope`, which cuts against the repo’s broader belief-state framing. `EXAMPLES.md` bundles multiple semantic layers into one claim block such as `introduced + reachable + eligible-for-local-routing`. `MECHANICS.md` uses `asserted_state="introduced"` without clarifying the canonical state taxonomy behind it.
-- Suggested fix: Define a single mapping among claim body, scoped belief state, and operator-visible status. Also replace any “fact” wording that accidentally implies stronger ontology than the rest of the repo claims.
-
-### 8. Witness terminology drifts across the docs
-
-- Severity: Medium
-- Location: `docs/SEMANTICS.md:163-196`, `docs/MERGE_AND_HEALING.md:27-37`, `docs/DIAGRAMS.md:54-57`, `docs/EXAMPLES.md:116-160`, `docs/MECHANICS.md:300-352`
-- Issue type: Terminology drift
-- Short description: `SEMANTICS.md` defines `witness record` as the structured protocol-visible witness contribution. Other chapters refer to `witness claims`, `witness histories`, `witnessed claim`, `witness set`, and plain `witnesses` without always saying whether they mean observers, their observations, their structured attestations, or their aggregate effect on belief. The repo’s intent is clear, but the noun discipline is not yet stable.
-- Suggested fix: Choose one canonical object term for the protocol-visible witness contribution, then explicitly define the related but different terms: witness as actor, observation as evidence, witness record as protocol object, witness history as a collection, witness set as selected peers.
-
-### 9. Digest and summary objects are load-bearing but not canonically specified
-
-- Severity: Medium
-- Location: `docs/GLOSSARY.md:21`, `docs/DISSEMINATION.md:44-55`, `docs/MERGE_AND_HEALING.md:94-101`, `docs/MECHANICS.md:254-299`
+- Location:
+  - `docs/GLOSSARY.md`
+  - `docs/DISSEMINATION.md`
+  - `docs/MERGE_AND_HEALING.md`
+  - `docs/MECHANICS.md`
 - Issue type: Gap
-- Short description: `digest`, `witness digest`, `residue summary`, `compact summaries`, and `scoped digest` are used in dissemination, healing, and parent-proxy mechanics. But outside the glossary, there is no dedicated semantic object definition for what a digest must preserve, what it may omit, and when summarization is no longer semantically safe. That is a spec gap because digesting is one of the main places where explanation can quietly die.
-- Suggested fix: Add a small semantic subsection for digest and summary objects: minimum preserved fields, prohibited information loss, and which decisions may not rely on summaries alone.
+- Short description:
+  Digests, scoped summaries, and compact summaries are central to dissemination, reunion, parent-proxy aggregation, and repair. The repo now says they matter, and `MECHANICS.md` correctly warns that summary-only reasoning is not always sufficient. But there is still no single canonical semantic contract for what a digest must preserve, what it may omit, and which decisions may not safely rely on it.
+- Suggested fix:
+  Add a small dedicated semantic subsection defining digest and summary objects:
+  - minimum preserved fields
+  - prohibited information loss
+  - when digests are sufficient
+  - when they may only trigger fetch, hold, or repair
 
-### 10. Chapter repetition is beginning to produce spec noise
+### 4. Trust-root lifecycle semantics remain too open
+
+- Severity: High
+- Location:
+  - `docs/TRUST.md`
+  - `docs/THREAT_MODEL.md`
+  - `docs/CRITIQUE.md`
+  - `docs/EXAMPLES.md`
+- Issue type: Gap, Policy vs semantics confusion
+- Short description:
+  `TRUST.md` allows trust roots to come from cryptographic identity, operator policy, deployment lineage, or previously converged witness history. That is a large semantic opening. At the same time, `THREAT_MODEL.md` and `CRITIQUE.md` warn about trust laundering, hidden authority, and soft centralization, and `EXAMPLES.md` depends on trust-sensitive witness and repair behavior. The repo raises the problem sharply but still does not define promotion, demotion, or scope-limited authority well enough to keep trust from collapsing into hidden policy.
+- Suggested fix:
+  Add a narrow trust-root lifecycle contract:
+  - how foundational standing is introduced
+  - whether it is earned, configured, or both
+  - how scope limits apply
+  - how demotion, repair, and revocation work
+  - what must remain operator-visible
+
+### 5. Merge precedence now exists, but its canonical home is still unstable
 
 - Severity: Medium
-- Location: `README.md:36-79`, `docs/ABSTRACT.md:58-96`, `docs/MANIFESTO.md:27-67`, `docs/PRIMITIVES.md:68-100`, `docs/DISSEMINATION.md:77-95`, `docs/TRUST.md:78-95`, `docs/TOPOLOGY.md:118-131`
-- Issue type: Redundancy
-- Short description: Many chapters repeat the same invariants, anti-goals, and explanatory turns. The prose quality is strong enough that the repetition still reads well, but from a spec-maintenance perspective the center is spreading. Repetition is now high enough that future edits are likely to create small doctrinal splits simply because the same point must be updated in too many places.
-- Suggested fix: Reduce repeat doctrine in the chapter bodies and concentrate canonical invariants in one home. Let other chapters reference the invariant or restate only the local consequence.
+- Location:
+  - `docs/MERGE_AND_HEALING.md`
+  - `docs/SEMANTICS.md`
+  - `docs/MECHANICS.md`
+  - `docs/EVALUATION.md`
+- Issue type: Redundancy, Ambiguity
+- Short description:
+  The repo has improved here: `MERGE_AND_HEALING.md` now gives a constrained precedence family, `SEMANTICS.md` gives a merge skeleton, `MECHANICS.md` gives procedure shape, and `EVALUATION.md` names precedence stability as a metric. But the actual canonical contract is still distributed across four chapters. That makes later drift likely.
+- Suggested fix:
+  Decide which chapter owns the canonical merge precedence contract.
+  A good split would be:
+  - `SEMANTICS.md`: canonical constraints
+  - `MERGE_AND_HEALING.md`: narrative explanation
+  - `MECHANICS.md`: procedural sketch
+  - `EVALUATION.md`: test criteria
 
-### 11. `subject` is a core object but is absent from the compact glossary
+### 6. Witness terminology is better, but still not perfectly disciplined
+
+- Severity: Medium
+- Location:
+  - `docs/SEMANTICS.md`
+  - `docs/DIAGRAMS.md`
+  - `docs/EXAMPLES.md`
+  - `docs/MECHANICS.md`
+- Issue type: Terminology drift
+- Short description:
+  The repo has improved witness vocabulary significantly, especially in `SEMANTICS.md`, `EXAMPLES.md`, and `MECHANICS.md`. But `DIAGRAMS.md` still uses labels like `Witnessed` and `Witness record formed`, while other chapters talk about witness sets, witness histories, witness records, and witnesses as actors. The intended distinctions are mostly present, but not yet fully normalized across every surface.
+- Suggested fix:
+  Add one short canonical terminology block, probably in `SEMANTICS.md`, and explicitly point `DIAGRAMS.md` and `EXAMPLES.md` to it:
+  - witness = actor
+  - observation = local evidence
+  - witness record = protocol object
+  - witness history = collection of records
+  - witness set = selected actors for a round
+
+### 7. Public navigation still leaks beyond the canonical paper spine
+
+- Severity: Medium
+- Location:
+  - `README.md`
+  - `docs/PAPER_MAP.md`
+- Issue type: Cross-link / navigation weakness
+- Short description:
+  The repo now has a strong `PAPER_MAP`, but the front door still depends on support documents that sit slightly outside the canonical paper spine, such as `CURRENT_STATE.md`, `OPEN_QUESTIONS.md`, `EDITORIAL_GUIDE.md`, and `MAINTENANCE_CHECKLIST.md`. That is reasonable for maintainers, but it weakens the answer to a newcomer’s question: what is the canonical note set versus the maintenance layer?
+- Suggested fix:
+  Keep the current support docs, but explicitly separate:
+  - canonical public paper/treatise docs
+  - maintainer support docs
+  - quick-reentry docs
+  in both `README.md` and `PAPER_MAP.md`.
+
+### 8. Framing repetition is still high enough to risk later drift
 
 - Severity: Low
-- Location: `docs/ABSTRACT.md:36-40`, `docs/PRIMITIVES.md:29-41`, `docs/SEMANTICS.md:43-83`, `docs/GLOSSARY.md:15-35`
-- Issue type: Terminology drift, Cross-link / navigation weakness
-- Short description: `subject` is treated as one of the core semantic objects in `ABSTRACT.md`, `PRIMITIVES.md`, and `SEMANTICS.md`, but it is not present in the compact glossary. Readers using `GLOSSARY.md` as the fast index therefore miss one of the most reused nouns in the repo.
-- Suggested fix: Add `subject` to `GLOSSARY.md` and ensure the quick index covers all truly load-bearing semantic objects.
+- Location:
+  - `README.md`
+  - `docs/ABSTRACT.md`
+  - `docs/MANIFESTO.md`
+  - `docs/PRIMITIVES.md`
+- Issue type: Redundancy
+- Short description:
+  The repo’s strongest lines still appear in several places. The prose remains good, so this is not yet a readability problem. It is a maintenance problem waiting to happen: if the framing evolves, several public-facing chapters will need synchronized updates.
+- Suggested fix:
+  Keep the manifesto as the sharpest statement of problem framing, the abstract as the concise summary, and the README as the navigational front door. Trim repeated thesis language elsewhere unless it is doing specific local work.
 
 ## Recommended Cleanup Order
 
-1. Fix the active-doc inventory and paper spine so the repo has one clear navigational truth.
-2. Canonicalize the membership state machine and the quarantine / revocation / removal transition model.
-3. Tighten the semantic boundaries: scope versus topology, claim versus belief state, witness actor versus witness record.
-4. Constrain merge precedence and trust-root lifecycle semantics enough that the core protocol stops depending on unwritten policy.
-5. Add a compact digest / summary semantic contract.
-6. Reduce repeated doctrine once the canonical homes are decided.
+1. Canonicalize the lifecycle vocabulary and the relation among state, transition, and merge-output classes.
+2. Tighten the scope-versus-topology boundary.
+3. Add a digest / summary semantic contract.
+4. Add trust-root lifecycle semantics.
+5. Consolidate the canonical home of merge precedence.
+6. Finish witness-term normalization.
+7. Separate public paper docs from support and maintenance docs in navigation.
 
 ## Closing Assessment
 
-The repo is already stronger on framing than on protocol closure. That is not a moral failure. It is exactly what a design-first project looks like before the semantic backbone fully hardens.
+The repository is already well past “interesting notes” and into “real design document set.” The next stage is not more conceptual expansion. It is semantic closure in a few specific places where the project is now strong enough that ambiguity will become costly.
 
-The next step should not be more prose volume. The next step should be to decide where the protocol is allowed to stay open, where it must now become canonical, and which chapter owns each of those decisions.
+The main risk is not that the ideas are weak. The main risk is that several nearly-canonical versions of the same protocol surfaces are beginning to coexist. That is exactly the moment when a design-first repo needs sharper ownership of terms, states, and object contracts.
