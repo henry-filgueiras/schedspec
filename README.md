@@ -133,6 +133,8 @@ merger:
 
 ## Docs
 
+- **Concept notes**
+- [`docs/quorum-conditioned-observability/README.md`](docs/quorum-conditioned-observability/README.md): canonical technical note on quorum-conditioned observability and threshold ceremonies as evidence of collective presence
 - **Spine chapters**
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
