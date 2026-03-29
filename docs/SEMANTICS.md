@@ -2,11 +2,13 @@
 
 This document is the semantic contract layer for Resonant Membership.
 
-It exists to answer a narrower and more load-bearing question than the framing docs: what are the actual protocol objects, fields, and decision surfaces that the rest of the repo keeps referring to?
+It exists to answer a narrower and more load-bearing question than the framing docs: how should the protocol objects defined elsewhere be interpreted, compared, and turned into visible protocol state?
 
 See also:
 
-- [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for compact vocabulary
+- [`PRIMITIVES.md`](PRIMITIVES.md) for the core object contracts
+- [`INVARIANTS.md`](INVARIANTS.md) for the non-negotiable semantic commitments
+- [`GLOSSARY.md`](GLOSSARY.md) for compact vocabulary
 - [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), and [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for the chapter-scale semantics
 - [`MECHANICS.md`](MECHANICS.md) for algorithm-shaped protocol loops and decision procedures
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) and [`ARBORITIONS.md`](ARBORITIONS.md) for the two most distinctive protocol primitives
@@ -17,9 +19,9 @@ See also:
 
 The repo already has a framing layer, a set of core chapters, and a strong proving ground in examples and diagrams. What it still needs is one place that makes the protocol model feel semantically crisp rather than merely suggestive.
 
-This document fills that gap. It does not define a wire format or an implementation API. It defines the semantic objects that a conforming design would need to preserve if the rest of the repo is to mean what it says.
+This document fills that gap. It does not define a wire format or an implementation API. It defines the semantic interpretation layer a conforming design would need to preserve if the rest of the repo is to mean what it says.
 
-This chapter assumes the vocabulary from [`PRIMITIVES.md`](PRIMITIVES.md) and turns it into a sharper contract. It should not repeat the dangerous preface or the abstract's framing job.
+This chapter assumes the object contracts from [`PRIMITIVES.md`](PRIMITIVES.md) and says how they acquire protocol meaning. It should not repeat the dangerous preface, the abstract's framing job, or the field-level object definitions that already live in `PRIMITIVES.md`.
 
 ## Scope Of This Document
 
@@ -33,169 +35,12 @@ This is not:
 This is:
 
 - a semantic contract for the protocol model
-- a statement of what kinds of objects the system reasons over
+- a statement of how protocol objects are interpreted as state, admissibility, and decision surfaces
 - a statement of what kinds of decisions must remain legible
 
 Where the repo is intentionally open, this document says so explicitly. Where the repo is semantically committed, this document tries to say what the commitment actually is.
 
-## Core Protocol Objects
-
-### Subject
-
-A **subject** is the entity about which membership claims are made.
-
-It may be:
-
-- a node
-- a service instance
-- a gateway
-- an endpoint identity
-- another scoped participant in the membership system
-
-Dimensions that matter:
-
-- stable identity
-- scope-relative meaning
-- epoch-relative freshness
-- current and prior claim history
-
-Invariants:
-
-- a subject should have a stable identity within the scope in which it is discussed
-- a subject is not equivalent to its latest claim
-- a subject may have different belief states in different scopes at the same time
-
-Operator visibility:
-
-- subject identity
-- current scoped status
-- introduction provenance
-- recent claim and witness history
-
-Intentionally open:
-
-- exact identity encoding
-- whether subject identifiers are globally unique or only scope-unique
-
-Semantically required:
-
-- a subject must be referable across multiple claims, witnesses, and repair rounds
-
-### Claim
-
-A **claim** is transmissible protocol content about a subject.
-
-A claim is not the same thing as an observation. A claim is what moves between observers and scopes.
-A claim is also not the same thing as the resulting scoped belief state. Claims are inputs to belief formation, not the final belief state itself.
-
-Fields or dimensions that matter:
-
-- subject
-- asserted state or membership claim
-- scope
-- introducer or provenance root
-- epoch or freshness context
-- optional attached evidence
-
-Invariants:
-
-- a claim should carry enough context to be evaluated outside the node that first emitted it
-- a claim without scope is semantically incomplete
-- a claim should be distinguishable from the evidence used to form it
-
-Operator visibility:
-
-- claim body
-- scope
-- provenance
-- freshness or epoch context
-- whether the claim is accepted, disputed, quarantined, or preserved as residue
-
-Intentionally open:
-
-- exact claim syntax
-- exact proof attachment format
-
-Semantically required:
-
-- a claim must be attributable, scoped, and freshness-aware
-
-### Observation
-
-An **observation** is locally derived evidence about a subject.
-
-Examples include:
-
-- direct reachability
-- timeout or absence
-- challenge-response result
-- topology-local evidence
-- local operator action
-
-Dimensions that matter:
-
-- observer identity
-- observation type
-- freshness
-- locality
-- uncertainty or ambiguity
-
-Invariants:
-
-- an observation is local evidence, not a system-wide fact
-- observations may conflict without implying protocol failure
-- observations should remain distinguishable from claims and from merged outcomes
-
-Operator visibility:
-
-- who observed what
-- when it was observed
-- what kind of evidence it was
-
-Intentionally open:
-
-- exact evidence model
-- how raw or summarized an observation may be
-
-Semantically required:
-
-- observations must be attributable and freshness-aware
-
-### Witness Record
-
-A **witness record** is the protocol-visible contribution a witness makes to a claim or subject state.
-
-It is more structured than "this node voted yes."
-
-Dimensions that matter:
-
-- witness identity
-- observed or corroborated claim
-- trust-relevant context
-- freshness
-- corroborating, disputing, or ambiguous stance
-
-Invariants:
-
-- witness records should remain attributable
-- witness quality matters as much as witness count
-- witness records should be mergeable without being flattened into a single scalar too early
-
-Operator visibility:
-
-- which witnesses participated
-- what each witness contributed
-- which witness records were decisive
-
-Intentionally open:
-
-- whether witness records are signed, summarized, or nested
-
-Semantically required:
-
-- witness records must preserve enough structure to support explanation and repair
-
-### Canonical Object Mapping
+## Canonical Object Interpretation
 
 The repo uses the following object mapping:
 
@@ -207,6 +52,14 @@ The repo uses the following object mapping:
 | scoped belief state | the protocol's current state for a subject in a scope | not the raw claim body |
 | operator-visible status | human-facing summary of the scoped belief state | not a second hidden state machine |
 
+The object contracts themselves live in [`PRIMITIVES.md`](PRIMITIVES.md). This chapter uses them to define interpretation boundaries:
+
+- claims are inputs to belief formation
+- observations remain local evidence even when they later inform claims
+- witness records preserve attributable stance and freshness
+- scoped belief state is the current protocol interpretation of the available materials
+- operator-visible status should summarize the scoped belief state without inventing a second semantic layer
+
 The witness-related terms are distinct:
 
 - **witness:** the actor who observes, corroborates, or disputes
@@ -214,6 +67,10 @@ The witness-related terms are distinct:
 - **witness record:** the protocol object carrying the witness contribution
 - **witness history:** the collection of witness records over time for a subject or scope
 - **witness set:** the selected peers asked to witness in a round
+
+The point of this mapping is not taxonomy for its own sake. It is to keep later chapters from silently confusing transmitted content, local evidence, composite belief, and operator summary.
+
+## Core Semantic Distinctions
 
 ### Trust Weight And Confidence
 
@@ -356,75 +213,6 @@ Semantically required:
 - the system must be able to distinguish fresh, stale, and superseded evidence
 - epoch or equivalent generation context must be visible enough to support explanation of ordering and repair
 
-### Digest And Summary Objects
-
-A **digest** or **summary** is a compact representation of a scoped belief state used for anti-entropy, upward aggregation, or repair initiation.
-
-Minimum preserved fields:
-
-- subject identity or visible subject set
-- scope
-- freshness or epoch context
-- confidence or status summary
-- provenance or provenance root
-- residue indicator when disagreement remains material
-
-It may omit:
-
-- full witness-record detail
-- raw observation payloads
-- complete path history
-- full proof attachments
-
-Invariants:
-
-- a digest may compress detail, but it must not erase the existence of material disagreement
-- a digest should remain distinguishable from full claim and witness-record material
-- summaries may trigger repair or escalation, but should not silently stand in for the full evidence needed for final merge when conflict remains live
-
-Summary-only reasoning is not semantically safe when:
-
-- fresh admissible evidence is still in material conflict
-- the digest indicates residue or unresolved dispute
-- scope widening would convert tentative local knowledge into stronger cross-scope belief
-- trust-root or witness-standing repair is itself part of the question being decided
-
-Semantically required:
-
-- digesting must preserve enough structure that explanation and repair remain possible
-
-### Residue
-
-**Residue** is unresolved disagreement preserved as visible structure.
-
-It exists so the system does not pretend it knows more than it has earned.
-
-Dimensions that matter:
-
-- conflicting witnesses or scopes
-- unresolved merge outcomes
-- preserved divergence history
-
-Invariants:
-
-- residue is not a logging artifact; it is protocol state
-- residue should remain visible when disagreement is semantically important
-- residue should not be erased merely to simplify presentation
-
-Operator visibility:
-
-- where disagreement remains
-- which evidence remains in conflict
-- whether residue is shrinking, persisting, or widening
-
-Intentionally open:
-
-- exact residue encoding
-
-Semantically required:
-
-- unresolved disagreement must remain inspectable when the protocol cannot yet justify convergence
-
 ### Quarantine State And Revocation
 
 **Quarantine** is bounded suspension of propagation, acceptance, or both.
@@ -503,6 +291,8 @@ Witness or trust-source standing may have separate review, quarantine, and revoc
 
 ## Decision Surfaces
 
+The objects themselves are defined in [`PRIMITIVES.md`](PRIMITIVES.md). The sections below define the places where those objects are interpreted, compared, narrowed, widened, or preserved.
+
 ### Merge Input
 
 A **merge input** is the structured set of materials brought into reconciliation.
@@ -571,6 +361,43 @@ Intentionally open:
 Semantically required:
 
 - the output must remain explainable in terms of the inputs and decision policy
+
+### Repair Digest Interpretation
+
+A **repair digest** is a compact repair-time summary used to determine whether deeper exchange or reunion is needed.
+
+It is semantically useful because healing cannot begin with full-history flood every time. It is semantically dangerous because summary objects are easy places to hide disagreement.
+
+Semantically required:
+
+- a repair digest must remain attributable to a scope and freshness context
+- a repair digest may summarize detail, but must not erase the existence of residue, dispute, or missing history
+- digest-triggered widening should not silently replace the deeper merge material required when conflict remains live
+
+Repair-digest reasoning is insufficient by itself when:
+
+- fresh admissible evidence is still in material conflict
+- the digest indicates unresolved residue
+- scope widening would strengthen belief beyond what the summarized evidence can justify
+- trust-root or witness-standing repair is itself part of the question
+
+### Operator Override Interpretation
+
+An **operator override** is not merely an administrative note. It is a visible control surface that changes the semantic interpretation of otherwise ordinary protocol flow.
+
+Overrides may narrow, widen, suspend, or supersede normal behavior, but they must remain legible as intervention rather than being misread as organic convergence.
+
+Semantically required:
+
+- override effects must remain distinguishable from witness-driven state change
+- override scope and freshness context must be visible enough to explain blast radius
+- override history must remain inspectable during later repair, review, or incident analysis
+
+Intentionally open:
+
+- exact override workflow
+- exact authorization model
+- whether an override is represented inline with subject state or as adjacent operator history
 
 ### Merge Precedence Contract
 
@@ -730,7 +557,7 @@ This is not a full algorithm. It is the minimum semantic skeleton the rest of th
 A compact healing round looks like:
 
 1. detect recontact or divergence requiring repair
-2. exchange digests or summaries
+2. exchange repair digests or equivalent summaries
 3. select bounded reunion peers by permutation rank
 4. merge local histories, not just latest endpoints
 5. disseminate repair output through repair overlays

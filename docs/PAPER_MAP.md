@@ -10,7 +10,7 @@ Canonical active-doc inventory:
 
 - **Front door:** [`../README.md`](../README.md)
 - **Spine chapters:** [`MANIFESTO.md`](MANIFESTO.md), [`ABSTRACT.md`](ABSTRACT.md), [`PRIMITIVES.md`](PRIMITIVES.md), [`SEMANTICS.md`](SEMANTICS.md), [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md)
-- **Interstitial primitive chapters:** [`GLOSSARY.md`](GLOSSARY.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), [`MECHANICS.md`](MECHANICS.md)
+- **Interstitial primitive chapters:** [`GLOSSARY.md`](GLOSSARY.md), [`INVARIANTS.md`](INVARIANTS.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), [`MECHANICS.md`](MECHANICS.md)
 - **Appendices / support docs:** [`THREAT_MODEL.md`](THREAT_MODEL.md), [`EVALUATION.md`](EVALUATION.md), [`CRITIQUE.md`](CRITIQUE.md), [`EXAMPLES.md`](EXAMPLES.md), [`DIAGRAMS.md`](DIAGRAMS.md), [`PAPER_MAP.md`](PAPER_MAP.md), [`EDITORIAL_GUIDE.md`](EDITORIAL_GUIDE.md), [`MAINTENANCE_CHECKLIST.md`](MAINTENANCE_CHECKLIST.md), [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md)
 
 ## Reading Order
@@ -23,35 +23,37 @@ The canonical reading spine is:
    [`ABSTRACT.md`](ABSTRACT.md)
 3. **Glossary companion**  
    [`GLOSSARY.md`](GLOSSARY.md)
-4. **Primitives**  
+4. **Primitive contracts**  
    [`PRIMITIVES.md`](PRIMITIVES.md)
-5. **Semantics**  
+5. **Semantic invariants**  
+   [`INVARIANTS.md`](INVARIANTS.md)
+6. **Semantics**  
    [`SEMANTICS.md`](SEMANTICS.md)
-6. **Permutation rank**  
+7. **Permutation rank**  
    [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md)
-7. **Arboritions**  
+8. **Arboritions**  
    [`ARBORITIONS.md`](ARBORITIONS.md)
-8. **Mechanics**  
+9. **Mechanics**  
    [`MECHANICS.md`](MECHANICS.md)
-9. **Membership**  
+10. **Membership**  
    [`MEMBERSHIP.md`](MEMBERSHIP.md)
-10. **Dissemination**  
+11. **Dissemination**  
    [`DISSEMINATION.md`](DISSEMINATION.md)
-11. **Trust**  
+12. **Trust**  
    [`TRUST.md`](TRUST.md)
-12. **Merge and healing**  
+13. **Merge and healing**  
    [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md)
-13. **Topology**  
+14. **Topology**  
    [`TOPOLOGY.md`](TOPOLOGY.md)
-14. **Threat model**  
+15. **Threat model**  
    [`THREAT_MODEL.md`](THREAT_MODEL.md)
-15. **Evaluation**  
+16. **Evaluation**  
    [`EVALUATION.md`](EVALUATION.md)
-16. **Critique**  
+17. **Critique**  
    [`CRITIQUE.md`](CRITIQUE.md)
-17. **Examples**  
+18. **Examples**  
    [`EXAMPLES.md`](EXAMPLES.md)
-18. **Diagrams**  
+19. **Diagrams**  
    [`DIAGRAMS.md`](DIAGRAMS.md)
 
 ## Chapter Roles
@@ -70,9 +72,15 @@ Its job is to summarize the argument of the whole treatise in a paper-like way: 
 
 ### Primitives
 
-[`PRIMITIVES.md`](PRIMITIVES.md) is the vocabulary chapter.
+[`PRIMITIVES.md`](PRIMITIVES.md) is the primitive-contract chapter.
 
-Its job is to define compact shared terms and fast distinctions so that later chapters can reuse words without drift. It should stay concise and avoid becoming the full semantic contract.
+Its job is to define the core protocol objects, their required conceptual contents, and the invariants attached to those objects. It should not carry the full state-machine, merge, or decision-surface interpretation.
+
+### Invariants
+
+[`INVARIANTS.md`](INVARIANTS.md) is an interstitial primitive chapter.
+
+Its job is to state the semantic conditions the rest of the repo keeps assuming, so later chapters do not have to restate them ad hoc.
 
 ### Glossary
 
@@ -84,7 +92,7 @@ Its job is to give the reader a fast stable lookup surface for the load-bearing 
 
 [`SEMANTICS.md`](SEMANTICS.md) is the semantic backbone.
 
-Its job is to define the protocol objects, decision surfaces, invariants, and skeletal decision flows that a conforming design would need to preserve. This is where the model becomes crisp.
+Its job is to define interpretation rules, canonical state meaning, decision surfaces, and skeletal decision flows for the objects already defined in `PRIMITIVES.md`. This is where the model becomes crisp without redoing the object catalog.
 
 ### Permutation Rank
 

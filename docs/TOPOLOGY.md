@@ -4,6 +4,7 @@ This document describes how hierarchy, locality, permutation rank, and arboritio
 
 See also:
 
+- [`PRIMITIVES.md`](PRIMITIVES.md) and [`INVARIANTS.md`](INVARIANTS.md) for scope, witness-set, and auditability constraints
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) for membership behavior
 - [`DISSEMINATION.md`](DISSEMINATION.md) for dissemination behavior
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for merge and repair semantics

@@ -29,6 +29,7 @@ Use this checklist before accepting a docs change in the active Resonant Members
 
 - Did this change restate repo-wide thesis lines where a short cross-link would do?
 - Did a local chapter start redoing the manifesto, abstract, or semantics chapter?
+- Did `PRIMITIVES.md` start redoing decision-surface semantics, or did `SEMANTICS.md` start redoing object definitions?
 - If repeated doctrine was added, is it local consequence or just duplication?
 
 ## Ambiguity Checks

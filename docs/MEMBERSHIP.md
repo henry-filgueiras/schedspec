@@ -4,7 +4,7 @@ This document describes the protocol-facing membership model for Resonant Member
 
 See also:
 
-- [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for shared terms
+- [`PRIMITIVES.md`](PRIMITIVES.md), [`INVARIANTS.md`](INVARIANTS.md), and [`GLOSSARY.md`](GLOSSARY.md) for the semantic kernel
 - [`SEMANTICS.md`](SEMANTICS.md) for the protocol-object and decision-surface contract
 - [`MECHANICS.md`](MECHANICS.md) for introduction, witness-selection, and dissemination loops
 - [`TRUST.md`](TRUST.md) for trust behavior

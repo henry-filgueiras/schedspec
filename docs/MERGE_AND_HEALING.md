@@ -4,6 +4,7 @@ This document describes how Resonant Membership should reconcile competing views
 
 See also:
 
+- [`PRIMITIVES.md`](PRIMITIVES.md) and [`INVARIANTS.md`](INVARIANTS.md) for the merge objects and preserved invariants
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) and [`TRUST.md`](TRUST.md) for lifecycle and trust behavior
 - [`SEMANTICS.md`](SEMANTICS.md) for merge input, output, and healing-round semantics
 - [`MECHANICS.md`](MECHANICS.md) for merge assembly, reunion, quarantine, and repair loops
@@ -28,6 +29,7 @@ Merge and healing operate over:
 
 - direct observations
 - witness records
+- repair digests
 - introducer provenance
 - freshness or epoch metadata
 - scope-local authority
@@ -127,16 +129,19 @@ Healing must account for:
 
 The goal is not to pretend the partition never happened. The goal is to restore a legible convergent state while preserving what changed during the split.
 
+Repair digests matter early in that process. They are the compact summaries that let reunited scopes determine whether deeper exchange is needed, which subtrees diverged, and where residue or missing history is likely to live. They are useful because they bound repair traffic. They are dangerous because summary-only reasoning can hide exactly the disagreement healing is supposed to surface.
+
 ## Healing Process
 
 A healing process may look like:
 
 1. detect recontact between previously separated scopes
-2. exchange compact summaries of local membership belief
+2. exchange repair digests or equivalent compact summaries of local membership belief
 3. select accountable rendezvous peers by permutation rank
-4. merge witness histories and unresolved residue
-5. disseminate repair decisions along topology-aware repair paths
-6. surface remaining conflict to operators if convergence is still partial
+4. use those digests to decide where deeper witness history, residue, and provenance fetch is required
+5. merge witness histories and unresolved residue where the digests indicate real conflict or missing detail
+6. disseminate repair decisions along topology-aware repair paths
+7. surface remaining conflict to operators if convergence is still partial
 
 This is one place where deterministic ordering and topology-aware structure matter most.
 
@@ -176,6 +181,7 @@ The protocol should make these costs legible rather than treating them as operat
 Operators should be able to inspect:
 
 - first divergence point
+- repair digests that triggered deeper reunion
 - witnesses that drove convergence
 - scopes still in conflict
 - residue carried forward after merge

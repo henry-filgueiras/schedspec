@@ -6,7 +6,7 @@ The goal is not to exhaust every attack. The goal is to keep the protocol honest
 
 See also:
 
-- [`PRIMITIVES.md`](PRIMITIVES.md) and [`GLOSSARY.md`](GLOSSARY.md) for vocabulary
+- [`PRIMITIVES.md`](PRIMITIVES.md), [`INVARIANTS.md`](INVARIANTS.md), and [`GLOSSARY.md`](GLOSSARY.md) for the semantic kernel under stress
 - [`TRUST.md`](TRUST.md) for trust-sensitive behavior
 - [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md) for disagreement and repair behavior
 - [`EVALUATION.md`](EVALUATION.md) for how these threats should inform judgment of the design
@@ -68,6 +68,7 @@ Relevant hostile behaviors may include:
 - trust laundering through weak witnesses
 - targeted suppression of repair traffic
 - exploitation of deterministic ordering by predicting rendezvous sets
+- abuse of operator overrides to simulate organic protocol convergence
 
 A serious design should recognize that deterministic ordering improves auditability while also creating surfaces that may need diversification or hardening.
 
@@ -119,6 +120,7 @@ Relevant questions include:
 - who can override quarantine?
 - who can trigger healing or witness re-evaluation?
 - how are these actions logged and explained?
+- can an operator override narrow or widen trust-root influence, and is that made explicit afterward?
 
 Operator actions should be visible enough that the system can distinguish protocol convergence from administrative override.
 

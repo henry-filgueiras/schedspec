@@ -4,7 +4,9 @@ This document describes how witness quality, trust roots, confidence, and blast 
 
 See also:
 
+- [`PRIMITIVES.md`](PRIMITIVES.md) and [`INVARIANTS.md`](INVARIANTS.md) for the core trust objects and invariants
 - [`MEMBERSHIP.md`](MEMBERSHIP.md) for lifecycle behavior
+- [`SEMANTICS.md`](SEMANTICS.md) for trust-root and operator-override interpretation surfaces
 - [`THREAT_MODEL.md`](THREAT_MODEL.md) for threat cases
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for witness-set selection discipline
 - [`EXAMPLES.md`](EXAMPLES.md) for trust-sensitive propagation, quarantine, and residue scenarios
@@ -84,6 +86,8 @@ At minimum, the repo's semantics require that a conforming design be able to exp
 
 Trust-root promotion and demotion are intentionally policy-shaped, but they are not semantically free-form. If a source can accumulate foundational influence from converged history, the system must also be able to explain how that influence is scoped, challenged, and reduced.
 
+When an operator override participates in that process, the override should remain visible as override. It may suspend a trust root, narrow its blast radius, or force review, but it should not be laundered into what looks like organically converged witness history.
+
 ## Confidence And Witness Quality
 
 Confidence is not the same thing as trust.
@@ -128,6 +132,7 @@ Important trust failures include:
 - over-trusting local witnesses globally
 - low-diversity witness sets producing correlated error
 - quarantine policies that lag behind confidence collapse
+- operator overrides that become hidden authority instead of visible intervention
 
 The protocol should not pretend these are edge cases. A system that treats trust as a static allowlist will tend to discover its real trust semantics only after disagreement becomes expensive.
 
@@ -139,6 +144,7 @@ Operators should be able to ask:
 - which witnesses were decisive?
 - why did trust widen or constrain the blast radius?
 - why did the system retain residue instead of converging?
+- whether an operator override changed trust standing, blast radius, or quarantine posture
 
 If those questions are unanswerable, trust is operating as hidden control flow.
 

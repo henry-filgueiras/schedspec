@@ -12,9 +12,10 @@ If you are new to the repo:
 
 1. Read the spine entry with [`docs/MANIFESTO.md`](docs/MANIFESTO.md) and [`docs/ABSTRACT.md`](docs/ABSTRACT.md) for the thesis and framing.
 2. Use [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md) if you want the chapter roles and intended reading order.
-3. Use the interstitial primitives [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), and [`docs/MECHANICS.md`](docs/MECHANICS.md) to keep vocabulary, primitives, and mechanics aligned while you read the spine.
-4. Read the spine chapters in order: [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
-5. Use the appendices and support docs [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md) for pressure, judgment, objections, scenarios, visuals, and unresolved tensions.
+3. Use [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md) and [`docs/INVARIANTS.md`](docs/INVARIANTS.md) to lock in the semantic kernel before reading the behavioral chapters.
+4. Use the interstitial primitives [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), and [`docs/MECHANICS.md`](docs/MECHANICS.md) to keep vocabulary, distinctive primitives, and mechanics aligned while you read the spine.
+5. Read the spine chapters in order: [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), and [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md).
+6. Use the appendices and support docs [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), and [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md) for pressure, judgment, objections, scenarios, visuals, and unresolved tensions.
 
 ## Repository Architecture
 
@@ -40,7 +41,7 @@ Canonical active-doc inventory:
 
 - **Front door:** [`README.md`](README.md)
 - **Spine chapters:** [`docs/MANIFESTO.md`](docs/MANIFESTO.md), [`docs/ABSTRACT.md`](docs/ABSTRACT.md), [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md), [`docs/SEMANTICS.md`](docs/SEMANTICS.md), [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md), [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md), [`docs/TRUST.md`](docs/TRUST.md), [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md), [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
-- **Interstitial primitive chapters:** [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MECHANICS.md`](docs/MECHANICS.md)
+- **Interstitial primitive chapters:** [`docs/GLOSSARY.md`](docs/GLOSSARY.md), [`docs/INVARIANTS.md`](docs/INVARIANTS.md), [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md), [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md), [`docs/MECHANICS.md`](docs/MECHANICS.md)
 - **Appendices / support docs:** [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md), [`docs/EVALUATION.md`](docs/EVALUATION.md), [`docs/CRITIQUE.md`](docs/CRITIQUE.md), [`docs/EXAMPLES.md`](docs/EXAMPLES.md), [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md), [`docs/PAPER_MAP.md`](docs/PAPER_MAP.md), [`docs/EDITORIAL_GUIDE.md`](docs/EDITORIAL_GUIDE.md), [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md), [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 - **Human snapshot:** [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md)
 
@@ -50,20 +51,21 @@ Canonical reading spine:
 2. [`docs/ABSTRACT.md`](docs/ABSTRACT.md)
 3. [`docs/GLOSSARY.md`](docs/GLOSSARY.md)
 4. [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md)
-5. [`docs/SEMANTICS.md`](docs/SEMANTICS.md)
-6. [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md)
-7. [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md)
-8. [`docs/MECHANICS.md`](docs/MECHANICS.md)
-9. [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md)
-10. [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md)
-11. [`docs/TRUST.md`](docs/TRUST.md)
-12. [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
-13. [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
-14. [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md)
-15. [`docs/EVALUATION.md`](docs/EVALUATION.md)
-16. [`docs/CRITIQUE.md`](docs/CRITIQUE.md)
-17. [`docs/EXAMPLES.md`](docs/EXAMPLES.md)
-18. [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md)
+5. [`docs/INVARIANTS.md`](docs/INVARIANTS.md)
+6. [`docs/SEMANTICS.md`](docs/SEMANTICS.md)
+7. [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md)
+8. [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md)
+9. [`docs/MECHANICS.md`](docs/MECHANICS.md)
+10. [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md)
+11. [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md)
+12. [`docs/TRUST.md`](docs/TRUST.md)
+13. [`docs/MERGE_AND_HEALING.md`](docs/MERGE_AND_HEALING.md)
+14. [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md)
+15. [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md)
+16. [`docs/EVALUATION.md`](docs/EVALUATION.md)
+17. [`docs/CRITIQUE.md`](docs/CRITIQUE.md)
+18. [`docs/EXAMPLES.md`](docs/EXAMPLES.md)
+19. [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md)
 
 ## Three Theses
 
@@ -136,7 +138,7 @@ merger:
 - **Spine chapters**
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
-- [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): compact vocabulary and fast distinctions
+- [`docs/PRIMITIVES.md`](docs/PRIMITIVES.md): semantic contract for the core protocol objects
 - [`docs/SEMANTICS.md`](docs/SEMANTICS.md): semantic contract for protocol objects and decision surfaces
 - [`docs/MEMBERSHIP.md`](docs/MEMBERSHIP.md): bootstrap, witness, trust, scoped belief, lifecycle behavior
 - [`docs/DISSEMINATION.md`](docs/DISSEMINATION.md): scoped fanout, digests, parent-proxy pools
@@ -145,6 +147,7 @@ merger:
 - [`docs/TOPOLOGY.md`](docs/TOPOLOGY.md): hierarchy, permutation rank, and arborition overlays
 - **Interstitial primitive chapters**
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md): compact vocabulary index
+- [`docs/INVARIANTS.md`](docs/INVARIANTS.md): core semantic invariants that the rest of the design is expected to preserve
 - [`docs/PERMUTATION_RANK.md`](docs/PERMUTATION_RANK.md): deterministic ordering as a protocol primitive
 - [`docs/ARBORITIONS.md`](docs/ARBORITIONS.md): adaptive overlay forests for dissemination, witness, and repair
 - [`docs/MECHANICS.md`](docs/MECHANICS.md): algorithm-shaped mechanics layer bridging semantics and plausible implementation discipline

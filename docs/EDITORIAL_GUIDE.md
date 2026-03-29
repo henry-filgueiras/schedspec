@@ -27,20 +27,21 @@ Do not write as if those archived lineages are co-equal active projects unless t
 2. `ABSTRACT.md`
 3. `GLOSSARY.md`
 4. `PRIMITIVES.md`
-5. `SEMANTICS.md`
-6. `PERMUTATION_RANK.md`
-7. `ARBORITIONS.md`
-8. `MECHANICS.md`
-9. `MEMBERSHIP.md`
-10. `DISSEMINATION.md`
-11. `TRUST.md`
-12. `MERGE_AND_HEALING.md`
-13. `TOPOLOGY.md`
-14. `THREAT_MODEL.md`
-15. `EVALUATION.md`
-16. `CRITIQUE.md`
-17. `EXAMPLES.md`
-18. `DIAGRAMS.md`
+5. `INVARIANTS.md`
+6. `SEMANTICS.md`
+7. `PERMUTATION_RANK.md`
+8. `ARBORITIONS.md`
+9. `MECHANICS.md`
+10. `MEMBERSHIP.md`
+11. `DISSEMINATION.md`
+12. `TRUST.md`
+13. `MERGE_AND_HEALING.md`
+14. `TOPOLOGY.md`
+15. `THREAT_MODEL.md`
+16. `EVALUATION.md`
+17. `CRITIQUE.md`
+18. `EXAMPLES.md`
+19. `DIAGRAMS.md`
 
 If a doc changes that order or active-doc inventory, update `README.md` and `PAPER_MAP.md` together.
 
@@ -48,7 +49,7 @@ If a doc changes that order or active-doc inventory, update `README.md` and `PAP
 
 - **Front door:** `README.md`
 - **Spine chapters:** `MANIFESTO.md`, `ABSTRACT.md`, `PRIMITIVES.md`, `SEMANTICS.md`, `MEMBERSHIP.md`, `DISSEMINATION.md`, `TRUST.md`, `MERGE_AND_HEALING.md`, `TOPOLOGY.md`
-- **Interstitial primitive chapters:** `GLOSSARY.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, `MECHANICS.md`
+- **Interstitial primitive chapters:** `GLOSSARY.md`, `INVARIANTS.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, `MECHANICS.md`
 - **Appendices / support docs:** `THREAT_MODEL.md`, `EVALUATION.md`, `CRITIQUE.md`, `EXAMPLES.md`, `DIAGRAMS.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, `MAINTENANCE_CHECKLIST.md`, `OPEN_QUESTIONS.md`
 
 Use those labels exactly in navigation and maintenance docs.
@@ -59,8 +60,9 @@ Use those labels exactly in navigation and maintenance docs.
 - `MANIFESTO.md`: dangerous preface and anti-simplification layer.
 - `ABSTRACT.md`: paper-style framing and project summary.
 - `GLOSSARY.md`: fast lookup index only. Classification: interstitial primitive chapter.
-- `PRIMITIVES.md`: compact vocabulary and fast distinctions.
-- `SEMANTICS.md`: canonical object, state, and decision-surface contract.
+- `PRIMITIVES.md`: canonical protocol-object contract. Owns object definitions, required conceptual contents, and object-level invariants.
+- `INVARIANTS.md`: compact semantic invariant layer. Classification: interstitial primitive chapter.
+- `SEMANTICS.md`: canonical state-meaning and decision-surface contract. Owns interpretation rules, lifecycle meaning, admissibility, and skeletal decision flows rather than field-level object definitions.
 - `PERMUTATION_RANK.md`: accountable deterministic ordering primitive. Classification: interstitial primitive chapter.
 - `ARBORITIONS.md`: adaptive overlay-forest primitive. Classification: interstitial primitive chapter.
 - `MECHANICS.md`: algorithm-shaped bridge from semantics to plausible implementation discipline. Classification: interstitial primitive chapter.
