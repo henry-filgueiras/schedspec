@@ -9,6 +9,7 @@ Use this checklist before accepting a docs change in the active Resonant Members
 - If it changes doc classification, do `README.md`, `PAPER_MAP.md`, `EDITORIAL_GUIDE.md`, and `AGENTS.md` all agree on `spine chapter`, `interstitial primitive chapter`, or `appendix / support doc`?
 - If it changes human re-entry surfaces, do `CURRENT_STATE.md`, `OPEN_QUESTIONS.md`, and `README.md` still point to one another cleanly?
 - If it adds a new major concept, was the existing docs set checked first for a better home?
+- Does the reported summary clearly separate observed repo state, inferred direction, and unresolved mess?
 
 ## Terminology Checks
 
@@ -63,3 +64,4 @@ Use this checklist before accepting a docs change in the active Resonant Members
 - Is the edit shorter, clearer, or more canonical than what it replaced?
 - Does it lower future maintenance cost instead of adding ceremony?
 - Would another editor know exactly where to update the same concept next time?
+- Does the close-out describe what actually changed in the tree, rather than narrating intended coherence?

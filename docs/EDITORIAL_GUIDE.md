@@ -155,6 +155,26 @@ Avoid:
 - writing examples as if they are production logs
 - using implementation-flavored certainty for still-open policy
 
+## Repo-Truth Reporting
+
+For repo review and documentation passes, prefer artifact truth over trajectory optimism.
+
+When reporting results:
+
+- separate **observed** repo state from **inferred** architectural direction
+- name **unresolved** overlap, drift, or dangling concepts explicitly
+- describe file-backed changes before summarizing overall coherence
+- avoid saying a pass is `done`, `clean`, or `coherent` unless the visible tree and diff actually support that claim
+
+Preferred response shape for repo passes:
+
+1. repo reality
+2. what changed materially
+3. what remains messy
+4. next narrow task
+
+This rule is especially important in design repos, where chapter-role drift and semantic overlap are easy to understate.
+
 ## Headings And Formatting
 
 - Keep headings short and functional.
