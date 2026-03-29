@@ -6,7 +6,7 @@ Thesis:
 
 This subtree contains a compact technical note on **quorum-conditioned observability**.
 
-It exists as the canonical repo version of the idea: short enough to cite, technical enough to reuse, and self-contained enough that a later narrative essay or Substack post can point back to it without having to restate the conceptual core.
+It exists as the canonical repo version of the idea: short enough to cite, technical enough to reuse, and self-contained enough that a later narrative essay or Substack post can point back to it without restating the conceptual core.
 
 Why this note exists:
 
@@ -28,4 +28,3 @@ Use this note when you want a compact technical anchor for:
 - quorum-conditioned observability
 - embedding authority in plural contact
 - threshold ceremonies as evidence of collective presence
-

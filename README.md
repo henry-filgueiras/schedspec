@@ -133,8 +133,6 @@ merger:
 
 ## Docs
 
-- **Concept notes**
-- [`docs/quorum-conditioned-observability/README.md`](docs/quorum-conditioned-observability/README.md): canonical technical note on quorum-conditioned observability and threshold ceremonies as evidence of collective presence
 - **Spine chapters**
 - [`docs/MANIFESTO.md`](docs/MANIFESTO.md): thesis lines and anti-goals
 - [`docs/ABSTRACT.md`](docs/ABSTRACT.md): abstract and framing
@@ -161,6 +159,7 @@ merger:
 - [`docs/MAINTENANCE_CHECKLIST.md`](docs/MAINTENANCE_CHECKLIST.md): pre-acceptance checklist for doc changes
 - [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md): compact human-first snapshot of the project's current shape
 - [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md): maintained ledger of unresolved design questions and current leanings
+- [`docs/quorum-conditioned-observability/README.md`](docs/quorum-conditioned-observability/README.md): compact concept note on threshold ceremonies as evidence of collective presence
 
 ## Status
 

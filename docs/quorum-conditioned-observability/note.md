@@ -3,7 +3,7 @@
 
 **Abstract**
 
-Threshold systems are often introduced as techniques for hiding a key, tolerating faults, or distributing trust. Those are real properties, but they are not the most interesting one. In many distributed settings, the deeper role of a threshold ceremony is to constrain when hidden capability may become observable effect. The ceremony is not only protecting a secret. It is requiring sufficiently real collective presence before some action may enter the world as an event, signature, decryption, release, or authorization. This note calls that property **quorum-conditioned observability**. The key move is to treat the threshold artifact not as “a key split into pieces,” but as a capability that exists only as a distributed social fact. Under this framing, the transcript of the ceremony may matter as much as the payload, because the transcript records that authority was exercised through plural contact rather than silently centralized possession.
+Threshold systems are often introduced as ways to hide a key, tolerate faults, or distribute trust. Those are real properties, but they are not the most interesting one. In many distributed settings, the deeper role of a threshold ceremony is to constrain when hidden capability may become observable effect. The ceremony is not only protecting a secret. It is requiring sufficiently real collective presence before some action may enter the world as an event, signature, decryption, release, or authorization. This note calls that property **quorum-conditioned observability**. The key move is to treat the threshold artifact not as “a key split into pieces,” but as a capability that exists only as a distributed social fact. Under this framing, the transcript of the ceremony may matter nearly as much as the payload, because the transcript records that authority was exercised through plural contact rather than silently centralized possession.
 
 **Thesis**
 
@@ -15,7 +15,7 @@ Distributed systems spend significant effort answering descriptive questions. Wh
 
 A membership view can say that a set of parties seems to exist. It does not by itself force authority to pass through that set when something important must happen. In many systems, membership is therefore descriptive rather than causal. It names participants, but it does not necessarily require their presence at the moment when latent capability becomes action.
 
-This distinction matters most when a system contains hidden capacity: the ability to sign, decrypt, release, rotate, reveal, approve, or otherwise transform private state into public consequence. If that capacity can be exercised off to the side by one operator, one machine, or one silently reconstructed secret, then the membership layer was informative but not authoritative. It described the group without actually embedding authority in the group.
+This distinction matters most when a system contains hidden capacity: the ability to sign, decrypt, release, rotate, reveal, approve, or otherwise transform private state into public consequence. If that capacity can be exercised off to the side by one operator, one machine, or one silently reconstructed secret, then the membership layer was informative but not authoritative. It described the group without embedding authority in the group.
 
 Threshold ceremonies are interesting because they can close that gap. They make collective presence part of the causal path.
 
@@ -25,11 +25,11 @@ Three related ideas are often blended together:
 
 - **secret sharing:** a secret is divided into parts so that reconstruction requires some threshold
 - **threshold cryptography:** some cryptographic operation can be performed with threshold participation rather than a single holder
-- **distributed key generation:** a shared secret or public key is generated without one party choosing and then distributing it unilaterally
+- **distributed key generation:** a shared secret or public key is generated without one party choosing it first and then distributing it unilaterally
 
-These are distinct. Secret sharing is about splitting and recovery. Threshold cryptography is about distributed execution of capability. Distributed key generation is about how that capability comes into existence without an initial central owner.
+These are distinct. Secret sharing is about splitting and recovery. Threshold cryptography is about distributed execution of capability. Distributed key generation is about how that capability comes into existence without an initial central owner or dealer.
 
-The usual explanation treats all three as variants of key protection. That explanation is correct but incomplete. The stronger framing is about when hidden capability may become visible consequence. A threshold ceremony is a social and protocol condition on observability.
+The usual explanation treats all three as variants of key protection. That explanation is correct but incomplete. The more useful framing here is about when hidden capability may become visible consequence. A threshold ceremony is a social and protocol condition on observability.
 
 What matters is not merely that a key is fragmented. What matters is that the capability cannot honestly be said to exist as an actionable thing except through the continued existence, availability, and interaction of a quorum-shaped set. The interesting unit is therefore not “a key split into pieces,” but **a capability that exists only as a distributed social fact**.
 
@@ -46,7 +46,7 @@ Several elements matter:
 - there is an event in which the capability becomes observable
 - there is a transcript, artifact, or surrounding evidence that the event passed through the required collective condition
 
-The crucial point is that the observable consequence is conditioned not only on abstract authorization, but on sufficiently real collective presence.
+The crucial point is that the observable consequence is conditioned not only on abstract authorization, but on sufficiently real collective presence in a specific epoch under a visible policy.
 
 Examples of observable consequence include:
 
@@ -61,17 +61,17 @@ In each case, the system is not merely asking whether enough people once existed
 
 ## 4. Gossip, Consensus, and Ceremony
 
-This framing becomes clearer when set beside two more familiar distributed-system functions.
+This framing becomes clearer when set beside two more familiar distributed-systems functions.
 
 - **Gossip:** who seems to exist, according to whom?
 - **Consensus:** what transitions count as committed history?
 - **Threshold ceremony:** what hidden capabilities may become real, and only through what collective presence?
 
-Gossip is epistemic. It constructs a distributed picture of who is there and what they seem to know. Consensus is historical. It fixes which transitions are admitted into shared history. Threshold ceremony is causal in a different sense. It constrains when a latent authority may become effective at all.
+Gossip is epistemic. It constructs a distributed picture of who is present and what they seem to know. Consensus is historical. It fixes which transitions are admitted into shared history. Threshold ceremony is causal in a different sense. It constrains when a latent authority may become effective at all.
 
 These layers interact, but they are not interchangeable.
 
-Gossip may tell us that a validator set is visible. Consensus may tell us that a reconfiguration has committed. Neither alone guarantees that a sensitive capability must pass through currently real collective presence before it becomes an observable effect. A threshold ceremony can do that, provided the participant set, epoch, and policy are themselves tied to the system’s actual membership and not smuggled in from a stale or silently centralized side channel.
+Gossip may tell us that a validator set is visible. Consensus may tell us that a reconfiguration has committed. Neither alone guarantees that a sensitive capability must pass through currently real collective presence before it becomes an observable effect. A threshold ceremony can do that, provided the participant set, epoch, and policy are themselves tied to the system's current membership conditions and not smuggled in from a stale or silently centralized side channel.
 
 ## 5. Minimal Protocol Sketch
 
@@ -108,13 +108,15 @@ publish:
   record X as evidence that O occurred under (e, V_e, P_e, Q)
 ```
 
-The important detail is that `Q` is not just a bag of key shards. It is a quorum-shaped social and protocol fact derived from an epochal membership view and policy. If `V_e` is stale, or `P_e` is opaque, or `Q` is effectively a clique wearing a quorum costume, then the ceremony may still produce a payload while failing the stronger causal purpose.
+The important detail is that `Q` is not just a bag of key shards. It is a quorum-shaped social and protocol fact derived from an epochal membership view and policy. If `V_e` is stale, `P_e` is opaque, or `Q` is effectively a clique wearing a quorum costume, then the ceremony may still produce a payload while failing the stronger causal purpose.
+
+This is also where the distinction among the three earlier primitives matters. Secret sharing can explain how recovery works. Threshold cryptography can explain how a distributed operation is performed. Distributed key generation can explain how no single party minted the capability in the first place. Quorum-conditioned observability sits one level above all three. It asks whether the visible effect can honestly be attributed to the collective presence the system claims to recognize.
 
 ## 6. Why the Transcript Matters
 
 In a threshold framing centered only on payload, the best outcome is often described as “the signature verifies” or “the decryption succeeded.” That is not enough here.
 
-The transcript may matter as much as the payload because the transcript is what makes the ceremony legible as collective presence rather than mere distributed implementation detail.
+The transcript may matter nearly as much as the payload because the transcript is what makes the ceremony legible as collective presence rather than mere distributed implementation detail.
 
 The transcript can carry evidence such as:
 
@@ -125,7 +127,7 @@ The transcript can carry evidence such as:
 - when the ceremony occurred
 - whether diversity or anti-concentration constraints were satisfied
 
-The transcript does not need to be maximal or privacy-destroying to matter. But it should be strong enough that later observers can distinguish plural authorization from ceremony laundering.
+The transcript does not need to be maximal or privacy-destroying to matter. But it should be strong enough that later observers can distinguish plural authorization from ceremony laundering, stale authorization, or silently concentrated control.
 
 This is why the transcript leaves a durable scar in the log. The scar is useful because it marks the passage from hidden capability to public effect. Without such a scar, threshold systems are vulnerable to looking plural while functioning privately.
 
@@ -139,19 +141,19 @@ A ceremony may satisfy an old threshold with respect to an obsolete epoch while 
 
 ### Silent key centralization
 
-The system may advertise threshold control while, in practice, one operator can reconstruct, coerce, simulate, or otherwise dominate enough shares to exercise capability alone. In that case the quorum exists descriptively, not causally.
+The system may advertise threshold control while, in practice, one operator can reconstruct, coerce, simulate, or otherwise dominate enough shares to exercise capability alone. In that case the quorum exists descriptively, not causally. The cryptographic surface may still look healthy while the operational reality has collapsed back into unilateral possession.
 
 ### Liveness collapse
 
-If the policy ties observability too rigidly to quorum presence, the system may preserve plural legitimacy at the cost of operational paralysis. This is not a trivial concern. Quorum-conditioned observability is only useful if the conditions remain reachable often enough for the system to function.
+If the policy ties observability too rigidly to quorum presence, the system may preserve plural legitimacy at the cost of operational paralysis. This is not a trivial concern. Quorum-conditioned observability is only useful if the conditions remain reachable often enough for the system to function. A design that cannot assemble quorum under routine network stress has not embedded authority in plural contact so much as buried it under liveness debt.
 
 ### Fake quorum diversity / clique capture
 
-The threshold may be numerically satisfied while socially or operationally captured by one organization, rack, jurisdiction, deployment lane, or coordination clique. The ceremony then looks collective but is not sufficiently plural in the sense that matters.
+The threshold may be numerically satisfied while socially or operationally captured by one organization, rack, jurisdiction, deployment lane, or coordination clique. The ceremony then looks collective but is not sufficiently plural in the sense that matters. Diversity that exists only on paper does not produce the kind of collective presence this note is trying to name.
 
 ### Ceremony laundering / poor auditability
 
-A system may expose a valid threshold artifact while providing too little transcript material to show how the threshold was actually satisfied. In that case the ceremony becomes laundered authority: technically distributed, practically unauditable.
+A system may expose a valid threshold artifact while providing too little transcript material to show how the threshold was actually satisfied. In that case the ceremony becomes laundered authority: technically distributed, practically unauditable. The system can claim plural authorization while leaving later observers unable to distinguish a real ceremony from a procedural performance.
 
 ## 8. Why This Matters Under Partial Observability
 
@@ -173,8 +175,6 @@ The design problem, then, is not just how to split a key. It is how to ensure th
 
 ## References
 
-TODO:
-
-- add a short verified references list if this note is later expanded into a cited technical paper
-- until then, keep this note self-contained rather than fabricating bibliography theater
-
+- Adi Shamir, "How to Share a Secret," *Communications of the ACM* 22(11), 1979.
+- Yvo Desmedt and Yair Frankel, "Threshold Cryptosystems," in *Advances in Cryptology - CRYPTO '89*, 1990.
+- Torben P. Pedersen, "A Threshold Cryptosystem without a Trusted Party (Extended Abstract)," in *Advances in Cryptology - EUROCRYPT '91*, 1991.
