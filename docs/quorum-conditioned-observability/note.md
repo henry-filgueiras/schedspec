@@ -9,6 +9,10 @@ Threshold systems are often introduced as ways to hide a key, tolerate faults, o
 
 A threshold ceremony is not mainly a way to hide a key; it is a way to require sufficiently real collective presence before hidden state may enter the observable world.
 
+![Descriptive membership versus causal membership](figures/descriptive-vs-causal.svg)
+
+*Figure: the important distinction is not whether a group can be named, but whether authority must cross that group in the current epoch under visible policy.*
+
 ## 1. The Gap: Membership Is Often Descriptive, Not Causal
 
 Distributed systems spend significant effort answering descriptive questions. Who appears to be alive? Which peers are in the current configuration? Which nodes have acknowledged a view? Which state transitions count as committed history? These are serious questions, but they still leave a gap between belief and effect.
@@ -58,6 +62,10 @@ Examples of observable consequence include:
 - a public authorization record
 
 In each case, the system is not merely asking whether enough people once existed. It is asking whether enough appropriately situated participants were actually present in the relevant epoch under the relevant policy when the hidden capability crossed into the world as an effect.
+
+![Why plain M-of-N is too crude](figures/policy-shaped-quorum.svg)
+
+*Figure: raw cardinality can pass while policy still fails on freshness, diversity, or role shape.*
 
 ## 4. Gossip, Consensus, and Ceremony
 
@@ -130,6 +138,10 @@ The transcript can carry evidence such as:
 The transcript does not need to be maximal or privacy-destroying to matter. But it should be strong enough that later observers can distinguish plural authorization from ceremony laundering, stale authorization, or silently concentrated control.
 
 This is why the transcript leaves a durable scar in the log. The scar is useful because it marks the passage from hidden capability to public effect. Without such a scar, threshold systems are vulnerable to looking plural while functioning privately.
+
+![The transcript leaves a durable scar in the log](figures/transcript-scar.svg)
+
+*Figure: the observable consequence and the transcript are sibling outputs of the ceremony, not payload plus bookkeeping residue.*
 
 ## 7. Failure Modes
 

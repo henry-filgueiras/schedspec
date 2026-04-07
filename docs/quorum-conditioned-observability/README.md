@@ -6,6 +6,8 @@ Thesis:
 
 This subtree contains a compact technical note on **quorum-conditioned observability**.
 
+![Descriptive membership versus causal membership](figures/descriptive-vs-causal.svg)
+
 It exists as the canonical repo version of the idea: short enough to cite, technical enough to reuse, and self-contained enough that a later narrative essay or Substack post can point back to it without restating the conceptual core.
 
 Why this note exists:
@@ -22,6 +24,9 @@ Files:
 
 - [`note.md`](note.md): canonical technical note
 - [`figures/belief-to-action.svg`](figures/belief-to-action.svg): simple figure stub, “From Belief to Action Under Partial Observability”
+- [`figures/descriptive-vs-causal.svg`](figures/descriptive-vs-causal.svg): descriptive membership contrasted with quorum-shaped causal membership
+- [`figures/policy-shaped-quorum.svg`](figures/policy-shaped-quorum.svg): why plain `M-of-N` is too crude
+- [`figures/transcript-scar.svg`](figures/transcript-scar.svg): transcript as durable scar in the log
 - [`../quorum-lab/README.md`](../quorum-lab/README.md): interactive proof-object for threshold ceremony, epoch freshness, diversity constraints, and transcript residue
 
 Use this note when you want a compact technical anchor for:

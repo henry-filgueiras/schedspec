@@ -12,6 +12,8 @@ This artifact is intentionally narrow:
 - conceptual rather than cryptographic
 - focused on policy-shaped quorum, topology, epoch freshness, and transcript residue
 
+![Why plain M-of-N is too crude](../quorum-conditioned-observability/figures/policy-shaped-quorum.svg)
+
 Files:
 
 - [`lab.html`](lab.html): single-page interactive demo with inline CSS and JavaScript

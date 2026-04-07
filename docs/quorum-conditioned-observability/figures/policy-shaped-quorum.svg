@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Why Plain M-of-N Is Too Crude</title>
+  <desc id="desc">Three panels compare a numeric quorum that is same-domain only, a stale or revoked quorum that collapses after exclusions, and a fresh cross-domain role-shaped quorum that succeeds.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f4ed; }
+      .panel { fill: #fffdfa; stroke: #2a2a2a; stroke-width: 2; rx: 18; ry: 18; }
+      .title { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 28px; }
+      .subtitle { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 20px; }
+      .text { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
+      .small { fill: #5f5850; font-family: Georgia, "Times New Roman", serif; font-size: 14px; }
+      .chip { rx: 8; ry: 8; stroke-width: 1.5; }
+      .node { stroke: #2a2a2a; stroke-width: 2; }
+      .selected { stroke-width: 4; }
+      .ok { fill: #d9efe5; stroke: #4e8a72; }
+      .fail { fill: #f7ddd7; stroke: #b45442; }
+      .warn { fill: #f7ead1; stroke: #b28736; }
+      .north { fill: #d9ebf5; }
+      .south { fill: #dbf2e5; }
+      .west { fill: #f5e7cb; }
+      .badge { fill: #fffdfa; stroke: #2a2a2a; stroke-width: 1.25; rx: 8; ry: 8; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="560"/>
+  <text class="title" x="42" y="48">Why Plain M-of-N Is Too Crude</text>
+  <text class="small" x="42" y="76">A count can pass while policy still fails. Epoch freshness, domain diversity, and role constraints decide whether membership has causal force.</text>
+
+  <rect class="panel" x="40" y="108" width="350" height="398"/>
+  <text class="subtitle" x="62" y="142">Case 1: numeric pass, policy fail</text>
+  <text class="small" x="62" y="166">Three selected participants exist, but all live in one failure domain.</text>
+  <rect class="fail chip" x="62" y="456" width="180" height="28"/>
+  <text class="text" x="78" y="475">3 of 5 counted</text>
+  <rect class="fail chip" x="250" y="456" width="112" height="28"/>
+  <text class="text" x="270" y="475">fails policy</text>
+
+  <circle class="node north selected" cx="108" cy="240" r="34"/>
+  <circle class="node north selected" cx="214" cy="240" r="34"/>
+  <circle class="node north selected" cx="320" cy="240" r="34"/>
+  <circle class="node south" cx="160" cy="340" r="34"/>
+  <circle class="node west" cx="266" cy="340" r="34"/>
+  <text class="text" x="100" y="246">O</text>
+  <text class="text" x="205" y="246">T</text>
+  <text class="text" x="311" y="246">W</text>
+  <text class="text" x="151" y="346">T</text>
+  <text class="text" x="257" y="346">W</text>
+
+  <rect class="badge" x="76" y="286" width="64" height="22"/><text class="small" x="91" y="302">north</text>
+  <rect class="badge" x="182" y="286" width="64" height="22"/><text class="small" x="197" y="302">north</text>
+  <rect class="badge" x="288" y="286" width="64" height="22"/><text class="small" x="303" y="302">north</text>
+  <text class="small" x="62" y="394">Same-island or same-domain plurality is a quorum costume.</text>
+
+  <rect class="panel" x="425" y="108" width="350" height="398"/>
+  <text class="subtitle" x="447" y="142">Case 2: stale or revoked collapse</text>
+  <text class="small" x="447" y="166">A selected set shrinks after exclusions. Stale and revoked participants do not count.</text>
+  <rect class="warn chip" x="447" y="456" width="170" height="28"/>
+  <text class="text" x="463" y="475">selected 3 of 5</text>
+  <rect class="fail chip" x="626" y="456" width="120" height="28"/>
+  <text class="text" x="639" y="475">only 2 count</text>
+
+  <circle class="node north selected" cx="493" cy="240" r="34"/>
+  <circle class="node south selected" cx="599" cy="240" r="34"/>
+  <circle class="node west selected" cx="705" cy="240" r="34"/>
+  <circle class="node north" cx="545" cy="340" r="34"/>
+  <circle class="node south" cx="651" cy="340" r="34"/>
+  <text class="text" x="484" y="246">T</text>
+  <text class="text" x="590" y="246">W</text>
+  <text class="text" x="696" y="246">T</text>
+  <text class="text" x="536" y="346">O</text>
+  <text class="text" x="642" y="346">W</text>
+
+  <rect class="badge" x="466" y="286" width="56" height="22"/><text class="small" x="480" y="302">e=7</text>
+  <rect class="badge" x="572" y="286" width="56" height="22"/><text class="small" x="586" y="302">e=7</text>
+  <rect class="fail chip" x="675" y="286" width="60" height="22"/><text class="small" x="689" y="302">e=6</text>
+  <rect class="fail chip" x="624" y="386" width="82" height="22"/><text class="small" x="638" y="402">revoked</text>
+  <text class="small" x="447" y="394">Freshness and revocation gates decide who remains eligible.</text>
+
+  <rect class="panel" x="810" y="108" width="350" height="398"/>
+  <text class="subtitle" x="832" y="142">Case 3: role-shaped plural success</text>
+  <text class="small" x="832" y="166">Cross-domain, fresh-epoch, and role minimums align. The ceremony earns causal force.</text>
+  <rect class="ok chip" x="832" y="456" width="174" height="28"/>
+  <text class="text" x="848" y="475">4 counted, 3 domains</text>
+  <rect class="ok chip" x="1015" y="456" width="120" height="28"/>
+  <text class="text" x="1040" y="475">policy passes</text>
+
+  <circle class="node north selected" cx="878" cy="240" r="34"/>
+  <circle class="node north selected" cx="984" cy="240" r="34"/>
+  <circle class="node south selected" cx="1090" cy="240" r="34"/>
+  <circle class="node west selected" cx="931" cy="340" r="34"/>
+  <circle class="node south" cx="1037" cy="340" r="34"/>
+  <text class="text" x="869" y="246">O</text>
+  <text class="text" x="975" y="246">T</text>
+  <text class="text" x="1081" y="246">T</text>
+  <text class="text" x="922" y="346">W</text>
+  <text class="text" x="1028" y="346">W</text>
+
+  <rect class="badge" x="848" y="286" width="60" height="22"/><text class="small" x="862" y="302">north</text>
+  <rect class="badge" x="954" y="286" width="60" height="22"/><text class="small" x="968" y="302">north</text>
+  <rect class="badge" x="1060" y="286" width="60" height="22"/><text class="small" x="1074" y="302">south</text>
+  <rect class="badge" x="901" y="386" width="56" height="22"/><text class="small" x="915" y="402">west</text>
+  <text class="small" x="832" y="394">Operator, trustees, and witness appear across multiple domains in the current epoch.</text>
+
+  <rect class="badge" x="78" y="90" width="98" height="22"/><text class="small" x="92" y="106">O = operator</text>
+  <rect class="badge" x="184" y="90" width="92" height="22"/><text class="small" x="198" y="106">T = trustee</text>
+  <rect class="badge" x="284" y="90" width="94" height="22"/><text class="small" x="297" y="106">W = witness</text>
+</svg>

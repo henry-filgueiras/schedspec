@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Descriptive Membership versus Causal Membership</title>
+  <desc id="desc">A side-by-side comparison showing one path where membership only describes participants while authority bypasses the group, and another path where authority must cross a quorum-shaped ceremony under epoch and policy.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f4ed; }
+      .lane-left { fill: #fff5f2; stroke: #d39b90; stroke-width: 2; rx: 22; ry: 22; }
+      .lane-right { fill: #f3faf8; stroke: #89b5a4; stroke-width: 2; rx: 22; ry: 22; }
+      .box { fill: #fffdfa; stroke: #272727; stroke-width: 2; rx: 14; ry: 14; }
+      .smallbox { fill: #fffdfa; stroke: #272727; stroke-width: 2; rx: 12; ry: 12; }
+      .muted { fill: #6a635b; font-family: Georgia, "Times New Roman", serif; font-size: 18px; }
+      .title { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 28px; }
+      .subtitle { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 22px; }
+      .text { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 20px; }
+      .small { fill: #1f1f1f; font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
+      .label { fill: #6a635b; font-family: Georgia, "Times New Roman", serif; font-size: 15px; }
+      .arrow { stroke: #272727; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke: #b45442; stroke-width: 3; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrow-red); }
+      .green { fill: #d8efe4; stroke: #4e8a72; stroke-width: 1.5; rx: 10; ry: 10; }
+      .red { fill: #f7ddd7; stroke: #b45442; stroke-width: 1.5; rx: 10; ry: 10; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#272727"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#b45442"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="420"/>
+  <text class="title" x="42" y="48">Descriptive Membership versus Causal Membership</text>
+  <text class="muted" x="42" y="78">The left lane names a group. The right lane forces authority to pass through the group in the current epoch under visible policy.</text>
+
+  <rect class="lane-left" x="40" y="112" width="530" height="266"/>
+  <text class="subtitle" x="62" y="146">Membership is descriptive</text>
+  <text class="label" x="62" y="170">The system can describe participants while hidden capability still escapes through a side channel.</text>
+
+  <rect class="box" x="66" y="208" width="155" height="88"/>
+  <text class="text" x="88" y="242">Membership View</text>
+  <text class="small" x="98" y="267">who appears present</text>
+
+  <rect class="box" x="316" y="134" width="195" height="88"/>
+  <text class="text" x="349" y="168">Hidden Capability</text>
+  <text class="small" x="340" y="193">single operator holds path</text>
+
+  <rect class="box" x="316" y="266" width="195" height="88"/>
+  <text class="text" x="347" y="300">Observable Effect</text>
+  <text class="small" x="351" y="325">signature, reveal, release</text>
+
+  <path class="arrow" d="M221 252 L316 252"/>
+  <text class="label" x="235" y="238">describes</text>
+
+  <path class="dashed" d="M414 222 C464 232, 474 254, 414 266"/>
+  <text class="label" x="66" y="336">Failure mode: membership names the group, but authority bypasses the group.</text>
+  <rect class="red" x="66" y="346" width="220" height="20"/>
+  <text class="label" x="78" y="361">authority can move off-path</text>
+
+  <rect class="lane-right" x="630" y="112" width="530" height="266"/>
+  <text class="subtitle" x="652" y="146">Membership is causal</text>
+  <text class="label" x="652" y="170">Epoch, policy, and quorum ceremony become part of the path from hidden state to observable consequence.</text>
+
+  <rect class="box" x="652" y="208" width="150" height="88"/>
+  <text class="text" x="680" y="242">View V<tspan baseline-shift="sub" font-size="14">e</tspan></text>
+  <text class="small" x="670" y="267">eligible participants</text>
+
+  <rect class="box" x="842" y="208" width="130" height="88"/>
+  <text class="text" x="878" y="242">Policy</text>
+  <text class="small" x="858" y="267">epoch, roles, domains</text>
+
+  <rect class="box" x="1002" y="182" width="130" height="114"/>
+  <text class="text" x="1024" y="220">Threshold</text>
+  <text class="text" x="1023" y="246">Ceremony</text>
+  <text class="small" x="1025" y="272">plural contact</text>
+
+  <rect class="smallbox" x="820" y="324" width="132" height="34"/>
+  <text class="small" x="839" y="346">Transcript X</text>
+
+  <rect class="smallbox" x="982" y="324" width="150" height="34"/>
+  <text class="small" x="997" y="346">Observable Effect O</text>
+
+  <path class="arrow" d="M802 252 L842 252"/>
+  <path class="arrow" d="M972 252 L1002 252"/>
+  <path class="arrow" d="M1067 296 L1067 324"/>
+  <path class="arrow" d="M1067 296 C1067 310, 1050 324, 982 341"/>
+
+  <rect class="green" x="652" y="346" width="250" height="20"/>
+  <text class="label" x="665" y="361">authority must cross plural contact</text>
+  <rect class="green" x="912" y="346" width="205" height="20"/>
+  <text class="label" x="925" y="361">the log keeps the scar</text>
+</svg>

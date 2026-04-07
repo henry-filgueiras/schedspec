@@ -4,6 +4,8 @@ Resonant Membership is a design-first systems treatise on gossip, trust, and con
 
 Its center of gravity is not generic rumor spread. It is bootstrap, witness, scoped dissemination, merge, healing, topology-aware structure, and operator-visible convergence discipline.
 
+![From belief to action under partial observability](quorum-conditioned-observability/figures/belief-to-action.svg)
+
 ## Start Here
 
 If you are entering through the published site rather than the repo front door:
@@ -21,6 +23,8 @@ The repo also carries a compact note and a proof-object for **quorum-conditioned
 - [`quorum-conditioned-observability/note.md`](quorum-conditioned-observability/note.md): canonical technical note
 - [`quorum-lab/README.md`](quorum-lab/README.md): overview for the interactive browser artifact
 - [`quorum-lab/lab.html`](quorum-lab/lab.html): launch the Quorum Lab demo
+
+![Descriptive membership versus causal membership](quorum-conditioned-observability/figures/descriptive-vs-causal.svg)
 
 ## Non-Claim
 
