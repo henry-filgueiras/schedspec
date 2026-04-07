@@ -1,0 +1,83 @@
+{
+  "id": "deterministic-reunion-operator-override",
+  "title": "5. Visible residue and operator intervention",
+  "summary": "Both islands keep a locally coherent position that remains materially unresolved after deterministic merge. The system must surface residue and allow a constrained operator intervention.",
+  "difference_from_quorum_lab": "Quorum Lab is about collective presence before revelation. This lab is about what happens after a split when even good merge rules still cannot honestly finish the job alone.",
+  "notes": [
+    "OperatorOverride is not magic. It is visible, constrained, and leaves a scar in the digest.",
+    "The merge remains honest by refusing to flatten this conflict automatically."
+  ],
+  "allow_operator_override": true,
+  "operator_override": {
+    "subject_id": "kestrel",
+    "status": "quarantined",
+    "reason": "Global removal and regional acceptance remain materially unresolved at the same epoch. Quarantine is the least dishonest intervention."
+  },
+  "expected_merge_tensions": [
+    "Island A kept Kestrel active in a regional scope after local repair.",
+    "Island B removed Kestrel globally after a policy violation outside Island A's visibility."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 71,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 71, "trust_weight": 87, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 70, "trust_weight": 78, "scope": "regional-a", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Still active regionally before the later conflict lands." },
+        "lumen": { "status": "accepted", "epoch": 71, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 71, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 71, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 71,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 71, "trust_weight": 87, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 70, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Still active before the violation lands." },
+        "lumen": { "status": "accepted", "epoch": 71, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 71, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 71, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "regional-keepalive",
+      "label": "Island A keeps Kestrel active regionally",
+      "description": "A local repair path convinces Island A to keep Kestrel alive in its scope.",
+      "patches": {
+        "island_a": {
+          "members": {
+            "kestrel": { "status": "accepted", "epoch": 71, "trust_weight": 81, "scope": "regional-a", "witness_summary": { "count": 2, "quality": "strong", "diversity": "mixed" }, "explanation": "Regional repair keeps Kestrel online inside Island A." }
+          },
+          "log": "Island A keeps Kestrel active in a regional scope."
+        }
+      }
+    },
+    {
+      "id": "global-removal",
+      "label": "Island B removes Kestrel globally",
+      "description": "Island B sees a policy violation outside Island A's visibility and revokes Kestrel.",
+      "patches": {
+        "island_b": {
+          "members": {
+            "kestrel": { "status": "removed", "epoch": 71, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Global scope issues removal, but the witness path is still thin enough that reunion cannot finish the case honestly on its own." }
+          },
+          "log": "Island B removes Kestrel globally."
+        }
+      }
+    }
+  ]
+}

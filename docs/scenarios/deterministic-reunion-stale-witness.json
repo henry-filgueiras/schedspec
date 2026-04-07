@@ -1,0 +1,79 @@
+{
+  "id": "deterministic-reunion-stale-witness",
+  "title": "2. Stale witness path",
+  "summary": "One island accepts a member through an older and weaker witness path. Reunion should not mistake that for current shared truth.",
+  "difference_from_quorum_lab": "Quorum Lab is about plural presence before revelation. This lab is about what survives comparison when two witness histories recontact one another.",
+  "notes": [
+    "The stale path is locally coherent enough to fool a naive reunion.",
+    "The deterministic merge should preserve the downgrade and explain why."
+  ],
+  "allow_operator_override": false,
+  "operator_override": null,
+  "expected_merge_tensions": [
+    "Island B accepted Morrow based on an older epoch and weaker witness diversity.",
+    "Island A only reaches provisional status with fresher evidence."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 42,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 42, "trust_weight": 87, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Steady gateway membership." },
+        "kestrel": { "status": "accepted", "epoch": 42, "trust_weight": 83, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "No meaningful drift on Kestrel." },
+        "lumen": { "status": "accepted", "epoch": 42, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Lumen stays calm through the split." },
+        "morrow": { "status": "unknown", "epoch": 42, "trust_weight": 0, "scope": "regional-a", "witness_summary": { "count": 0, "quality": "weak", "diversity": "single-scope" }, "explanation": "No fresh admissible evidence yet." },
+        "nyx": { "status": "accepted", "epoch": 42, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Operationally stable." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 42,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 42, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "No drift on Iona." },
+        "kestrel": { "status": "accepted", "epoch": 42, "trust_weight": 82, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "No drift on Kestrel." },
+        "lumen": { "status": "accepted", "epoch": 42, "trust_weight": 78, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Lumen remains settled." },
+        "morrow": { "status": "unknown", "epoch": 42, "trust_weight": 0, "scope": "regional-b", "witness_summary": { "count": 0, "quality": "weak", "diversity": "single-scope" }, "explanation": "No fresh admissible evidence yet." },
+        "nyx": { "status": "accepted", "epoch": 42, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Operationally stable." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "stale-acceptance",
+      "label": "Island B accepts Morrow through a stale witness path",
+      "description": "The evidence is old and narrow, but enough for Island B to accept locally during the split.",
+      "patches": {
+        "island_b": {
+          "members": {
+            "morrow": { "status": "accepted", "epoch": 40, "trust_weight": 58, "scope": "regional-b", "witness_summary": { "count": 3, "quality": "weak", "diversity": "single-scope" }, "explanation": "Three same-scope witnesses reinforce an older introduction." }
+          },
+          "log": "Island B accepts Morrow based on an older witness path."
+        }
+      }
+    },
+    {
+      "id": "fresh-provisional",
+      "label": "Island A reaches only provisional confidence on Morrow",
+      "description": "Island A gets fresher evidence, but not enough to close the path all the way to accepted.",
+      "patches": {
+        "island_a": {
+          "members": {
+            "morrow": { "status": "provisional", "epoch": 42, "trust_weight": 74, "scope": "global", "witness_summary": { "count": 2, "quality": "strong", "diversity": "cross-scope" }, "explanation": "The evidence is fresher and better, but still incomplete." }
+          },
+          "log": "Island A keeps Morrow provisional pending one more independent witness."
+        }
+      }
+    }
+  ]
+}

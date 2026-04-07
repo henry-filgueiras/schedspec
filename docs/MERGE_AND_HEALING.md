@@ -12,6 +12,7 @@ See also:
 - [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md) for deterministic reunion and rendezvous ordering
 - [`DIAGRAMS.md`](DIAGRAMS.md) for canonical reunion and repair diagrams
 - [`EXAMPLES.md`](EXAMPLES.md) for partition and repair case studies
+- [`deterministic-reunion-lab/README.md`](deterministic-reunion-lab/README.md) for a browser proof-object centered on residue-preserving healing
 
 ## What Problem This Section Solves
 

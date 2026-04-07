@@ -1,0 +1,79 @@
+{
+  "id": "deterministic-reunion-conflicting-acceptance",
+  "title": "3. Conflicting acceptance",
+  "summary": "Both islands are locally coherent and materially incompatible. Reunion must preserve the conflict instead of flattening it into certainty.",
+  "difference_from_quorum_lab": "This artifact is about divergent belief merge. The hard question is not whether a quorum exists, but what a reunited system is willing to remember.",
+  "notes": [
+    "The conflict is fresh, admissible, and same-epoch on both sides.",
+    "This is the canonical residue case."
+  ],
+  "allow_operator_override": false,
+  "operator_override": null,
+  "expected_merge_tensions": [
+    "Island A accepted Nyx with strong cross-scope support.",
+    "Island B quarantined Nyx with equally fresh equivocation evidence."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 58,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 58, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 58, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "accepted", "epoch": 58, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 58, "trust_weight": 78, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "provisional", "epoch": 57, "trust_weight": 71, "scope": "regional-a", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Nyx was already under active review before the split." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 58,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 58, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 58, "trust_weight": 83, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "accepted", "epoch": 58, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 58, "trust_weight": 78, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "provisional", "epoch": 57, "trust_weight": 72, "scope": "regional-b", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Nyx was already under active review before the split." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "accept-nyx",
+      "label": "Island A accepts Nyx",
+      "description": "Island A sees enough fresh cross-scope evidence to close the acceptance path.",
+      "patches": {
+        "island_a": {
+          "members": {
+            "nyx": { "status": "accepted", "epoch": 58, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Island A sees a clean acceptance path." }
+          },
+          "log": "Island A accepts Nyx as globally admissible."
+        }
+      }
+    },
+    {
+      "id": "quarantine-nyx",
+      "label": "Island B quarantines Nyx",
+      "description": "Island B sees equally fresh equivocation evidence from a high-trust witness set.",
+      "patches": {
+        "island_b": {
+          "members": {
+            "nyx": { "status": "quarantined", "epoch": 58, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Equivocation evidence is strong enough to quarantine immediately." }
+          },
+          "log": "Island B quarantines Nyx after an equivocation report."
+        }
+      }
+    }
+  ]
+}

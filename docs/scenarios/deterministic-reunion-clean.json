@@ -1,0 +1,79 @@
+{
+  "id": "deterministic-reunion-clean",
+  "title": "1. Clean reunion",
+  "summary": "Both islands drift only slightly. Reunion still performs a merge, but the allowed precedence rules resolve the differences without residue.",
+  "difference_from_quorum_lab": "Quorum Lab asks when hidden capability may become observable. Deterministic Reunion Lab asks what happens when two locally coherent membership realities meet again.",
+  "notes": [
+    "A clean reunion is still a merge, not a magical return to innocence.",
+    "The point of the scenario is that deterministic reunion can be quiet without being naive."
+  ],
+  "allow_operator_override": false,
+  "operator_override": null,
+  "expected_merge_tensions": [
+    "Lumen is accepted on Island B before Island A closes the same witness gap.",
+    "Nyx is fresher on Island B but does not materially conflict with Island A."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 31,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 31, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Seen before the split and reaffirmed by two scopes." },
+        "kestrel": { "status": "accepted", "epoch": 31, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Stable trustee membership carried forward cleanly." },
+        "lumen": { "status": "provisional", "epoch": 30, "trust_weight": 68, "scope": "regional-a", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Witness gap remained open when the partition landed." },
+        "morrow": { "status": "accepted", "epoch": 31, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Locally calm but not over-corroborated." },
+        "nyx": { "status": "accepted", "epoch": 31, "trust_weight": 77, "scope": "regional-a", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "mixed" }, "explanation": "Operationally present, global corroboration still catching up." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 31,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 31, "trust_weight": 87, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Same direction as Island A." },
+        "kestrel": { "status": "accepted", "epoch": 31, "trust_weight": 82, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "No material split on Kestrel." },
+        "lumen": { "status": "accepted", "epoch": 31, "trust_weight": 83, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Island B closed the remaining witness gap." },
+        "morrow": { "status": "accepted", "epoch": 31, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm local continuity." },
+        "nyx": { "status": "provisional", "epoch": 30, "trust_weight": 66, "scope": "regional-b", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "single-scope" }, "explanation": "Fresh enough to continue service, not enough to close globally." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "close-lumen-gap",
+      "label": "Island A closes the Lumen witness gap",
+      "description": "Island A gets the same missing corroboration Island B already had.",
+      "patches": {
+        "island_a": {
+          "members": {
+            "lumen": { "status": "accepted", "epoch": 31, "trust_weight": 85, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Cross-scope corroboration arrives before reunion." }
+          },
+          "log": "Island A accepts Lumen after the missing corroboration arrives."
+        }
+      }
+    },
+    {
+      "id": "freshen-nyx",
+      "label": "Island B freshens Nyx",
+      "description": "Island B closes the same local gap Island A had already tolerated.",
+      "patches": {
+        "island_b": {
+          "members": {
+            "nyx": { "status": "accepted", "epoch": 31, "trust_weight": 82, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "A late cross-scope witness closes the remaining doubt." }
+          },
+          "log": "Island B upgrades Nyx from provisional to accepted."
+        }
+      }
+    }
+  ]
+}

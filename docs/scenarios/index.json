@@ -1,0 +1,35 @@
+{
+  "lab": "deterministic-reunion-lab",
+  "scenarios": [
+    {
+      "id": "deterministic-reunion-clean",
+      "title": "1. Clean reunion",
+      "path": "deterministic-reunion-clean.json"
+    },
+    {
+      "id": "deterministic-reunion-stale-witness",
+      "title": "2. Stale witness path",
+      "path": "deterministic-reunion-stale-witness.json"
+    },
+    {
+      "id": "deterministic-reunion-conflicting-acceptance",
+      "title": "3. Conflicting acceptance",
+      "path": "deterministic-reunion-conflicting-acceptance.json"
+    },
+    {
+      "id": "deterministic-reunion-trust-laundering",
+      "title": "4. Trust laundering attempt",
+      "path": "deterministic-reunion-trust-laundering.json"
+    },
+    {
+      "id": "deterministic-reunion-operator-override",
+      "title": "5. Visible residue and operator intervention",
+      "path": "deterministic-reunion-operator-override.json"
+    },
+    {
+      "id": "deterministic-reunion-epoch-race",
+      "title": "6. Epoch mismatch and revocation race",
+      "path": "deterministic-reunion-epoch-race.json"
+    }
+  ]
+}

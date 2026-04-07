@@ -1,0 +1,77 @@
+{
+  "id": "deterministic-reunion-epoch-race",
+  "title": "6. Epoch mismatch and revocation race",
+  "summary": "Reunion occurs across an epoch boundary while a revocation races a still-coherent acceptance path. Connectivity returns, but truth does not rewind.",
+  "difference_from_quorum_lab": "The critical question here is not ceremony admission. It is what a reunited system should do when fresh revocation collides with slightly older acceptance.",
+  "notes": [
+    "This scenario teaches that newer revocation can dominate while still leaving a visible race scar.",
+    "Recontact does not erase the earlier acceptance history."
+  ],
+  "allow_operator_override": false,
+  "operator_override": null,
+  "expected_merge_tensions": [
+    "Island B still carries a coherent acceptance for Iona at epoch 83.",
+    "Island A receives a stronger revocation at epoch 84 just before reunion."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 83,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 83, "trust_weight": 81, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Iona is stable before the revocation arrives." },
+        "kestrel": { "status": "accepted", "epoch": 83, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "accepted", "epoch": 83, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 83, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 83, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 83,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 83, "trust_weight": 82, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Iona remains coherent on Island B." },
+        "kestrel": { "status": "accepted", "epoch": 83, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "accepted", "epoch": 83, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "morrow": { "status": "accepted", "epoch": 83, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 83, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "still-accepted-b",
+      "label": "Island B keeps Iona accepted",
+      "description": "Island B does not yet see the revocation and continues with a coherent acceptance path.",
+      "patches": {
+        "island_b": {
+          "log": "Island B continues to treat Iona as accepted at epoch 83."
+        }
+      }
+    },
+    {
+      "id": "revocation-arrives-a",
+      "label": "Island A receives a newer revocation for Iona",
+      "description": "The revocation lands one epoch later with stronger admissible evidence.",
+      "patches": {
+        "island_a": {
+          "local_epoch": 84,
+          "members": {
+            "iona": { "status": "removed", "epoch": 84, "trust_weight": 85, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Revocation arrives with newer, stronger evidence." }
+          },
+          "log": "Island A removes Iona after the revocation lands in epoch 84."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "deterministic-reunion-trust-laundering",
+  "title": "4. Trust laundering attempt",
+  "summary": "One island accumulates a large but low-quality reinforcing witness cluster. Reunion should not mistake raw count for trustworthy convergence.",
+  "difference_from_quorum_lab": "This artifact is about merge semantics after divergence. The relevant question is whether corroboration quality can dominate count during repair.",
+  "notes": [
+    "The danger is not just disagreement. The danger is counterfeit agreement.",
+    "This scenario exists to make witness laundering feel operationally obvious."
+  ],
+  "allow_operator_override": false,
+  "operator_override": null,
+  "expected_merge_tensions": [
+    "Island B has more witnesses on Lumen, but they are low-quality and same-scope.",
+    "Island A has fewer witnesses, but the set is better and more diverse."
+  ],
+  "subjects": [
+    { "id": "iona", "label": "Iona", "role": "gateway", "domain": "north" },
+    { "id": "kestrel", "label": "Kestrel", "role": "trustee", "domain": "north" },
+    { "id": "lumen", "label": "Lumen", "role": "relay", "domain": "south" },
+    { "id": "morrow", "label": "Morrow", "role": "witness", "domain": "west" },
+    { "id": "nyx", "label": "Nyx", "role": "operator", "domain": "south" }
+  ],
+  "initial": {
+    "policy_name": "Deterministic Reunion Baseline",
+    "policy_summary": "Fresh admissible evidence dominates stale, trust weight and corroboration quality dominate raw count, and material conflict survives as residue.",
+    "island_a": {
+      "label": "Island A",
+      "scope": "regional-a",
+      "local_epoch": 64,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 64, "trust_weight": 87, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 64, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "unknown", "epoch": 64, "trust_weight": 0, "scope": "regional-a", "witness_summary": { "count": 0, "quality": "weak", "diversity": "single-scope" }, "explanation": "No fresh admissible view yet." },
+        "morrow": { "status": "accepted", "epoch": 64, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 64, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    },
+    "island_b": {
+      "label": "Island B",
+      "scope": "regional-b",
+      "local_epoch": 64,
+      "members": {
+        "iona": { "status": "accepted", "epoch": 64, "trust_weight": 86, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "kestrel": { "status": "accepted", "epoch": 64, "trust_weight": 84, "scope": "global", "witness_summary": { "count": 3, "quality": "strong", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "lumen": { "status": "unknown", "epoch": 64, "trust_weight": 0, "scope": "regional-b", "witness_summary": { "count": 0, "quality": "weak", "diversity": "single-scope" }, "explanation": "No fresh admissible view yet." },
+        "morrow": { "status": "accepted", "epoch": 64, "trust_weight": 79, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." },
+        "nyx": { "status": "accepted", "epoch": 64, "trust_weight": 80, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "Calm continuity." }
+      }
+    }
+  },
+  "events": [
+    {
+      "id": "laundered-acceptance",
+      "label": "Island B accepts Lumen through a laundered witness cluster",
+      "description": "Many low-trust witnesses reinforce each other inside one scope.",
+      "patches": {
+        "island_b": {
+          "members": {
+            "lumen": { "status": "accepted", "epoch": 64, "trust_weight": 57, "scope": "regional-b", "witness_summary": { "count": 6, "quality": "weak", "diversity": "laundered" }, "explanation": "Six low-trust witnesses amplify the same narrow path." }
+          },
+          "log": "Island B treats a reinforcing local cluster as sufficient for acceptance."
+        }
+      }
+    },
+    {
+      "id": "better-provisional",
+      "label": "Island A reaches a better but still provisional view",
+      "description": "Island A has fewer witnesses, but they are better and more diverse.",
+      "patches": {
+        "island_a": {
+          "members": {
+            "lumen": { "status": "provisional", "epoch": 64, "trust_weight": 72, "scope": "global", "witness_summary": { "count": 2, "quality": "mixed", "diversity": "cross-scope" }, "explanation": "The path is better, but still not closed enough for accepted." }
+          },
+          "log": "Island A refuses to accept Lumen on raw count alone."
+        }
+      }
+    }
+  ]
+}

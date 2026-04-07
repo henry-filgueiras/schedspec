@@ -50,6 +50,7 @@ nav:
       - Overview: quorum-conditioned-observability/README.md
       - Note: quorum-conditioned-observability/note.md
       - Quorum Lab: quorum-lab/README.md
+  - Deterministic Reunion Lab: deterministic-reunion-lab/README.md
   - Support:
       - Threat Model: THREAT_MODEL.md
       - Evaluation: EVALUATION.md

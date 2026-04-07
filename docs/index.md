@@ -24,6 +24,11 @@ The repo also carries a compact note and a proof-object for **quorum-conditioned
 - [`quorum-lab/README.md`](quorum-lab/README.md): overview for the interactive browser artifact
 - [`quorum-lab/lab.html`](quorum-lab/lab.html): launch the Quorum Lab demo
 
+It also carries a second proof-object for **merge and healing**:
+
+- [`deterministic-reunion-lab/README.md`](deterministic-reunion-lab/README.md): overview for the reunion artifact
+- [`deterministic-reunion-lab/lab.html`](deterministic-reunion-lab/lab.html): launch Deterministic Reunion Lab
+
 ![Descriptive membership versus causal membership](quorum-conditioned-observability/figures/descriptive-vs-causal.svg)
 
 ## Non-Claim
