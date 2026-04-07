@@ -1,0 +1,61 @@
+site_name: Resonant Membership
+site_description: Gossip, trust, and convergence under partial observability.
+site_url: https://henry-filgueiras.github.io/schedspec/
+repo_url: https://github.com/henry-filgueiras/schedspec
+repo_name: henry-filgueiras/schedspec
+edit_uri: blob/main/docs/
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: mkdocs
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+not_in_nav: |
+  /SPEC_AUDIT.md
+
+nav:
+  - Home: index.md
+  - Start Here:
+      - Current State: CURRENT_STATE.md
+      - Paper Map: PAPER_MAP.md
+  - Spine:
+      - Manifesto: MANIFESTO.md
+      - Abstract: ABSTRACT.md
+      - Primitives: PRIMITIVES.md
+      - Semantics: SEMANTICS.md
+      - Membership: MEMBERSHIP.md
+      - Dissemination: DISSEMINATION.md
+      - Trust: TRUST.md
+      - Merge And Healing: MERGE_AND_HEALING.md
+      - Topology: TOPOLOGY.md
+  - Interstitials:
+      - Glossary: GLOSSARY.md
+      - Invariants: INVARIANTS.md
+      - Permutation Rank: PERMUTATION_RANK.md
+      - Arboritions: ARBORITIONS.md
+      - Mechanics: MECHANICS.md
+  - Quorum-Conditioned Observability:
+      - Overview: quorum-conditioned-observability/README.md
+      - Note: quorum-conditioned-observability/note.md
+      - Quorum Lab: quorum-lab/README.md
+  - Support:
+      - Threat Model: THREAT_MODEL.md
+      - Evaluation: EVALUATION.md
+      - Critique: CRITIQUE.md
+      - Examples: EXAMPLES.md
+      - Diagrams: DIAGRAMS.md
+      - Open Questions: OPEN_QUESTIONS.md
+      - Editorial Guide: EDITORIAL_GUIDE.md
+      - Maintenance Checklist: MAINTENANCE_CHECKLIST.md

@@ -8,7 +8,7 @@ Its purpose is editorial rather than semantic. It says what each chapter is for,
 
 Canonical active-doc inventory:
 
-- **Front door:** [`../README.md`](../README.md)
+- **Front door:** [`README.md`](https://github.com/henry-filgueiras/schedspec/blob/main/README.md)
 - **Spine chapters:** [`MANIFESTO.md`](MANIFESTO.md), [`ABSTRACT.md`](ABSTRACT.md), [`PRIMITIVES.md`](PRIMITIVES.md), [`SEMANTICS.md`](SEMANTICS.md), [`MEMBERSHIP.md`](MEMBERSHIP.md), [`DISSEMINATION.md`](DISSEMINATION.md), [`TRUST.md`](TRUST.md), [`MERGE_AND_HEALING.md`](MERGE_AND_HEALING.md), [`TOPOLOGY.md`](TOPOLOGY.md)
 - **Interstitial primitive chapters:** [`GLOSSARY.md`](GLOSSARY.md), [`INVARIANTS.md`](INVARIANTS.md), [`PERMUTATION_RANK.md`](PERMUTATION_RANK.md), [`ARBORITIONS.md`](ARBORITIONS.md), [`MECHANICS.md`](MECHANICS.md)
 - **Appendices / support docs:** [`THREAT_MODEL.md`](THREAT_MODEL.md), [`EVALUATION.md`](EVALUATION.md), [`CRITIQUE.md`](CRITIQUE.md), [`EXAMPLES.md`](EXAMPLES.md), [`DIAGRAMS.md`](DIAGRAMS.md), [`PAPER_MAP.md`](PAPER_MAP.md), [`EDITORIAL_GUIDE.md`](EDITORIAL_GUIDE.md), [`MAINTENANCE_CHECKLIST.md`](MAINTENANCE_CHECKLIST.md), [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md)
@@ -176,7 +176,7 @@ Its job is to keep the protocol shape legible in canonical editable Mermaid form
 
 The most public-facing surfaces in the repo are:
 
-- [`../README.md`](../README.md): front door and navigational overview
+- [`README.md`](https://github.com/henry-filgueiras/schedspec/blob/main/README.md): front door and navigational overview
 - [`MANIFESTO.md`](MANIFESTO.md): dangerous preface
 - [`ABSTRACT.md`](ABSTRACT.md): framing summary
 
@@ -186,9 +186,9 @@ These should stay concise and should not absorb the full responsibility of later
 
 The active project is Resonant Membership.
 
-Archived adjacent lineages are preserved under [`../notes/archive`](../notes/archive):
+Archived adjacent lineages are preserved under [`notes/archive`](https://github.com/henry-filgueiras/schedspec/tree/main/notes/archive):
 
-- ChronOS / `chrono flow`: [`../notes/archive/chronos/README.md`](../notes/archive/chronos/README.md)
-- SameDiff: [`../notes/archive/SAMEDIFF.md`](../notes/archive/SAMEDIFF.md)
+- ChronOS / `chrono flow`: [`notes/archive/chronos/README.md`](https://github.com/henry-filgueiras/schedspec/blob/main/notes/archive/chronos/README.md)
+- SameDiff: [`notes/archive/SAMEDIFF.md`](https://github.com/henry-filgueiras/schedspec/blob/main/notes/archive/SAMEDIFF.md)
 
 These remain part of the repo because the framing is still strong and adjacent, not because they are co-equal active chapters in the current treatise.

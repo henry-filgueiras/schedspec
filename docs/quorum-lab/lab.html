@@ -801,8 +801,8 @@
           without plural contact in the current epoch under a visible policy.
         </p>
         <div class="hero-links">
-          <a class="hero-link" href="../quorum-conditioned-observability/README.md">Read the note map</a>
-          <a class="hero-link" href="../quorum-conditioned-observability/note.md">Read the canonical note</a>
+          <a class="hero-link" id="note-map-link" href="../quorum-conditioned-observability/README.md">Read the note map</a>
+          <a class="hero-link" id="canonical-note-link" href="../quorum-conditioned-observability/note.md">Read the canonical note</a>
         </div>
       </section>
 
@@ -1124,6 +1124,20 @@
       el.policySelect.innerHTML = Object.values(POLICIES)
         .map((policy) => `<option value="${policy.id}">${policy.label}</option>`)
         .join("");
+    }
+
+    function configureReferenceLinks() {
+      const hosted = window.location.protocol !== "file:";
+      const noteMapLink = document.getElementById("note-map-link");
+      const canonicalNoteLink = document.getElementById("canonical-note-link");
+
+      noteMapLink.href = hosted
+        ? "../quorum-conditioned-observability/"
+        : "../quorum-conditioned-observability/README.md";
+
+      canonicalNoteLink.href = hosted
+        ? "../quorum-conditioned-observability/note/"
+        : "../quorum-conditioned-observability/note.md";
     }
 
     function makeNodesForScenario(scenario) {
@@ -1741,6 +1755,7 @@
     el.joinAll.addEventListener("click", joinAll);
     el.resetScenario.addEventListener("click", () => loadScenario(state.scenarioId));
 
+    configureReferenceLinks();
     buildScenarioOptions();
     buildPolicyOptions();
     loadScenario(state.scenarioId);

@@ -30,4 +30,4 @@ Use this note when you want a compact technical anchor for:
 - embedding authority in plural contact
 - threshold ceremonies as evidence of collective presence
 
-If you want a browser artifact that makes the same claim operationally legible, use [`../quorum-lab/index.html`](../quorum-lab/index.html).
+If you want a browser artifact that makes the same claim operationally legible, use [`../quorum-lab/lab.html`](../quorum-lab/lab.html).

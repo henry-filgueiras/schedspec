@@ -14,13 +14,17 @@ This artifact is intentionally narrow:
 
 Files:
 
-- [`index.html`](index.html): single-page interactive demo with inline CSS and JavaScript
+- [`lab.html`](lab.html): single-page interactive demo with inline CSS and JavaScript
 
 Use:
 
-1. Open [`index.html`](index.html) in a browser.
+1. Open [`lab.html`](lab.html) in a browser.
 2. Load a scenario or change node state manually.
 3. Attempt reveal and inspect the transcript.
+
+For the published docs site, launch the same artifact from [`lab.html`](lab.html).
+
+For local file browsing, open [`lab.html`](lab.html) directly.
 
 What it demonstrates:
 
