@@ -6,6 +6,8 @@ This repository is organized around **Resonant Membership** as the active center
 
 For a fast human re-entry, start with [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md).
 
+See https://henry-filgueiras.github.io/schedspec/ for more.
+
 ## Start Here
 
 If you are new to the repo:
