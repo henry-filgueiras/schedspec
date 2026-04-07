@@ -22,9 +22,12 @@ Files:
 
 - [`note.md`](note.md): canonical technical note
 - [`figures/belief-to-action.svg`](figures/belief-to-action.svg): simple figure stub, “From Belief to Action Under Partial Observability”
+- [`../quorum-lab/README.md`](../quorum-lab/README.md): interactive proof-object for threshold ceremony, epoch freshness, diversity constraints, and transcript residue
 
 Use this note when you want a compact technical anchor for:
 
 - quorum-conditioned observability
 - embedding authority in plural contact
 - threshold ceremonies as evidence of collective presence
+
+If you want a browser artifact that makes the same claim operationally legible, use [`../quorum-lab/index.html`](../quorum-lab/index.html).

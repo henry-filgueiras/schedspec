@@ -163,6 +163,7 @@ merger:
 - [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md): compact human-first snapshot of the project's current shape
 - [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md): maintained ledger of unresolved design questions and current leanings
 - [`docs/quorum-conditioned-observability/README.md`](docs/quorum-conditioned-observability/README.md): compact concept note on threshold ceremonies as evidence of collective presence
+- [`docs/quorum-lab/README.md`](docs/quorum-lab/README.md): static interactive proof-object for quorum-conditioned observability
 
 ## Status
 
