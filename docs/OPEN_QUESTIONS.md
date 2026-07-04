@@ -13,17 +13,17 @@ This is the maintained ledger of unresolved Resonant Membership design questions
 
 - **Why it matters:** The repo now constrains merge precedence, but it still leaves real room inside that family. If the practical dominance ordering stays too loose, merge policy can still hide contradictory semantics.
 - **Affected docs:** `SEMANTICS.md`, `MERGE_AND_HEALING.md`, `MECHANICS.md`, `EVALUATION.md`
-- **Current leaning:** provenance admissibility, scope authority, freshness, trust weight, and corroboration quality are the only plausible dominant dimensions; deterministic ordering should remain tie-break-only.
-- **What kind of evidence or argument would help resolve it:** worked merge cases that compare multiple admissible precedence orderings and show which ones preserve honest residue without causing pathological indecision.
+- **Current leaning:** provenance admissibility, scope authority, freshness, trust weight, and corroboration quality are the only plausible dominant dimensions; deterministic ordering should remain tie-break-only. The reference kernel (`crates/resonant-kernel`) now pins one concrete instance of the family: an admissibility gate, count-free cross-class dominance, and within-class scores where the capped witness-count informer may participate. Property tests forced refinements the prose had left implicit (a dispute is never stable; fallback comparisons must also stay count-free and tie-break by content) — now canonical in `SEMANTICS.md` under "Refinements From The Reference Kernel".
+- **What kind of evidence or argument would help resolve it:** worked merge cases that compare multiple admissible precedence orderings and show which ones preserve honest residue without causing pathological indecision. The kernel's conformance suite (`docs/scenarios/` at every replay prefix) provides one such worked family; comparisons against alternative orderings remain open.
 - **Status:** leaning
 
 ## Trust-Root Promotion, Demotion, And Repair Discipline
 
 - **Why it matters:** The repo treats trust roots as scoped and visible, but the exact line between ordinary high-weight witnesses and trust-root-like standing is still open. This is one of the main paths by which hidden authority could re-enter the design.
 - **Affected docs:** `TRUST.md`, `SEMANTICS.md`, `THREAT_MODEL.md`, `CRITIQUE.md`, `EVALUATION.md`
-- **Current leaning:** trust-root standing should remain strongly scoped, visible, and repairable; earned witness history may justify stronger standing only if the widening remains inspectable.
-- **What kind of evidence or argument would help resolve it:** a sharper lifecycle with concrete cases showing when earned standing is acceptable, when it becomes dangerous, and how demotion and repair remain legible.
-- **Status:** open
+- **Current leaning:** trust-root standing should remain strongly scoped, visible, and repairable; earned witness history may justify stronger standing only if the widening remains inspectable. The reference kernel proposes one sharper lifecycle: standing per (root, scope) moving `proposed -> {active | probation} -> active <-> narrowed -> suspended -> revoked`, where earned standing has no shortcut past probation, probation carries reduced effective weight, and revocation requires attributable support (`crates/resonant-kernel/PINNED_DECISIONS.md`, P4).
+- **What kind of evidence or argument would help resolve it:** concrete cases exercising that lifecycle — when earned standing is acceptable, when it becomes dangerous, and how demotion and repair remain legible under mixed subject-and-witness repair.
+- **Status:** leaning
 
 ## Scope-vs-Topology Boundary Under Operational Pressure
 
@@ -64,6 +64,13 @@ This is the maintained ledger of unresolved Resonant Membership design questions
 - **Current leaning:** deterministic ordering is worth keeping, but only if candidate policy, diversity constraints, and reranking discipline prevent rank from becoming hidden concentration machinery.
 - **What kind of evidence or argument would help resolve it:** simulations or constructed examples showing when seeded ordering stays auditable without repeatedly overloading the same early-ranked peers.
 - **Status:** open
+
+## Residue Identity Across Reunited Replicas
+
+- **Why it matters:** If two replicas perform the same deterministic reunion but mint residue with different identities, their views never become content-identical and partition healing silently fails its own convergence goal. This failure mode was invisible in prose and surfaced only when the reference kernel's convergence property test failed: each replica had derived residue identity from a replica-local round counter.
+- **Affected docs:** `SEMANTICS.md`, `MERGE_AND_HEALING.md`, `MECHANICS.md`
+- **Resolution:** residue identity must derive from the shared reunion coordinates every participant agreed on — scope, epoch, and the rendezvous round carried in the merge input — never from replica-local state. `SEMANTICS.md` states this under "Refinements From The Reference Kernel", and `MERGE_AND_HEALING.md`'s healing process now includes agreeing on reunion coordinates as an explicit step. The kernel enforces it by making the rendezvous round part of the reunion input (`crates/resonant-kernel/PINNED_DECISIONS.md`, P18).
+- **Status:** resolved
 
 ## Arborition Stability Versus Adaptation Value
 

@@ -437,6 +437,15 @@ The hard constraints are:
 
 This is a precedence family, not one frozen calculus. Its purpose is to constrain what kinds of hidden merge behavior would be semantically out of bounds.
 
+#### Refinements From The Reference Kernel
+
+The reference kernel (`crates/resonant-kernel`, with its decision register in `crates/resonant-kernel/PINNED_DECISIONS.md`) implements one instance of this precedence family and property-tests it against adversarial inputs. Several constraints that the prose above left implicit turned out to be load-bearing, and are now semantic rather than optional:
+
+- a `disputed` outcome must never be presented as stable. This holds when a dispute is freshly produced by merge, when only one side carried a disputed state into reunion, and when both sides carried the same dispute: agreement that a conflict exists is not its resolution, so matching disputes still converge provisionally and still leave residue.
+- dominance comparisons between semantically incompatible classes (for example restrictive versus permissive belief) must remain free of raw witness count even in fallback shapes the common cases never reach. When such a comparison ties exactly, the tie must resolve by content — the more conservative state — rather than by input order, or the merged outcome depends on which side happened to speak first.
+- a merge projection may carry an introduction into a scope that holds no live belief about the subject (`unknown` or `removed`), but must never re-introduce over live belief. Reunion can transport a subject's existence across a healed partition; it cannot restart a lifecycle that is already underway.
+- residue identity must be derived from the shared reunion coordinates every participant agreed on (scope, epoch, and the rendezvous round carried in the merge input), never from a replica-local counter. Otherwise two replicas performing the same reunion mint different residue identities, their views never become content-identical, and partition healing silently fails its own convergence goal.
+
 ### Permutation-Rank Seed And Candidate-Set Semantics
 
 The **permutation-rank seed** is the visible ordering context used to compute accountable peer order.

@@ -25,7 +25,11 @@ here and as `PINNED` doc-comments on the owning modules.
 ## Pins forced by property testing
 
 These came out of proptest counterexamples during implementation — places
-where lab.js parity alone would have left a dishonest edge:
+where lab.js parity alone would have left a dishonest edge. They have been
+folded back into the treatise: the canonical statements live in
+`docs/SEMANTICS.md` under "Refinements From The Reference Kernel", with the
+residue-identity finding also tracked (as resolved) in
+`docs/OPEN_QUESTIONS.md`.
 
 | Pin | Counterexample | Choice |
 |---|---|---|

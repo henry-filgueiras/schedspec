@@ -52,7 +52,9 @@ Resonant Membership is a design-first systems project about how distributed syst
 - The boundary among claim body, observation, witness record, scoped belief state, and operator-visible status is now explicit.
 - Witness terminology is normalized: witness as actor, observation as evidence, witness record as protocol object, witness history as collection, witness set as selected peers.
 - Scope-vs-topology, merge precedence, trust-root lifecycle, and digest / summary semantics now have compact canonical boundary sections.
-- The repo is explicit about being a systems design document set rather than a finished runtime.
+- A sans-IO Rust reference kernel exists under `crates/` (no network, no clock, no randomness). It executes the subject-state model, one pinned instance of the merge precedence family, permutation rank with reconstruction, trust-root standing, repair digests, and a replayable decision transcript. The scenario corpus in `docs/scenarios/` doubles as its conformance suite, and every doc-flagged open question it touches is pinned in `crates/resonant-kernel/PINNED_DECISIONS.md`.
+- Property-testing the kernel surfaced refinements now canonical in `SEMANTICS.md` ("Refinements From The Reference Kernel"): a dispute is never stable, cross-class dominance stays count-free, reunion may carry an introduction but never re-introduce, and residue identity derives from shared reunion coordinates.
+- The repo remains explicit that no network runtime exists; the kernel is a semantic reference, not a deployment.
 
 ## What Is Still Open Or Intentionally Under-Specified
 
@@ -62,9 +64,9 @@ Resonant Membership is a design-first systems project about how distributed syst
 - exact quarantine and hysteresis thresholds
 - exact overlay adaptation algorithm
 - exact digest encoding and proof attachment format
-- exact merge calculus inside the allowed semantic precedence family
+- exact merge calculus inside the allowed semantic precedence family (the reference kernel pins one instance; the family itself is not frozen)
 
-These are open by design. The repo now constrains the semantic space more tightly than before, but it does not pretend to have frozen one full implementation policy.
+These are open by design. The repo now constrains the semantic space more tightly than before, and the reference kernel commits to one concrete instantiation where a choice was unavoidable, but the docs do not pretend the family has collapsed to a single policy.
 
 The maintained ledger for these unresolved issues lives in [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md).
 
@@ -92,4 +94,4 @@ Use `GLOSSARY.md`, `PERMUTATION_RANK.md`, `ARBORITIONS.md`, and `MECHANICS.md` a
 
 ## Repo Status
 
-This is a design-first repository, not a finished implementation. It describes intended semantics, primitives, invariants, and protocol shape. It should not be read as evidence that a complete runtime, network stack, or deployment-grade system already exists.
+This is a design-first repository. It describes intended semantics, primitives, invariants, and protocol shape, and it now carries a sans-IO Rust reference kernel (`crates/`) that makes the semantic core executable and conformance-tested against the scenario corpus. It should not be read as evidence that a complete network runtime, wire protocol, or deployment-grade system exists — the kernel is a reference for meaning, not a system.

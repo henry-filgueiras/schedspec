@@ -43,6 +43,20 @@ Use:
 4. Run deterministic reunion and inspect the merged view, residue, and `RepairDigest`.
 5. Optionally compare naive reunion or apply the constrained override in the override scenario.
 
+Rust conformance twin:
+
+The same scenario corpus doubles as the conformance suite for the sans-IO Rust reference kernel (`crates/resonant-kernel`). Its typed merge engine must reproduce this lab's outcomes on every scenario, at every replay prefix, with and without the override. The same walkthrough from a terminal:
+
+```
+cargo run -p resonant-cli -- scenario list
+cargo run -p resonant-cli -- scenario run deterministic-reunion-trust-laundering --naive
+cargo run -p resonant-cli -- scenario run deterministic-reunion-operator-override --steps 1
+cargo run -p resonant-cli -- scenario run deterministic-reunion-operator-override --override
+cargo run -p resonant-cli -- scenario verify
+```
+
+`--steps N` replays a prefix of the divergence timeline (the CLI analogue of stepping before reconnecting), `--naive` prints the "latest or loudest wins" comparison, and `scenario verify` checks the whole corpus against the golden outcome table plus kernel-vs-lab agreement. Editing a scenario JSON changes both artifacts at once; the Rust suite fails loudly if the two renderings drift.
+
 Difference from Quorum Lab:
 
 - [`../quorum-lab/README.md`](../quorum-lab/README.md) asks when hidden capability may become observable through plural contact.
@@ -50,4 +64,4 @@ Difference from Quorum Lab:
 
 Non-claim:
 
-This is not a production reconciliation engine, not a network simulator, and not evidence that the repo contains a finished runtime.
+This is not a production reconciliation engine, not a network simulator, and not evidence that the repo contains a finished runtime. The Rust kernel it conforms with is a semantic reference, not a network system.

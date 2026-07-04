@@ -29,8 +29,10 @@ It also carries a second proof-object for **merge and healing**:
 - [`deterministic-reunion-lab/README.md`](deterministic-reunion-lab/README.md): overview for the reunion artifact
 - [`deterministic-reunion-lab/lab.html`](deterministic-reunion-lab/lab.html): launch Deterministic Reunion Lab
 
+The repository (not this site) additionally carries a sans-IO Rust reference kernel under `crates/` that executes the semantic core and uses the reunion lab's scenario corpus as its conformance suite; see the reunion lab overview for the terminal walkthrough.
+
 ![Descriptive membership versus causal membership](quorum-conditioned-observability/figures/descriptive-vs-causal.svg)
 
 ## Non-Claim
 
-This site republishes the active documentation set. It should not be read as evidence that the repo contains a finished runtime, network stack, or production protocol implementation.
+This site republishes the active documentation set. The repository carries a semantic reference kernel, but neither the site nor the repo should be read as evidence of a finished network runtime, wire protocol, or production system.
