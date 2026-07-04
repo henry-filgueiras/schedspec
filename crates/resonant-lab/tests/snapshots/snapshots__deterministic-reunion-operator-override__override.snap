@@ -1,0 +1,159 @@
+---
+source: crates/resonant-lab/tests/snapshots.rs
+expression: "serde_json::json!({ \"merge\": deterministic, \"naive\": naive, })"
+---
+{
+  "merge": {
+    "digest": {
+      "applied_override": {
+        "reason": "Global removal and regional acceptance remain materially unresolved at the same epoch. Quarantine is the least dishonest intervention.",
+        "status": "quarantined",
+        "subject_id": "kestrel"
+      },
+      "compared_subjects": 5,
+      "inputs": [
+        "Island A epoch 71",
+        "Island B epoch 71",
+        "2 divergence event(s) replayed"
+      ],
+      "overall_outcome": "stable-with-override",
+      "rules_fired": [
+        "Matching local outcomes converge cleanly.",
+        "Island A supplied the stronger retained detail.",
+        "Same-epoch high-trust conflict survives as residue.",
+        "OperatorOverride applied visibly."
+      ],
+      "unresolved": []
+    },
+    "members": [
+      {
+        "epoch": 71,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "iona",
+        "subject_label": "Iona",
+        "trust_weight": 87
+      },
+      {
+        "epoch": 71,
+        "explanation": "Global removal and regional acceptance remain materially unresolved at the same epoch. Quarantine is the least dishonest intervention.",
+        "residue": {
+          "detail": "Island A says accepted. Island B says removed. Both paths remain fresh enough that deterministic reunion refuses to counterfeit certainty. OperatorOverride forced a visible intervention instead of silent collapse.",
+          "handled_by_override": true,
+          "subject_label": "Kestrel"
+        },
+        "rule_summary": [
+          "Same-epoch high-trust conflict survives as residue.",
+          "OperatorOverride applied visibly."
+        ],
+        "source": "override",
+        "stability": "stable-with-override",
+        "status": "quarantined",
+        "subject_id": "kestrel",
+        "subject_label": "Kestrel",
+        "trust_weight": 81
+      },
+      {
+        "epoch": 71,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "lumen",
+        "subject_label": "Lumen",
+        "trust_weight": 80
+      },
+      {
+        "epoch": 71,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "morrow",
+        "subject_label": "Morrow",
+        "trust_weight": 79
+      },
+      {
+        "epoch": 71,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "nyx",
+        "subject_label": "Nyx",
+        "trust_weight": 80
+      }
+    ],
+    "residues": [
+      {
+        "detail": "Island A says accepted. Island B says removed. Both paths remain fresh enough that deterministic reunion refuses to counterfeit certainty. OperatorOverride forced a visible intervention instead of silent collapse.",
+        "handled_by_override": true,
+        "subject_label": "Kestrel"
+      }
+    ]
+  },
+  "naive": {
+    "diffs": [
+      {
+        "deterministic_status": "quarantined",
+        "naive_status": "accepted",
+        "note": "Naive reunion would choose accepted from Island A.",
+        "subject_label": "Kestrel"
+      }
+    ],
+    "naive": [
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Iona"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Kestrel"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Lumen"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Morrow"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Nyx"
+      }
+    ]
+  }
+}

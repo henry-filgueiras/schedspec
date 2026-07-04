@@ -1,0 +1,159 @@
+---
+source: crates/resonant-lab/tests/snapshots.rs
+expression: "serde_json::json!({ \"merge\": deterministic, \"naive\": naive, })"
+---
+{
+  "merge": {
+    "digest": {
+      "applied_override": null,
+      "compared_subjects": 5,
+      "inputs": [
+        "Island A epoch 84",
+        "Island B epoch 83",
+        "2 divergence event(s) replayed"
+      ],
+      "overall_outcome": "provisional",
+      "rules_fired": [
+        "Fresh restrictive evidence dominated older permissive evidence.",
+        "Matching local outcomes converge cleanly.",
+        "Island A supplied the stronger retained detail."
+      ],
+      "unresolved": [
+        {
+          "detail": "Island B still carried a coherent permissive path. The race remains visible even though the newer restrictive path wins.",
+          "handled_by_override": false,
+          "subject_label": "Iona"
+        }
+      ]
+    },
+    "members": [
+      {
+        "epoch": 84,
+        "explanation": "Newer restrictive evidence dominates the older permissive path.",
+        "residue": {
+          "detail": "Island B still carried a coherent permissive path. The race remains visible even though the newer restrictive path wins.",
+          "handled_by_override": false,
+          "subject_label": "Iona"
+        },
+        "rule_summary": [
+          "Fresh restrictive evidence dominated older permissive evidence."
+        ],
+        "source": "island_a",
+        "stability": "stable",
+        "status": "removed",
+        "subject_id": "iona",
+        "subject_label": "Iona",
+        "trust_weight": 85
+      },
+      {
+        "epoch": 83,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "kestrel",
+        "subject_label": "Kestrel",
+        "trust_weight": 84
+      },
+      {
+        "epoch": 83,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "lumen",
+        "subject_label": "Lumen",
+        "trust_weight": 80
+      },
+      {
+        "epoch": 83,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "morrow",
+        "subject_label": "Morrow",
+        "trust_weight": 79
+      },
+      {
+        "epoch": 83,
+        "explanation": "Both islands converge on accepted.",
+        "residue": null,
+        "rule_summary": [
+          "Matching local outcomes converge cleanly.",
+          "Island A supplied the stronger retained detail."
+        ],
+        "source": "both",
+        "stability": "stable",
+        "status": "accepted",
+        "subject_id": "nyx",
+        "subject_label": "Nyx",
+        "trust_weight": 80
+      }
+    ],
+    "residues": [
+      {
+        "detail": "Island B still carried a coherent permissive path. The race remains visible even though the newer restrictive path wins.",
+        "handled_by_override": false,
+        "subject_label": "Iona"
+      }
+    ]
+  },
+  "naive": {
+    "diffs": [
+      {
+        "deterministic_status": "removed",
+        "naive_status": "removed",
+        "note": "Naive reunion would erase visible residue.",
+        "subject_label": "Iona"
+      }
+    ],
+    "naive": [
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "removed",
+        "subject_label": "Iona"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Kestrel"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Lumen"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Morrow"
+      },
+      {
+        "note": "Latest or loudest path wins. Residue is discarded.",
+        "source": "Island A",
+        "status": "accepted",
+        "subject_label": "Nyx"
+      }
+    ]
+  }
+}
