@@ -30,3 +30,4 @@ pub mod scope;
 pub mod transcript;
 pub mod trust;
 pub mod util;
+pub mod witnessing;

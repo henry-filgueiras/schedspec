@@ -17,3 +17,4 @@ pub mod oracle;
 pub mod replay;
 pub mod scenario;
 pub mod sim;
+pub mod theater;

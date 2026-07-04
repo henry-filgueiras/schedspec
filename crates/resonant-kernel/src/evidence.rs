@@ -133,6 +133,10 @@ pub struct WitnessRecord {
     pub about: Option<ClaimId>,
     pub stance: Stance,
     pub observation: ObservationId,
+    /// How the referenced observation was made. Carried on the record so
+    /// directness stays legible to whoever weighs the corroboration
+    /// (PRIMITIVES.md: "directness stays legible").
+    pub mode: ObservationMode,
     pub scope: ScopeId,
     pub epoch: Epoch,
     /// Scoped trust contribution, annotated at assembly time.
@@ -158,6 +162,7 @@ impl CanonicalBytes for WitnessRecord {
         }
         out.push(self.stance as u8);
         self.observation.write_canonical(out);
+        out.push(self.mode as u8);
         self.scope.write_canonical(out);
         self.epoch.get().write_canonical(out);
         out.push(self.trust_context.get());

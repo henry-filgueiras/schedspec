@@ -196,6 +196,7 @@ pub fn run(config: &SimConfig) -> SimReport {
                 about: None,
                 stance: Stance::Corroborate,
                 observation: observation.id(),
+                mode: ObservationMode::DirectContact,
                 scope: scope(),
                 epoch: Epoch(1),
                 trust_context: trust[subject],
@@ -285,6 +286,7 @@ pub fn run(config: &SimConfig) -> SimReport {
                 epoch: Epoch(2),
             }
             .id(),
+            mode: ObservationMode::Timeout,
             scope: scope(),
             epoch: Epoch(2),
             trust_context: trust[&victim],

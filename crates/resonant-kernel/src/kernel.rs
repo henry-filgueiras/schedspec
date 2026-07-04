@@ -48,6 +48,23 @@ pub enum Input {
         subject: SubjectId,
         basis: crate::belief::RemovalBasis,
     },
+    /// The policy layer decided to suspend a subject pending repair.
+    QuarantineAssessed {
+        scope: ScopeId,
+        subject: SubjectId,
+        reason: crate::belief::QuarantineReason,
+    },
+    /// The policy layer decided a quarantine can end; release requires
+    /// fresh corroboration by construction (P6).
+    QuarantineReleaseAssessed {
+        scope: ScopeId,
+        subject: SubjectId,
+        fresh: NonEmpty<WitnessRecordId>,
+    },
+    /// A visible operator override applied directly to a scoped belief
+    /// (outside a reunion). Forces the state and takes responsibility for
+    /// the subject's live residue — marking it handled, never erasing it.
+    Override(OperatorOverride),
     /// `form_candidates()` + `select_ranked()`: an accountable selection.
     RequestWitnessSelection {
         domain: RankDomain,
@@ -257,6 +274,77 @@ impl Kernel {
                     sink,
                 );
                 vec![]
+            }
+            Input::QuarantineAssessed {
+                scope,
+                subject,
+                reason,
+            } => {
+                self.apply_belief(
+                    &scope,
+                    &subject,
+                    BeliefEvent::QuarantineImposed { reason },
+                    sink,
+                );
+                vec![]
+            }
+            Input::QuarantineReleaseAssessed {
+                scope,
+                subject,
+                fresh,
+            } => {
+                self.apply_belief(
+                    &scope,
+                    &subject,
+                    BeliefEvent::QuarantineReleased { fresh },
+                    sink,
+                );
+                vec![]
+            }
+            Input::Override(op) => {
+                let override_id = op.id();
+                // Route the override into whichever scoped view holds live
+                // belief about the subject.
+                let scope = self
+                    .views
+                    .iter()
+                    .find(|(_, view)| view.belief(&op.subject).is_some())
+                    .map(|(scope, _)| scope.clone());
+                let Some(scope) = scope else {
+                    return vec![];
+                };
+                sink.record(TranscriptEvent::OverrideApplied {
+                    scope: scope.clone(),
+                    subject: op.subject.clone(),
+                    override_id,
+                    forced: op.forced,
+                });
+                self.apply_belief(
+                    &scope,
+                    &op.subject,
+                    BeliefEvent::OverrideApplied {
+                        override_id,
+                        to: op.forced,
+                    },
+                    sink,
+                );
+                let view = self.view_mut(&scope);
+                let marked = view
+                    .residue_mut()
+                    .mark_all_handled(&op.subject, override_id);
+                for residue in view.residue().iter() {
+                    if marked > 0 && residue.key().subject == op.subject {
+                        sink.record(TranscriptEvent::ResiduePreserved {
+                            scope: scope.clone(),
+                            subject: op.subject.clone(),
+                            residue: residue.id(),
+                            superseded: None,
+                            handled_by_override: true,
+                        });
+                    }
+                }
+                let digest = RepairDigest::of(self.view(&scope).expect("view exists"));
+                vec![Effect::ShareDigest(digest)]
             }
             Input::RequestWitnessSelection {
                 domain,

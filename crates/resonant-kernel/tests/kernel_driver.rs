@@ -52,6 +52,7 @@ fn witness_record(witness: &str, stance: Stance) -> WitnessRecord {
         about: None,
         stance,
         observation: observation.id(),
+        mode: ObservationMode::DirectContact,
         scope: scope(),
         epoch: Epoch(1),
         trust_context: TrustGrade::new(70),

@@ -36,6 +36,9 @@ enum Command {
     Scenario(ScenarioCommand),
     /// Demonstrate accountable permutation rank.
     Rank(RankArgs),
+    /// Run scripted multi-actor partition stories (in-process, no network).
+    #[command(subcommand)]
+    Theater(TheaterCommand),
     /// Run the deterministic partition/heal simulation.
     #[command(subcommand)]
     Sim(SimCommand),
@@ -107,6 +110,17 @@ enum SimCommand {
     Run(SimRunArgs),
 }
 
+#[derive(Subcommand)]
+enum TheaterCommand {
+    /// List the story corpus.
+    List,
+    /// Run one story (or all of them) with narration.
+    Run {
+        /// Story name; omit to run every story.
+        story: Option<String>,
+    },
+}
+
 #[derive(Args)]
 struct SimRunArgs {
     #[arg(long, default_value_t = 42)]
@@ -129,7 +143,53 @@ fn main() -> ExitCode {
         Command::Scenario(ScenarioCommand::Run(args)) => scenario_run(&args),
         Command::Scenario(ScenarioCommand::Verify(args)) => scenario_verify(&args),
         Command::Rank(args) => rank(&args),
+        Command::Theater(TheaterCommand::List) => theater_list(),
+        Command::Theater(TheaterCommand::Run { story }) => theater_run(story.as_deref()),
         Command::Sim(SimCommand::Run(args)) => sim_run(&args),
+    }
+}
+
+fn theater_list() -> ExitCode {
+    println!("partition theater stories:");
+    for story in resonant_lab::theater::stories() {
+        println!(
+            "  {:20} {}",
+            story.name,
+            story.blurb.split('.').next().unwrap_or("")
+        );
+    }
+    ExitCode::SUCCESS
+}
+
+fn theater_run(name: Option<&str>) -> ExitCode {
+    let corpus = resonant_lab::theater::stories();
+    let selected: Vec<_> = corpus
+        .into_iter()
+        .filter(|s| name.is_none_or(|n| s.name == n))
+        .collect();
+    if selected.is_empty() {
+        eprintln!(
+            "no story named {:?} (try `resonant theater list`)",
+            name.unwrap_or("")
+        );
+        return ExitCode::FAILURE;
+    }
+    let mut failed = false;
+    for story in selected {
+        let report = resonant_lab::theater::run_story(&story);
+        for line in &report.lines {
+            println!("{line}");
+        }
+        for failure in &report.failures {
+            println!("  FAIL: {failure}");
+        }
+        println!();
+        failed |= !report.passed();
+    }
+    if failed {
+        ExitCode::FAILURE
+    } else {
+        ExitCode::SUCCESS
     }
 }
 

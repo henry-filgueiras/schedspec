@@ -177,6 +177,21 @@ impl ResidueLedger {
         superseded
     }
 
+    /// Mark every live residue for a subject as handled by a visible
+    /// override. The entries stay in the ledger — an override takes
+    /// responsibility for a scar, it does not erase one. Returns how many
+    /// entries were marked.
+    pub(crate) fn mark_all_handled(&mut self, subject: &SubjectId, by: OverrideId) -> usize {
+        let mut marked = 0;
+        for residue in self.entries.values_mut() {
+            if residue.key.subject == *subject && residue.handled_by.is_none() {
+                residue.mark_handled(by);
+                marked += 1;
+            }
+        }
+        marked
+    }
+
     /// Close a residue entry with evidence. The entry moves to the
     /// resolved record; its existence is never erased.
     pub fn resolve(

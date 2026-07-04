@@ -21,6 +21,7 @@ here and as `PINNED` doc-comments on the owning modules.
 | P11 | Residue growth vs usefulness | OPEN_QUESTIONS "residue growth" | Growth bounded by superseding same-tension entries — a visible replacement, never a silent TTL. `ResidueLedger` has no public remove; the only exits are `resolve` (with evidence) and supersession. | `residue.rs` |
 | P12 | Revocation representation | OPEN_QUESTIONS "quarantine/revocation" (leaning) | One `RevocationEvent` with three typed targets (subject acceptance, witness standing, trust-root standing); outcome constrained to the four degraded states along canonical edges. | `belief/state.rs` |
 | P13 | Witness quality/diversity vocabulary | (docs give none; lab.js implies it) | `Quality {Weak, Mixed, Strong}` × `Diversity {Laundered, SingleScope, Mixed, CrossScope}`; `Laundered` is first-class and scores below no-diversity, so the trust-laundering failure mode lives in types. | `evidence.rs` |
+| P19 | Where a `WitnessSummary` comes from | (docs and lab both take summaries as given) | Derived from raw evidence by `EvidenceBook::summarize`: count = distinct corroborating witnesses; quality from observation modes (challenge-response/direct-contact strong, timeout/topology weak; mostly-strong with ≥2 witnesses → Strong); diversity from distinct vouch-lineage roots (≥3 → CrossScope, 2 → Mixed, 1 → SingleScope, and 1 root behind a loud (≥4) non-strong cluster → Laundered). Advancement gates on the derived summary, so laundered volume cannot buy standing. | `witnessing.rs` |
 
 ## Pins forced by property testing
 
