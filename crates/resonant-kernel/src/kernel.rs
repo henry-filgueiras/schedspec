@@ -319,15 +319,43 @@ impl Kernel {
                     override_id,
                     forced: op.forced,
                 });
-                self.apply_belief(
-                    &scope,
-                    &op.subject,
-                    BeliefEvent::OverrideApplied {
+                // An override is fresh authoritative evidence: it applies
+                // at the override's own (advanced) epoch, so later merges
+                // against views that have not yet seen it resolve through
+                // freshness dominance instead of re-disputing — a merge
+                // must not silently overturn a visible operator decision
+                // with staler evidence.
+                {
+                    let round = self.round;
+                    let policy = self.policy.clone();
+                    let view = self.view_mut(&scope);
+                    let at = (op.epoch.max(view.epoch()), round);
+                    let cell = view.cell_mut(op.subject.clone(), at);
+                    let event = BeliefEvent::OverrideApplied {
                         override_id,
                         to: op.forced,
-                    },
-                    sink,
-                );
+                    };
+                    let kind = event.kind();
+                    match cell.apply(event, at, &policy) {
+                        Ok(Some(transition)) => {
+                            sink.record(TranscriptEvent::TransitionApplied {
+                                scope: scope.clone(),
+                                subject: op.subject.clone(),
+                                from: transition.from,
+                                to: transition.to,
+                                event: kind,
+                                at,
+                            });
+                        }
+                        Ok(None) => {}
+                        Err(error) => sink.record(TranscriptEvent::TransitionRefused {
+                            scope: scope.clone(),
+                            subject: op.subject.clone(),
+                            event: kind,
+                            reason: refusal_reason(&error),
+                        }),
+                    }
+                }
                 let view = self.view_mut(&scope);
                 let marked = view
                     .residue_mut()

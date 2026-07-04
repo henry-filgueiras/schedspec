@@ -117,6 +117,10 @@ impl BeliefCell {
             BeliefEvent::MergeProjected { to, .. } | BeliefEvent::OverrideApplied { to, .. }
                 if *to == self.state =>
             {
+                // A confirmation still absorbs the deciding epoch, so a
+                // node already in the target state ends at the same cell
+                // epoch as one that transitioned into it.
+                self.epoch = self.epoch.max(at.0);
                 return Ok(None);
             }
             BeliefEvent::EpochReset { new_epoch } if *new_epoch <= self.epoch => {

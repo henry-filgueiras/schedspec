@@ -55,6 +55,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let mut node = Node::new(NodeConfig {
+        profile: resonant_node::node::AppProfile::chat(),
         keypair,
         room: args.room,
         nickname: args.nick,

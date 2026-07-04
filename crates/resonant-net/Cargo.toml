@@ -1,0 +1,26 @@
+[package]
+name = "resonant-net"
+description = "Transport shell for the resonant standing kernel: libp2p below, sans-IO belief above, app-profiled (chat, blocklists, ...)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+resonant-kernel = { path = "../resonant-kernel" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+futures = "0.3"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std", "io-util", "time", "sync"] }
+libp2p = { version = "0.56", features = [
+    "tokio",
+    "tcp",
+    "noise",
+    "yamux",
+    "macros",
+    "gossipsub",
+    "identify",
+    "ping",
+    "request-response",
+    "json",
+] }

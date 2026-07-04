@@ -40,8 +40,51 @@ pub struct Behaviour {
     pub blocklist: allow_block_list::Behaviour<BlockedPeers>,
 }
 
+/// How an application skin interprets the shared machinery. The standing
+/// semantics, evidence bookkeeping, and deterministic reunion are
+/// identical across skins; the profile only decides what a *subject* is.
+#[derive(Debug, Clone, Copy)]
+pub struct AppProfile {
+    pub kind: &'static str,
+    /// Chat: subjects must be addressable peer identities. Federation
+    /// blocklists: subjects are arbitrary handles (the things being
+    /// blocked), while the witnesses remain peers.
+    pub subjects_are_peers: bool,
+}
+
+impl AppProfile {
+    pub fn chat() -> Self {
+        Self {
+            kind: "chat",
+            subjects_are_peers: true,
+        }
+    }
+
+    pub fn federation() -> Self {
+        Self {
+            kind: "federation",
+            subjects_are_peers: false,
+        }
+    }
+}
+
+/// One row of the standing roster, for display layers.
+pub struct RosterRow {
+    pub subject: String,
+    pub state: BeliefState,
+    pub summary: resonant_kernel::evidence::WitnessSummary,
+}
+
+/// One live residue entry, for display layers.
+pub struct ResidueRow {
+    pub subject: String,
+    pub handled_by_override: bool,
+    pub detail: String,
+}
+
 pub struct NodeConfig {
     pub keypair: Keypair,
+    pub profile: AppProfile,
     pub room: String,
     pub nickname: Option<String>,
     /// The room creator's peer id; `None` means "I am the creator".
@@ -66,6 +109,7 @@ pub struct Node {
     kernel: Kernel,
     pub transcript: Transcript,
     evidence: EvidenceBook,
+    profile: AppProfile,
     scope: ScopeId,
     room: String,
     me: PeerId,
@@ -75,6 +119,9 @@ pub struct Node {
     address_book: BTreeMap<PeerId, BTreeSet<Multiaddr>>,
     presence: BTreeMap<PeerId, Presence>,
     blocked: BTreeSet<PeerId>,
+    /// Peers we owe a reconnect after a heal; redialed on ticks until a
+    /// connection lands (unblocking never reconnects by itself).
+    heal_pending: BTreeSet<PeerId>,
     round: u64,
     /// Reunions already performed, keyed on the sorted digest-hash pair.
     reunions_done: BTreeSet<([u8; 32], [u8; 32])>,
@@ -82,6 +129,9 @@ pub struct Node {
     pending_fetch: BTreeMap<PeerId, [u8; 32]>,
     /// Agreed coordinates awaiting an Ack, keyed by peer.
     pending_ack: BTreeMap<PeerId, PendingReunion>,
+    /// Claims this node introduced, re-shared on the refresh beat so a
+    /// lossy mesh or late joiner still converges.
+    my_claims: Vec<Claim>,
     input_log: Option<std::fs::File>,
     interactive: bool,
     /// Lines produced for the user this poll (drained by the runner).
@@ -174,6 +224,7 @@ impl Node {
             kernel: Kernel::new(PolicyBundle::default()),
             transcript: Transcript::new(),
             evidence,
+            profile: config.profile,
             scope,
             room,
             me,
@@ -183,10 +234,12 @@ impl Node {
             address_book: BTreeMap::new(),
             presence: BTreeMap::new(),
             blocked: BTreeSet::new(),
+            heal_pending: BTreeSet::new(),
             round: 0,
             reunions_done: BTreeSet::new(),
             pending_fetch: BTreeMap::new(),
             pending_ack: BTreeMap::new(),
+            my_claims: Vec::new(),
             input_log,
             interactive: config.interactive,
             output: Vec::new(),
@@ -214,10 +267,62 @@ impl Node {
     }
 
     pub fn belief(&self, peer: &PeerId) -> Option<BeliefState> {
+        self.belief_of(&peer.to_base58())
+    }
+
+    /// Standing of an arbitrary subject id string.
+    pub fn belief_of(&self, subject: &str) -> Option<BeliefState> {
         self.kernel
             .view(&self.scope)
-            .and_then(|v| v.belief(&SubjectId::new(peer.to_base58())))
+            .and_then(|v| v.belief(&SubjectId::new(subject)))
             .map(|c| c.state())
+    }
+
+    pub fn round(&self) -> u64 {
+        self.round
+    }
+
+    pub fn is_partitioned(&self) -> bool {
+        !self.blocked.is_empty()
+    }
+
+    /// Register a display name for a peer (used by embedding UIs).
+    pub fn set_nickname(&mut self, peer: PeerId, nick: String) {
+        self.nickname.insert(peer, nick);
+    }
+
+    /// Human-readable name for a subject id string.
+    pub fn display_name(&self, subject: &str) -> String {
+        self.display(subject)
+    }
+
+    /// The standing roster, for display layers.
+    pub fn roster(&self) -> Vec<RosterRow> {
+        let Some(view) = self.kernel.view(&self.scope) else {
+            return Vec::new();
+        };
+        view.subjects()
+            .map(|(subject, cell)| RosterRow {
+                subject: subject.as_str().to_string(),
+                state: cell.state(),
+                summary: self.evidence.summarize(&self.scope, subject),
+            })
+            .collect()
+    }
+
+    /// Live residue entries, for display layers.
+    pub fn residues(&self) -> Vec<ResidueRow> {
+        let Some(view) = self.kernel.view(&self.scope) else {
+            return Vec::new();
+        };
+        view.residue()
+            .iter()
+            .map(|r| ResidueRow {
+                subject: r.key().subject.as_str().to_string(),
+                handled_by_override: r.handled_by().is_some(),
+                detail: r.tension().detail.clone(),
+            })
+            .collect()
     }
 
     fn say(&mut self, line: impl Into<String>) {
@@ -279,19 +384,39 @@ impl Node {
     }
 
     fn publish_join_claim(&mut self) {
+        self.introduce_subject(
+            self.me.to_base58(),
+            AssertedState::Present,
+            self.voucher.to_base58(),
+        );
+    }
+
+    /// Introduce an arbitrary subject into the scope, vouched by
+    /// `introducer` (an id string, usually a peer). The chat skin uses
+    /// this for self-joins; the federation skin uses it to propose
+    /// blocked handles (`AssertedState::Compromised`).
+    pub fn introduce_subject(
+        &mut self,
+        subject: String,
+        asserted: AssertedState,
+        introducer: String,
+    ) {
         let claim = Claim {
-            subject: SubjectId::new(self.me.to_base58()),
-            asserted: AssertedState::Present,
+            subject: SubjectId::new(subject),
+            asserted,
             scope: self.scope.clone(),
             provenance: Provenance {
-                introducer: resonant_kernel::id::PeerId::new(self.voucher.to_base58()),
+                introducer: resonant_kernel::id::PeerId::new(introducer),
             },
             epoch: Epoch(1),
             evidence: vec![],
         };
-        // Apply locally, then share.
+        // Apply locally, then share; remember it for refresh re-shares.
         self.evidence.record_claim(&claim);
         self.feed(Input::Introduce(claim.clone()));
+        if !self.my_claims.contains(&claim) {
+            self.my_claims.push(claim.clone());
+        }
         self.publish("claims", GossipMsg::Claim(claim));
     }
 
@@ -308,17 +433,24 @@ impl Node {
     }
 
     fn witness(&mut self, subject: PeerId, mode: ObservationMode) {
+        self.witness_subject(subject.to_base58(), mode, Stance::Corroborate);
+    }
+
+    /// Publish a witness record about any subject in the scope. The
+    /// federation skin uses this for `/confirm` and `/dispute` on blocked
+    /// handles.
+    pub fn witness_subject(&mut self, subject: String, mode: ObservationMode, stance: Stance) {
         let observation = Observation {
             observer: WitnessId::new(self.me.to_base58()),
-            subject: SubjectId::new(subject.to_base58()),
+            subject: SubjectId::new(subject.clone()),
             mode,
             epoch: Epoch(1),
         };
         let record = WitnessRecord {
             witness: WitnessId::new(self.me.to_base58()),
-            subject: SubjectId::new(subject.to_base58()),
+            subject: SubjectId::new(subject),
             about: None,
-            stance: Stance::Corroborate,
+            stance,
             observation: observation.id(),
             mode,
             scope: self.scope.clone(),
@@ -363,8 +495,11 @@ impl Node {
                 if claim.scope != self.scope {
                     return;
                 }
-                // Only addressable identities may become subjects.
-                if claim.subject.as_str().parse::<PeerId>().is_err() {
+                // Chat: only addressable identities may become subjects.
+                // Federation skins accept arbitrary handles as subjects.
+                if self.profile.subjects_are_peers
+                    && claim.subject.as_str().parse::<PeerId>().is_err()
+                {
                     self.say("[claims] rejected claim for non-peer subject".to_string());
                     return;
                 }
@@ -406,9 +541,9 @@ impl Node {
                     ));
                     return;
                 }
-                let Ok(_) = subject.parse::<PeerId>() else {
+                if self.profile.subjects_are_peers && subject.parse::<PeerId>().is_err() {
                     return;
-                };
+                }
                 let subject_id = SubjectId::new(subject.clone());
                 let who = self.display(&subject);
                 match action {
@@ -715,6 +850,7 @@ impl Node {
         if let Some(addr) = addr {
             self.address_book.entry(peer).or_default().insert(addr);
         }
+        self.heal_pending.remove(&peer);
         let entry = self.presence.entry(peer).or_insert(Presence {
             connected: false,
             last_contact_round: self.round,
@@ -727,8 +863,8 @@ impl Node {
         if let Some(digest) = self.view_digest() {
             self.publish("digests", GossipMsg::Digest(digest));
         }
-        // And re-share our claim for peers that missed it.
-        self.publish_join_claim();
+        // And re-share our asserted state for peers that missed it.
+        self.reshare_my_state();
     }
 
     fn on_disconnected(&mut self, peer: PeerId) {
@@ -800,7 +936,34 @@ impl Node {
             }
         }
         if self.round.is_multiple_of(CLAIM_REFRESH_ROUNDS) {
-            self.publish_join_claim();
+            self.reshare_my_state();
+        }
+        // Post-heal reconnection: keep dialing until connections land.
+        if self.round.is_multiple_of(3) && !self.heal_pending.is_empty() {
+            let pending: Vec<PeerId> = self.heal_pending.iter().copied().collect();
+            for peer in pending {
+                if self.presence.get(&peer).is_some_and(|p| p.connected) {
+                    self.heal_pending.remove(&peer);
+                } else {
+                    self.redial(peer);
+                }
+            }
+        }
+    }
+
+    /// Re-share everything this node has asserted — its claims and its
+    /// witness records — so lossy meshes and late joiners converge without
+    /// needing a reunion for ordinary strengthening state.
+    fn reshare_my_state(&mut self) {
+        self.publish_join_claim();
+        for claim in self.my_claims.clone() {
+            self.publish("claims", GossipMsg::Claim(claim));
+        }
+        let mine = self
+            .evidence
+            .records_by_witness(&self.scope, &WitnessId::new(self.me.to_base58()));
+        for record in mine {
+            self.publish("claims", GossipMsg::Witness(record));
         }
     }
 
@@ -818,7 +981,13 @@ impl Node {
             SwarmEvent::ConnectionEstablished {
                 peer_id, endpoint, ..
             } => {
-                self.on_connected(peer_id, Some(endpoint.get_remote_address().clone()));
+                // Only outbound remote addresses are dialable listen
+                // addresses; inbound ones are ephemeral ports. Identify
+                // supplies the real listen addresses either way.
+                let addr = endpoint
+                    .is_dialer()
+                    .then(|| endpoint.get_remote_address().clone());
+                self.on_connected(peer_id, addr);
             }
             SwarmEvent::ConnectionClosed {
                 peer_id,
@@ -841,7 +1010,7 @@ impl Node {
                 // real, so (re)share the state that startup publishes may
                 // have dropped as InsufficientPeers.
                 if topic.as_str().starts_with(&format!("room:{}/", self.room)) => {
-                    self.publish_join_claim();
+                    self.reshare_my_state();
                     if let Some(digest) = self.view_digest() {
                         self.publish("digests", GossipMsg::Digest(digest));
                     }
@@ -990,6 +1159,35 @@ impl Node {
         });
     }
 
+    /// Publish a visible operator override on any subject. Receivers honor
+    /// it only from the room/federation creator; locally it applies through
+    /// the same inbound path as everyone else's copy.
+    pub fn publish_override(&mut self, subject: String, forced: BeliefState, reason: String) {
+        // The override is fresh authoritative evidence: it advances the
+        // subject's epoch past everything currently known, so views that
+        // apply it late still dominate stale conflict through freshness
+        // instead of re-disputing the operator's visible decision.
+        let current = self
+            .view_digest()
+            .and_then(|d| {
+                d.subject_summaries
+                    .get(&SubjectId::new(subject.clone()))
+                    .copied()
+            })
+            .map_or(1, |(_, epoch)| epoch.get());
+        let op = OperatorOverride {
+            operator: OperatorId::new(self.me.to_base58()),
+            subject: SubjectId::new(subject),
+            forced,
+            reason,
+            epoch: Epoch(current + 1),
+        };
+        let msg = GossipMsg::Override(op);
+        let data = wire::encode(msg.clone());
+        self.on_gossip(Some(self.me), &data);
+        self.publish("claims", msg);
+    }
+
     fn cmd_override(&mut self, args: &[&str]) {
         if self.me != self.creator {
             self.say("[?] only the room creator may override".to_string());
@@ -1008,17 +1206,11 @@ impl Node {
                 return;
             }
         };
-        let op = OperatorOverride {
-            operator: OperatorId::new(self.me.to_base58()),
-            subject: SubjectId::new(peer.to_base58()),
-            forced: state,
-            reason: "creator override after visible dispute".into(),
-            epoch: Epoch(1),
-        };
-        let msg = GossipMsg::Override(op);
-        let data = wire::encode(msg.clone());
-        self.on_gossip(Some(self.me), &data);
-        self.publish("claims", msg);
+        self.publish_override(
+            peer.to_base58(),
+            state,
+            "creator override after visible dispute".into(),
+        );
     }
 
     fn cmd_split(&mut self, args: &[&str]) {
@@ -1041,18 +1233,25 @@ impl Node {
         let blocked: Vec<PeerId> = self.blocked.iter().copied().collect();
         for peer in blocked {
             self.swarm.behaviour_mut().blocklist.unblock_peer(peer);
-            // Unblocking does not reconnect: redial from the address book.
-            let addrs: Vec<Multiaddr> = self
-                .address_book
-                .get(&peer)
-                .map(|a| a.iter().cloned().collect())
-                .unwrap_or_default();
-            for addr in addrs {
-                let _ = self.swarm.dial(addr);
-            }
+            // Unblocking does not reconnect: redial until a connection
+            // lands (retried on ticks — a single dial can lose the race
+            // against the peer's own heal).
+            self.heal_pending.insert(peer);
+            self.redial(peer);
         }
         self.blocked.clear();
         self.say("[net] partition healed; redialing".to_string());
+    }
+
+    fn redial(&mut self, peer: PeerId) {
+        let addrs: Vec<Multiaddr> = self
+            .address_book
+            .get(&peer)
+            .map(|a| a.iter().cloned().collect())
+            .unwrap_or_default();
+        for addr in addrs {
+            let _ = self.swarm.dial(addr);
+        }
     }
 
     fn cmd_roster(&mut self) {

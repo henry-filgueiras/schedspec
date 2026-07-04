@@ -118,6 +118,18 @@ impl EvidenceBook {
             .unwrap_or_default()
     }
 
+    /// All records minted by one witness in a scope — the set a node
+    /// re-shares so late joiners and lossy meshes still converge.
+    pub fn records_by_witness(&self, scope: &ScopeId, witness: &WitnessId) -> Vec<WitnessRecord> {
+        self.records
+            .iter()
+            .filter(|((record_scope, _), _)| record_scope == scope)
+            .flat_map(|(_, records)| records.values())
+            .filter(|record| record.witness == *witness)
+            .cloned()
+            .collect()
+    }
+
     /// Corroborating record ids, for evidence-carrying belief events.
     pub fn corroborating_ids(&self, scope: &ScopeId, subject: &SubjectId) -> Vec<WitnessRecordId> {
         self.corroborating(scope, subject)

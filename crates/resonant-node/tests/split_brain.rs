@@ -24,6 +24,7 @@ fn keypair(seed: u8) -> Keypair {
 
 fn config(seed: u8, creator: Option<libp2p::PeerId>, dial: Vec<libp2p::Multiaddr>) -> NodeConfig {
     NodeConfig {
+        profile: resonant_node::node::AppProfile::chat(),
         keypair: keypair(seed),
         room: "testroom".into(),
         nickname: None,
@@ -55,11 +56,31 @@ async fn drive_until(
             "timed out waiting for: {label}\n{}",
             nodes
                 .iter()
-                .map(|n| format!(
-                    "  {}: digest {:?}",
-                    n.peer_id(),
-                    n.view_digest().map(|d| d.content_hash[..4].to_vec())
-                ))
+                .map(|n| {
+                    let roster: Vec<String> = n
+                        .roster()
+                        .iter()
+                        .map(|r| {
+                            format!(
+                                "{}={} res{}",
+                                &r.subject[r.subject.len() - 4..],
+                                r.state,
+                                n.residues()
+                                    .iter()
+                                    .filter(|x| x.subject == r.subject)
+                                    .count()
+                            )
+                        })
+                        .collect();
+                    let tail: Vec<&String> = n.output.iter().rev().take(6).collect();
+                    format!(
+                        "  {}: digest {:?} [{}] log_tail={:?}",
+                        n.peer_id(),
+                        n.view_digest().map(|d| d.content_hash[..4].to_vec()),
+                        roster.join(", "),
+                        tail
+                    )
+                })
                 .collect::<Vec<_>>()
                 .join("\n")
         );
