@@ -1,0 +1,66 @@
+
+[1m== starting alice (room creator, seed 1) ==[0m
+  alice is 12D3KooWRUX3Rwb4VWZyV7ZfjD7wi6qEaFt1yHNTHzMaijGU1qwX
+
+[1m== starting bob and carol, vouched by the creator ==[0m
+  bob is 12D3KooWCa19bnGP84XXFZwdzoYpZGh3BrWLyHHZ4fpWPnaxcSTh
+  carol is 12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2
+
+[1m== standing accrues: witness records gossip, hysteresis passes ==[0m
+  [alice] [roster] standing in this room:
+  [alice]   ● accepted …axcSTh (witnesses: 2 Strong/Mixed)
+  [alice]   ● accepted …Xorxn2 (witnesses: 2 Strong/Mixed)
+  [alice]   ● accepted alice (witnesses: 2 Strong/Mixed)
+
+[1m== partition: carol alone on one island ==[0m
+
+[1m== the majority island bans carol; her island still believes in her ==[0m
+  [alice] [roster] standing in this room:
+  [alice]   ● accepted …axcSTh (witnesses: 2 Strong/Mixed)
+  [alice]   ✕ removed …Xorxn2 (witnesses: 2 Strong/Mixed)
+  [alice]   ● accepted alice (witnesses: 2 Strong/Mixed)
+  [carol] [roster] standing in this room:
+  [carol]   ● accepted …axcSTh (witnesses: 2 Strong/Mixed)
+  [carol]   ● accepted carol (witnesses: 2 Strong/Mixed)
+  [carol]   ● accepted …GU1qwX (witnesses: 2 Strong/Mixed)
+
+[1m== heal: unblock and redial — deterministic reunion negotiates ==[0m
+  [alice] [residue] …Xorxn2: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+  [alice] [status] round 26 | digest 3dead6b71f1a | residue: 1 live (1 unhandled) | disputes: 1
+  [alice] [residue] …Xorxn2: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+  [carol] [residue] carol: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+  [carol] [status] round 24 | digest 3dead6b71f1a | residue: 1 live (1 unhandled) | disputes: 1
+  [carol] [residue] carol: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+
+[1m== every island now agrees carol is DISPUTED, with visible residue ==[0m
+  [bob] [roster] standing in this room:
+  [bob]   ● accepted bob (witnesses: 2 Strong/Mixed)
+  [bob]   ‼ disputed …Xorxn2 (witnesses: 2 Strong/Mixed)
+  [bob]   ● accepted …GU1qwX (witnesses: 2 Strong/Mixed)
+
+[1m== the creator resolves it visibly: override to quarantined ==[0m
+  [alice] [mod] OPERATOR OVERRIDE: …Xorxn2 -> quarantined (creator override after visible dispute)
+  [alice] [status] round 32 | digest 4e38cd5546d0 | residue: 1 live (0 unhandled) | disputes: 0
+  [alice] [residue] …Xorxn2 [handled by override]: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+  [bob] [mod] OPERATOR OVERRIDE: …Xorxn2 -> quarantined (creator override after visible dispute)
+  [bob] [status] round 30 | digest 4e38cd5546d0 | residue: 1 live (0 unhandled) | disputes: 0
+  [bob] [residue] …Xorxn2 [handled by override]: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+  [carol] [mod] OPERATOR OVERRIDE: carol -> quarantined (creator override after visible dispute)
+  [carol] [status] round 30 | digest 4e38cd5546d0 | residue: 1 live (0 unhandled) | disputes: 0
+  [carol] [residue] carol [handled by override]: Fresh admissible evidence remains materially unresolved; certainty is not counterfeited.
+
+[1m== the ban's whole causal story, from bob's transcript ==[0m
+  [bob]   #394 ResiduePreserved { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), residue: ResidueId([209, 128, 105, 175, 135, 36, 89, 210, 151, 148, 87, 225, 49, 240, 91, 144, 53, 54, 160, 137, 251, 110, 84, 229, 72, 84, 246, 131, 135, 164, 196, 79]), superseded: None, handled_by_override: true }
+  [bob]   #404 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([182, 173, 56, 105, 243, 91, 117, 15, 24, 152, 16, 43, 189, 103, 148, 185, 53, 59, 18, 81, 139, 41, 161, 105, 149, 5, 25, 104, 246, 137, 177, 32]), stance: Corroborate }
+  [bob]   #411 ClaimAdmitted { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), claim: ClaimId([46, 93, 39, 10, 244, 204, 118, 53, 246, 212, 39, 40, 4, 105, 209, 186, 37, 239, 255, 228, 59, 92, 177, 44, 244, 22, 112, 151, 24, 92, 213, 28]) }
+  [bob]   #412 TransitionRefused { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), event: Introduced, reason: "invalid transition: quarantined does not accept Introduced" }
+  [bob]   #413 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([19, 102, 25, 143, 115, 74, 21, 95, 125, 44, 186, 177, 66, 133, 222, 45, 83, 149, 77, 184, 87, 207, 201, 239, 223, 168, 143, 163, 225, 187, 153, 196]), stance: Corroborate }
+  [bob]   #414 ClaimAdmitted { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), claim: ClaimId([46, 93, 39, 10, 244, 204, 118, 53, 246, 212, 39, 40, 4, 105, 209, 186, 37, 239, 255, 228, 59, 92, 177, 44, 244, 22, 112, 151, 24, 92, 213, 28]) }
+  [bob]   #415 TransitionRefused { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), event: Introduced, reason: "invalid transition: quarantined does not accept Introduced" }
+  [bob]   #416 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([19, 102, 25, 143, 115, 74, 21, 95, 125, 44, 186, 177, 66, 133, 222, 45, 83, 149, 77, 184, 87, 207, 201, 239, 223, 168, 143, 163, 225, 187, 153, 196]), stance: Corroborate }
+  [bob]   #422 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([182, 173, 56, 105, 243, 91, 117, 15, 24, 152, 16, 43, 189, 103, 148, 185, 53, 59, 18, 81, 139, 41, 161, 105, 149, 5, 25, 104, 246, 137, 177, 32]), stance: Corroborate }
+  [bob]   #426 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([182, 173, 56, 105, 243, 91, 117, 15, 24, 152, 16, 43, 189, 103, 148, 185, 53, 59, 18, 81, 139, 41, 161, 105, 149, 5, 25, 104, 246, 137, 177, 32]), stance: Corroborate }
+  [bob]   #428 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([182, 173, 56, 105, 243, 91, 117, 15, 24, 152, 16, 43, 189, 103, 148, 185, 53, 59, 18, 81, 139, 41, 161, 105, 149, 5, 25, 104, 246, 137, 177, 32]), stance: Corroborate }
+  [bob]   #430 WitnessRecorded { scope: ScopeId("room:demo"), subject: SubjectId("12D3KooWG1RHgDN7TdkeAbom4u8rco2ytfVWtDxXQWezbLXorxn2"), record: WitnessRecordId([19, 102, 25, 143, 115, 74, 21, 95, 125, 44, 186, 177, 66, 133, 222, 45, 83, 149, 77, 184, 87, 207, 201, 239, 223, 168, 143, 163, 225, 187, 153, 196]), stance: Corroborate }
+
+[1m== done — full logs in /var/folders/pz/6_cybl0j4xq1c9475p1rbv980000gn/T/tmp.1COkVPoYA1 (kept until you press enter) ==[0m

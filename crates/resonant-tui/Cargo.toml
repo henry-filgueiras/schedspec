@@ -1,0 +1,20 @@
+[package]
+name = "resonant-tui"
+description = "One-window demo: three chat nodes side by side, with partition/ban/heal/override story beats and live standing panels"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "resonant-tui"
+path = "src/main.rs"
+
+[dependencies]
+resonant-kernel = { path = "../resonant-kernel" }
+resonant-net = { path = "../resonant-net" }
+libp2p = { version = "0.56", features = ["tokio"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+futures = "0.3"
+ratatui = "0.29"
+crossterm = { version = "0.28", features = ["event-stream"] }

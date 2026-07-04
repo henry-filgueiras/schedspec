@@ -173,13 +173,17 @@ This repository is a systems design document set. It describes intended primitiv
 
 There is now a **sans-IO Rust reference kernel** under [`crates/`](crates/) that makes the semantic core executable — the nine-state belief lifecycle, the merge precedence contract (with residue enforced by types), permutation rank with reconstruction, trust-root standing, repair digests, and a hash-chained decision transcript. It is deliberately not a network runtime: no sockets, no clocks, no randomness. The scenario corpus in [`docs/scenarios/`](docs/scenarios/) doubles as its conformance suite — the Rust engine reproduces the Deterministic Reunion Lab's outcomes at every replay prefix (`cargo test --workspace`, or `cargo run -p resonant-cli -- scenario verify`). Every place the docs leave a question open, the kernel pins one concrete reference decision, cataloged in [`crates/resonant-kernel/PINNED_DECISIONS.md`](crates/resonant-kernel/PINNED_DECISIONS.md).
 
-The kernel now also rides a real transport: [`crates/resonant-node`](crates/resonant-node/) is a P2P group chat (libp2p gossipsub below, resonant standing above) where moderation survives partitions — bans made during a split reunite as visible disputes, sockpuppet vouching fails the evidence-derived laundering check, and the creator's override marks scars handled without erasing them. `demo/split-brain.sh` self-drives the whole story on localhost.
+The kernel now also rides a real transport. [`crates/resonant-net`](crates/resonant-net/) is the libp2p shell (gossipsub below, resonant standing above), and two application skins prove the layer isn't shaped like any one app:
+
+- [`crates/resonant-node`](crates/resonant-node/) — P2P group chat where moderation survives partitions: bans made during a split reunite as visible disputes, sockpuppet vouching fails the evidence-derived laundering check, and the creator's override marks scars handled without erasing them. `demo/split-brain.sh` self-drives the whole story on localhost (captured run: [`demo/split-brain-transcript.txt`](demo/split-brain-transcript.txt)).
+- [`crates/resonant-blockd`](crates/resonant-blockd/) — a federated blocklist daemon: block entries reach "blocked" only under independently-vouched corroboration, so the anti-sockpuppet gate doubles as an anti-brigading gate, and cross-federation disagreements survive as disputes instead of winning by arrival order.
+- [`crates/resonant-tui`](crates/resonant-tui/) — the whole split-brain story in one window: three nodes side by side with live standing/residue panels and a convergence strip; function keys drive partition, ban, heal, and override.
 
 Try it:
 
 ```
 cargo run -p resonant-cli -- scenario run deterministic-reunion-trust-laundering --naive
 cargo run -p resonant-cli -- theater run split-brain-ban
-cargo run -p resonant-cli -- rank --candidates iona,kestrel,lumen --audit
+cargo run -p resonant-tui
 ./demo/split-brain.sh
 ```
