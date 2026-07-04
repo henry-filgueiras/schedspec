@@ -1,0 +1,38 @@
+[package]
+name = "resonant-node"
+description = "P2P group chat with partition-surviving moderation: libp2p transport below, the resonant standing kernel above"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "resonant_node"
+path = "src/lib.rs"
+
+[[bin]]
+name = "resonant-chat"
+path = "src/main.rs"
+
+[dependencies]
+resonant-kernel = { path = "../resonant-kernel" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+clap = { workspace = true }
+futures = "0.3"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std", "io-util", "time", "sync"] }
+libp2p = { version = "0.56", features = [
+    "tokio",
+    "tcp",
+    "noise",
+    "yamux",
+    "macros",
+    "gossipsub",
+    "identify",
+    "ping",
+    "request-response",
+    "json",
+] }
+
+[dev-dependencies]
+libp2p = { version = "0.56", features = ["plaintext"] }

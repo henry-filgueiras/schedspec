@@ -91,7 +91,7 @@ At minimum:
 
 Without those constraints, "merge policy" becomes too easy a place to hide contradictory semantics.
 
-A reference instance of this precedence family now exists as an executable kernel (`crates/resonant-kernel`), conformance-tested against the Deterministic Reunion Lab's scenario corpus and property-tested against adversarial inputs. That work sharpened four constraints the family had left implicit — a dispute is never stable, cross-class dominance stays count-free even in fallback shapes, reunion may carry an introduction but never re-introduce over live belief, and residue identity must derive from shared reunion coordinates or reunited replicas never converge. The canonical statements live in [`SEMANTICS.md`](SEMANTICS.md) under "Refinements From The Reference Kernel"; the decision register is `crates/resonant-kernel/PINNED_DECISIONS.md`.
+A reference instance of this precedence family now exists as an executable kernel (`crates/resonant-kernel`), conformance-tested against the Deterministic Reunion Lab's scenario corpus and property-tested against adversarial inputs. That work sharpened the constraints the family had left implicit — a dispute is never stable, cross-class dominance stays count-free even in fallback shapes, reunion may carry an introduction but never re-introduce over live belief, residue identity is content-addressed on the subject of the disagreement (or reunited replicas never converge, especially once reunions cascade pairwise), and stable convergence resolves a subject's residue into the visible record rather than leaving permanent noise. The canonical statements live in [`SEMANTICS.md`](SEMANTICS.md) under "Refinements From The Reference Kernel"; the decision register is `crates/resonant-kernel/PINNED_DECISIONS.md`.
 
 ## Merge Outcomes
 
@@ -141,7 +141,7 @@ A healing process may look like:
 1. detect recontact between previously separated scopes
 2. exchange repair digests or equivalent compact summaries of local membership belief
 3. select accountable rendezvous peers by permutation rank
-4. agree on the reunion coordinates — scope, epoch, and rendezvous round — that every participant will use, so that residue minted by the merge carries the same identity everywhere
+4. agree on the reunion coordinates — scope, epoch, and rendezvous round — that every participant will use, so the merge itself is the same computation everywhere (residue identity is content-addressed on the disputed subject, so cascaded pairwise reunions still converge)
 5. use those digests to decide where deeper witness history, residue, and provenance fetch is required
 6. merge witness histories and unresolved residue where the digests indicate real conflict or missing detail
 7. disseminate repair decisions along topology-aware repair paths

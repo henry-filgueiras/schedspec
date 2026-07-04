@@ -746,6 +746,7 @@ pub struct AppliedMerge {
     pub confirmations: usize,
     pub residue_inserted: usize,
     pub residue_superseded: usize,
+    pub residue_resolved: usize,
 }
 
 impl ReunionOutcome {
@@ -764,10 +765,18 @@ impl ReunionOutcome {
             confirmations: 0,
             residue_inserted: 0,
             residue_superseded: 0,
+            residue_resolved: 0,
         };
         let input_digest = self.input_digest;
         for outcome in self.outcomes {
             let projected = outcome.resolution.project();
+            // A stable convergence with no surviving conflict resolves the
+            // subject's prior residue: residue tracks live disagreement,
+            // and closed entries move to the visible resolved record.
+            let stable_and_clean = matches!(
+                &outcome.resolution,
+                MergeResolution::Converged { residue, .. } if residue.is_empty()
+            );
             let (event, residue): (BeliefEvent, Vec<Residue>) = match outcome.resolution {
                 MergeResolution::Overridden {
                     override_id,
@@ -810,6 +819,14 @@ impl ReunionOutcome {
                     applied.residue_superseded += 1;
                 }
                 applied.residue_inserted += 1;
+            }
+            if stable_and_clean {
+                let resolved = view.residue_mut().resolve_for_subject(
+                    &outcome.subject,
+                    &crate::residue::ResolutionEvidence::StableConvergence { input_digest },
+                    at,
+                );
+                applied.residue_resolved += resolved.len();
             }
         }
         view.advance_epoch(at.0);
